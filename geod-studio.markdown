@@ -6,4 +6,4 @@ permalink: "/front"
 
 Projects
 
-    3dSenVR
+   ![3dsen_64.png](/uploads/3dsen_64.png) 3dSenVR
