@@ -1,0 +1,14 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Geod Studio",
+    "description": "",
+    "home_page_url": "https://tructv.github.io",
+    "feed_url": "https://tructv.github.io/feed.json",
+    "user_comment": "",
+    "icon": "https://tructv.github.io/media/website/geod.png",
+    "author": {
+        "name": "Tran Vu Truc"
+    },
+    "items": [
+    ]
+}

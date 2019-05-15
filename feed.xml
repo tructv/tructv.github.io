@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Geod Studio</title>
+    <link href="https://tructv.github.io/feed.xml" rel="self" />
+    <link href="https://tructv.github.io" />
+    <updated>1970-01-01T07:00:00+07:00</updated>
+    <author>
+        <name>Tran Vu Truc</name>
+    </author>
+    <id>https://tructv.github.io</id>
+
+</feed>
