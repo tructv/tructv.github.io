@@ -11,60 +11,18 @@
     },
     "items": [
         {
-            "id": "https://tructv.github.io/4.html",
-            "url": "https://tructv.github.io/4.html",
-            "title": "4",
-            "summary": "dfsfsdfsdafsdfds dsf sdfsd fsd fsd fsdf sd",
-            "content_html": "<p>dfsfsdfsdafsdfds</p>\n<p>dsf</p>\n<p>sdfsd</p>\n<p>fsd</p>\n<p>fsd</p>\n<p>fsdf</p>\n<p>sd</p>",
-            "author": {
-                "name": "Tran Vu Truc"
-            },
-            "tags": [
-            ],
-            "date_published": "2019-05-15T16:42:10+07:00",
-            "date_modified": "2019-05-15T16:43:40+07:00"
-        },
-        {
-            "id": "https://tructv.github.io/3.html",
-            "url": "https://tructv.github.io/3.html",
-            "title": "3",
-            "summary": "fsdfsdafsdfsdf dsfksdk;lfjds;lf sdfkljds;lkfjsd;f dsfsdafdsfdsf",
-            "content_html": "<p>fsdfsdafsdfsdf</p>\n<p>dsfksdk;lfjds;lf</p>\n<p>sdfkljds;lkfjsd;f</p>\n<p>dsfsdafdsfdsf</p>",
-            "author": {
-                "name": "Tran Vu Truc"
-            },
-            "tags": [
-            ],
-            "date_published": "2019-05-15T16:42:08+07:00",
-            "date_modified": "2019-05-15T16:43:50+07:00"
-        },
-        {
-            "id": "https://tructv.github.io/2.html",
-            "url": "https://tructv.github.io/2.html",
-            "title": "2",
-            "summary": "dsfsdfsdfhsdakfhdlsfkh asdlfkjsdaklsdafh aksdjflkdshaflksdaf",
-            "content_html": "<p>dsfsdfsdfhsdakfhdlsfkh</p>\n<p>asdlfkjsdaklsdafh</p>\n<p>aksdjflkdshaflksdaf</p>",
-            "author": {
-                "name": "Tran Vu Truc"
-            },
-            "tags": [
-            ],
-            "date_published": "2019-05-15T16:42:05+07:00",
-            "date_modified": "2019-05-15T16:43:57+07:00"
-        },
-        {
             "id": "https://tructv.github.io/3dsenvr.html",
             "url": "https://tructv.github.io/3dsenvr.html",
-            "title": "3dSenVR",
-            "summary": "Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.",
-            "content_html": "<p>Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.</p>",
+            "title": "Projects",
+            "summary": "Micro MagesNES game. Platform/Adventure. 1-4 Players. Micro Mages is an original homebrew game for the NES console. Play solo or with up to 4&hellip;",
+            "content_html": "<section>\n<article><img src=\"3dsen_64.png\" alt=\"\">\n<div>\n<h3 id=\"mcetoc_1datickde0\"><a href=\"index.html\">Micro Mages</a></h3>\n<p>NES game. Platform/Adventure. 1-4 Players.</p>\n<p>Micro Mages is an original homebrew game for the NES console. Play solo or with up to 4 players simultaneously. Fight to get the best score or cooperate to overcome challenging areas.<br> <a href=\"index.html\" target=\"_blank\" rel=\"noopener noreferrer\">Windows version + ROM</a> / <a href=\"index.html\" target=\"_blank\" rel=\"noopener noreferrer\">Steam + ROM</a> / <a href=\"index.html\" target=\"_blank\" alt=\"Buy Micro Mages cartridge\" rel=\"noopener noreferrer\">NES cartridges + ROM</a></p>\n<a href=\"index.html\">Buy now</a> <a href=\"index.html\">Presskit</a> <a href=\"index.html\">More info</a> <!--<p class=\"read\">no info</p>--></div>\n</article>\n</section>",
             "author": {
                 "name": "Tran Vu Truc"
             },
             "tags": [
             ],
             "date_published": "2019-05-15T12:23:48+07:00",
-            "date_modified": "2019-05-15T17:00:16+07:00"
+            "date_modified": "2019-05-15T18:00:12+07:00"
         }
     ]
 }

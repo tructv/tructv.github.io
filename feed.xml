@@ -3,100 +3,37 @@
     <title>Geod Studio</title>
     <link href="https://tructv.github.io/feed.xml" rel="self" />
     <link href="https://tructv.github.io" />
-    <updated>2019-05-15T17:18:10+07:00</updated>
+    <updated>2019-05-15T21:33:52+07:00</updated>
     <author>
         <name>Tran Vu Truc</name>
     </author>
     <id>https://tructv.github.io</id>
 
     <entry>
-        <title>4</title>
-        <author>
-            <name>Tran Vu Truc</name>
-        </author>
-        <link href="https://tructv.github.io/4.html"/>
-        <id>https://tructv.github.io/4.html</id>
-
-        <updated>2019-05-15T16:43:40+07:00</updated>
-            <summary>
-                <![CDATA[
-                    dfsfsdfsdafsdfds dsf sdfsd fsd fsd fsdf sd
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>dfsfsdfsdafsdfds</p>
-<p>dsf</p>
-<p>sdfsd</p>
-<p>fsd</p>
-<p>fsd</p>
-<p>fsdf</p>
-<p>sd</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>3</title>
-        <author>
-            <name>Tran Vu Truc</name>
-        </author>
-        <link href="https://tructv.github.io/3.html"/>
-        <id>https://tructv.github.io/3.html</id>
-
-        <updated>2019-05-15T16:43:50+07:00</updated>
-            <summary>
-                <![CDATA[
-                    fsdfsdafsdfsdf dsfksdk;lfjds;lf sdfkljds;lkfjsd;f dsfsdafdsfdsf
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>fsdfsdafsdfsdf</p>
-<p>dsfksdk;lfjds;lf</p>
-<p>sdfkljds;lkfjsd;f</p>
-<p>dsfsdafdsfdsf</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>2</title>
-        <author>
-            <name>Tran Vu Truc</name>
-        </author>
-        <link href="https://tructv.github.io/2.html"/>
-        <id>https://tructv.github.io/2.html</id>
-
-        <updated>2019-05-15T16:43:57+07:00</updated>
-            <summary>
-                <![CDATA[
-                    dsfsdfsdfhsdakfhdlsfkh asdlfkjsdaklsdafh aksdjflkdshaflksdaf
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                <p>dsfsdfsdfhsdakfhdlsfkh</p>
-<p>asdlfkjsdaklsdafh</p>
-<p>aksdjflkdshaflksdaf</p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>3dSenVR</title>
+        <title>Projects</title>
         <author>
             <name>Tran Vu Truc</name>
         </author>
         <link href="https://tructv.github.io/3dsenvr.html"/>
         <id>https://tructv.github.io/3dsenvr.html</id>
 
-        <updated>2019-05-15T17:00:16+07:00</updated>
+        <updated>2019-05-15T18:00:12+07:00</updated>
             <summary>
                 <![CDATA[
-                    Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.
+                    Micro MagesNES game. Platform/Adventure. 1-4 Players. Micro Mages is an original homebrew game for the NES console. Play solo or with up to 4&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.</p>
+                <section>
+<article><img src="3dsen_64.png" alt="">
+<div>
+<h3 id="mcetoc_1datickde0"><a href="index.html">Micro Mages</a></h3>
+<p>NES game. Platform/Adventure. 1-4 Players.</p>
+<p>Micro Mages is an original homebrew game for the NES console. Play solo or with up to 4 players simultaneously. Fight to get the best score or cooperate to overcome challenging areas.<br> <a href="index.html" target="_blank" rel="noopener noreferrer">Windows version + ROM</a> / <a href="index.html" target="_blank" rel="noopener noreferrer">Steam + ROM</a> / <a href="index.html" target="_blank" alt="Buy Micro Mages cartridge" rel="noopener noreferrer">NES cartridges + ROM</a></p>
+<a href="index.html">Buy now</a> <a href="index.html">Presskit</a> <a href="index.html">More info</a> <!--<p class="read">no info</p>--></div>
+</article>
+</section>
             ]]>
         </content>
     </entry>
