@@ -3,10 +3,101 @@
     <title>Geod Studio</title>
     <link href="https://tructv.github.io/feed.xml" rel="self" />
     <link href="https://tructv.github.io" />
-    <updated>1970-01-01T07:00:00+07:00</updated>
+    <updated>2019-05-15T17:18:10+07:00</updated>
     <author>
         <name>Tran Vu Truc</name>
     </author>
     <id>https://tructv.github.io</id>
 
+    <entry>
+        <title>4</title>
+        <author>
+            <name>Tran Vu Truc</name>
+        </author>
+        <link href="https://tructv.github.io/4.html"/>
+        <id>https://tructv.github.io/4.html</id>
+
+        <updated>2019-05-15T16:43:40+07:00</updated>
+            <summary>
+                <![CDATA[
+                    dfsfsdfsdafsdfds dsf sdfsd fsd fsd fsdf sd
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>dfsfsdfsdafsdfds</p>
+<p>dsf</p>
+<p>sdfsd</p>
+<p>fsd</p>
+<p>fsd</p>
+<p>fsdf</p>
+<p>sd</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>3</title>
+        <author>
+            <name>Tran Vu Truc</name>
+        </author>
+        <link href="https://tructv.github.io/3.html"/>
+        <id>https://tructv.github.io/3.html</id>
+
+        <updated>2019-05-15T16:43:50+07:00</updated>
+            <summary>
+                <![CDATA[
+                    fsdfsdafsdfsdf dsfksdk;lfjds;lf sdfkljds;lkfjsd;f dsfsdafdsfdsf
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>fsdfsdafsdfsdf</p>
+<p>dsfksdk;lfjds;lf</p>
+<p>sdfkljds;lkfjsd;f</p>
+<p>dsfsdafdsfdsf</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>2</title>
+        <author>
+            <name>Tran Vu Truc</name>
+        </author>
+        <link href="https://tructv.github.io/2.html"/>
+        <id>https://tructv.github.io/2.html</id>
+
+        <updated>2019-05-15T16:43:57+07:00</updated>
+            <summary>
+                <![CDATA[
+                    dsfsdfsdfhsdakfhdlsfkh asdlfkjsdaklsdafh aksdjflkdshaflksdaf
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>dsfsdfsdfhsdakfhdlsfkh</p>
+<p>asdlfkjsdaklsdafh</p>
+<p>aksdjflkdshaflksdaf</p>
+            ]]>
+        </content>
+    </entry>
+    <entry>
+        <title>3dSenVR</title>
+        <author>
+            <name>Tran Vu Truc</name>
+        </author>
+        <link href="https://tructv.github.io/3dsenvr.html"/>
+        <id>https://tructv.github.io/3dsenvr.html</id>
+
+        <updated>2019-05-15T17:00:16+07:00</updated>
+            <summary>
+                <![CDATA[
+                    Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>Play NES games in 3D PCVR, support vatively both SteamVR and Oculus Runtime.</p>
+            ]]>
+        </content>
+    </entry>
 </feed>
