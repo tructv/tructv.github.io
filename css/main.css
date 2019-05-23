@@ -282,6 +282,10 @@ header .social-info li a:hover {
   color: #9AA0A9;
   font-size: 16px;
 }
+#utility-2 .title {
+  font-weight: 300;
+}
+
 #subscribe {
   padding: 70px 0;
 }

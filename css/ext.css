@@ -51,7 +51,7 @@ section .container{ padding: 0px 0 30px 0}
 
 .grid-container {
 	display: grid;
-	grid-template-columns: auto auto auto auto;
+	grid-template-columns: auto auto auto;
 	grid-gap: 5px;
 	padding: 10px;
 }
@@ -72,4 +72,12 @@ section .container{ padding: 0px 0 30px 0}
 
 #utility-2 img:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.icon-itch{
+  background-image : url("https://tructv.github.io/images/itch-icon.png");
+  background-size: cover;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
 }
