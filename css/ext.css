@@ -1,5 +1,5 @@
 #feature1 {
-  padding: 100px 0 0 0;
+  padding: 100px 0 0 30px;
 }
 #feature1 .title {
   font-weight: 300;
@@ -48,6 +48,8 @@ section .container{ padding: 0px 0 30px 0}
 
 
 .item1 { grid-area: main; }
+
+.grid-item{text-align:center}
 
 .grid-container {
 	display: grid;
