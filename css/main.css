@@ -169,7 +169,7 @@ header .social-info li a:hover {
   border: 1px solid #00afec;
 }
 #service {
-  padding: 30px 0;
+  padding: 30px 0 30px 30px;
 }
 #service .service-wrapper {
   border-top: 1px solid #dedede;
@@ -221,7 +221,7 @@ header .social-info li a:hover {
   color: #666;
 }
 #feature {
-  padding: 60px 0 0 0;
+  padding: 60px 0 0 30px;
 }
 #feature .title {
   font-weight: 300;
@@ -257,7 +257,7 @@ header .social-info li a:hover {
 
 #utility {
   background: #f6f6f7;
-  padding: 20px 0 30px 0;
+  padding: 20px 0 30px 30px;
 }
 #utility .block h2 {
   padding-top: 70px;
@@ -269,7 +269,7 @@ header .social-info li a:hover {
   font-size: 16px;
 }
 #utility-2 {
-  padding: 40px 0 10px 0;
+  padding: 40px 0 10px 30px;
 }
 #utility-2 .block {
   padding-top: 100px;
@@ -287,7 +287,7 @@ header .social-info li a:hover {
 }
 
 #subscribe {
-  padding: 70px 0;
+  padding: 70px 0 70px 30px;
 }
 #subscribe .block {
   border-top: 1px solid #dedede;
