@@ -65,7 +65,7 @@ header {
   -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.8);
-  padding: 8px 0 0 0px;
+  padding: 8px 0 0 30px;
   position: fixed;
   width: 100%;
   z-index: 999;
@@ -343,7 +343,7 @@ header .social-info li a:hover {
 footer {
   background: #f9f9f9;
   border-top: 1px solid #e8e8e8;
-  padding: 40px 0 20px 0px;
+  padding: 40px 0 20px 30px;
 }
 footer .footer-logo {
   margin-bottom: 15px;
