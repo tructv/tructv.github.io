@@ -5,7 +5,7 @@
   font-weight: 300;
 }
 #feature1 .feature-item {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 #feature1 .feature-item:first-child {
   margin-top: 0;
@@ -19,7 +19,6 @@
 }
 #feature1 .feature-item h4 {
   color: #f48e5c;
-  margin-bottom: 0;
   font-weight: 300;
   margin-bottom: 8px;
 }
@@ -55,7 +54,7 @@ section .container{ padding: 0px 0 30px 30px}
 	display: grid;
 	grid-template-columns: auto auto auto;
 	grid-gap: 15px;
-	padding: 0px;
+	padding: 5px;
 }
 
 .btn-steam {
