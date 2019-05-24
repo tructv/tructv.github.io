@@ -35,7 +35,7 @@
 
 .top-buffer { margin-top:2.5%; margin-right:2.5%;}
 
-section .container{ padding: 0px 0 30px 0}
+section .container{ padding: 0px 0 30px 30px}
 
 .wrapper {
   border-bottom: 1px solid #dedede;
