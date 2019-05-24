@@ -42,20 +42,20 @@ section .container{ padding: 0px 0 30px 30px}
 }
 
 #feature .text {
-  word-spacing: 10px;
-  line-height: 130%;
+  word-spacing: 0px;
+  line-height: 100%;
 }
 
 
 .item1 { grid-area: main; }
 
-.grid-item{text-align:center}
+.grid-item{text-align:left}
 
 .grid-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
-	grid-gap: 5px;
-	padding: 10px;
+	grid-gap: 15px;
+	padding: 0px;
 }
 
 .btn-steam {
