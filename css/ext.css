@@ -76,7 +76,7 @@ section .container{ padding: 0px 0 30px 30px}
 }
 
 .icon-itch{
-  background-image : url("http://www.geodstudio.net/images/itch-icon.jpg");
+  background-image : url("http://www.geodstudio.net/images/itch-icon.png");
   background-size: cover;
   display: inline-block;
   height: 20px;
