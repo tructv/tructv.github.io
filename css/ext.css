@@ -62,7 +62,7 @@ section .container{ padding: 0px 0 30px 30px}
 }
 
 .btn-itch{
-    background-color: #B00;
+    background-color: #C66;
 }
 
 #utility-2 img {
@@ -80,5 +80,5 @@ section .container{ padding: 0px 0 30px 30px}
   background-size: cover;
   display: inline-block;
   height: 20px;
-  width: 20px;
+  width: 24px;
 }
