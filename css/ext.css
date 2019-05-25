@@ -80,5 +80,5 @@ section .container{ padding: 0px 0 30px 30px}
   background-size: cover;
   display: inline-block;
   height: 20px;
-  width: 24px;
+  width: 24px; 
 }
