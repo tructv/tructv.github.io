@@ -1,5 +1,5 @@
 #feature1 {
-  padding: 100px 0 0 30px;
+  padding: 100px 0 0 15px;
 }
 #feature1 .title {
   font-weight: 300;
@@ -34,7 +34,7 @@
 
 .top-buffer { margin-top:2.5%; margin-right:2.5%;}
 
-section .container{ padding: 0px 0 30px 30px}
+section .container{ padding: 0px 0 30px 15px}
 
 .wrapper {
   border-bottom: 1px solid #dedede;
