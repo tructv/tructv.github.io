@@ -83,7 +83,7 @@ section .container{ padding: 0px 0 30px 15px}
   background-image : url("http://www.geodstudio.net/images/itch-icon.png");
   background-size: cover;
   display: inline-block;
-  height: 24px;
+  height: 22px;
   width: 24px; 
 }
 
