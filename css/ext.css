@@ -83,8 +83,9 @@ section .container{ padding: 0px 0 30px 15px}
   background-image : url("http://www.geodstudio.net/images/itch-icon.png");
   background-size: cover;
   display: inline-block;
-  height: 22px;
+  height: 20px;
   width: 24px; 
+  font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
 }
 
 .icon-viveport{
