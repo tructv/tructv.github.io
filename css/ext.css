@@ -80,7 +80,7 @@ section .container{ padding: 0px 0 30px 15px}
 }
 
 .icon-itch{
-  background-image : url("http://www.geodstudio.net/images/itch-icon.png");
+  background-image : url("https://www.geodstudio.net/images/itch-icon.png");
   background-size: cover;
   display: inline-block;
   height: 20px;
@@ -89,7 +89,7 @@ section .container{ padding: 0px 0 30px 15px}
 }
 
 .icon-viveport{
-  background-image : url("http://www.geodstudio.net/images/viveport.png");
+  background-image : url("https://www.geodstudio.net/images/viveport.png");
   background-size: cover;
   display: inline-block;
   height: 20px;
