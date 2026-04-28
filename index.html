@@ -1,379 +1,1019 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-	       <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>3dSen — Play NES Games in 3D | Geod Studio</title>
+<meta name="description" content="3dSen is a one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR. 100+ supported titles. Available on Steam." />
 
-          ga('create', 'UA-57258992-14', 'auto');
-          ga('send', 'pageview');
+<!-- Open Graph -->
+<meta property="og:title" content="3dSen — Play NES Games in 3D" />
+<meta property="og:description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://geodstudio.net/" />
+<meta property="og:image" content="https://geodstudio.net/images/mm3_thumb.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
 
-        </script>
-	
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>3dSen</title>
-        <meta name="description" content="3dSen - NES emulator that allows playing your favorite NES games in 3D & VR">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="images/geod.png">
-        
-        <!-- Fonts -->
+<link rel="icon" href="images/geod.png" type="image/png" />
 
+<!-- Tailwind (kept from original) -->
+<script src="https://cdn.tailwindcss.com"></script>
 
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+<style>
+  :root{
+    --bg:        #0B0A09;
+    --bg-2:      #131110;
+    --bg-3:      #1B1815;
+    --bg-card:   #17140F;
+    --fg:        #F5EEE0;
+    --fg-muted:  #A39B8A;
+    --fg-dim:    #6F6757;
+    --line:      rgba(245,238,224,.10);
+    --line-hard: rgba(245,238,224,.22);
+    --accent:    #FF4F1F;   /* vermilion, NES-inspired */
+    --accent-2:  #4ADEDE;   /* cyan for VR/depth */
+    --accent-3:  #FFC857;   /* gold highlight */
+    --max:       1280px;
+  }
 
-        <!-- CSS -->
-	
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/responsive.css">
-		
-		<link rel="stylesheet" href="css/ext.css">
-		<!-- Begin Mailchimp Signup Form -->
-		<link href="https://cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-		<style type="text/css">
-			#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-			/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-			   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-		</style>
-        
+  *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
-        <!-- Js -->
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/wow.min.js"></script>
-		<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/d85b375ba46c9dad2a50b7c25/f0b1615195b4084d8a0e4c636.js");</script>
-        <script>
-         new WOW(
-            ).init();
-        </script>
-	
- <!--        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  html, body{
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01","cv11";
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
 
-          ga('create', 'UA-57258992-14', 'auto');
-          ga('send', 'pageview');
+  /* Type tokens */
+  .display { font-family: "Fraunces", ui-serif, Georgia, serif; font-weight: 600; letter-spacing: -0.02em; line-height: 0.95; font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 1; }
+  .display-italic { font-family: "Fraunces", serif; font-style: italic; font-weight: 500; font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-feature-settings: "ss01","ss02"; }
 
-        </script> -->
+  /* Decorative grain overlay */
+  body::before{
+    content:"";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none; z-index: 1;
+    mix-blend-mode: overlay;
+    opacity:.6;
+  }
+  /* Subtle scanlines */
+  body::after{
+    content:"";
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.02) 50%, transparent 50%);
+    background-size: 100% 3px;
+    pointer-events: none; z-index: 1;
+    mix-blend-mode: overlay;
+    opacity:.5;
+  }
 
-    </head>
-    <body>
+  /* Section number labels */
+  .eyebrow{
+    font-family:"JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--fg-muted);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before{
+    content:""; width: 8px; height: 8px; background: var(--accent);
+    display:inline-block; border-radius: 1px;
+    box-shadow: 0 0 0 2px rgba(255,79,31,.18);
+  }
 
+  /* Buttons */
+  .btn{ display:inline-flex; align-items:center; gap:10px; padding: 14px 22px; border-radius: 999px; font-weight: 500; transition: transform .25s ease, background .2s ease, color .2s ease, border-color .2s ease; will-change: transform; }
+  .btn-primary{ background: var(--fg); color: #0a0a0a; }
+  .btn-primary:hover{ background: var(--accent); color: var(--fg); transform: translateY(-2px); }
+  .btn-ghost{ border: 1px solid var(--line-hard); color: var(--fg); }
+  .btn-ghost:hover{ border-color: var(--fg); transform: translateY(-2px); }
+  .btn-accent{ background: var(--accent); color: var(--fg); }
+  .btn-accent:hover{ background: #FF6133; transform: translateY(-2px); }
 
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-xs-6 col-sm-3">
-                    <a href="#" class="logo">
-                        <img src="images/geod.png" height="48px"; alt="">
-                    </a>
-                </div>
-                <div class="col-md-6 col-xs-6 col-sm-6">
-                    <div class="menu">
-                        <nav class="navbar navbar-default" role="navigation">
-                            <div class="container-fluid">
-                                <!-- Brand and toggle get grouped for better mobile display -->
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    </button>
-                                </div>
+  /* Hairline */
+  .hr{ height:1px; background: var(--line); border:0; }
+  .hr-dashed{ border:0; border-top:1px dashed var(--line-hard); }
 
-                                <!-- Collect the nav links, forms, and other content for toggling -->
-                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul class="nav navbar-nav">
-                                        <li><a href="#banner">Home</a></li>
-										<li><a href="#_trailer">Trailer</a></li>
-                                        <li><a href="#_ss">Screenshot</a></li>
-										<li><a href="#service">Review</a></li>
-                                        <li><a href="#subscribe">Subscribe</a></li>
-                                    </ul>
-                                  
-                                </div><!-- /.navbar-collapse -->
-                            </div><!-- /.container-fluid -->
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-12 col-sm-3">
-                    <ul class="social-info">
-                        <li><a href="https://www.facebook.com/3dnes"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/tructv"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.youtube.com/tructre1980"><i class="fa fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+  /* Voxel decoration (CSS only) */
+  .voxel-grid{
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Marquee */
+  .marquee { display:flex; gap: 4rem; animation: scroll 40s linear infinite; width:max-content; }
+  @keyframes scroll{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.delay-1 { transition-delay: .08s; }
+  .reveal.delay-2 { transition-delay: .16s; }
+  .reveal.delay-3 { transition-delay: .24s; }
+  .reveal.delay-4 { transition-delay: .32s; }
+
+  /* Hero image floating cards */
+  .float-card{ box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), 0 1px 0 0 rgba(255,255,255,.04) inset; }
+
+  /* Comparison hover effect */
+  .compare{ position: relative; overflow: hidden; }
+  .compare .flat, .compare .deep { width:100%; height:100%; object-fit:cover; }
+  .compare .flat { position:absolute; inset:0; clip-path: inset(0 50% 0 0); transition: clip-path .8s cubic-bezier(.2,.7,.2,1); }
+  .compare:hover .flat { clip-path: inset(0 100% 0 0); }
+  .compare .label{ position:absolute; top:14px; padding:6px 10px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; backdrop-filter: blur(8px); }
+  .compare .label-flat{ left:14px; background: rgba(11,10,9,.7); border:1px solid var(--line-hard); }
+  .compare .label-deep{ right:14px; background: var(--accent); }
+  .compare .divider{ position:absolute; top:0; bottom:0; left:50%; width:1px; background: var(--accent); transform: translateX(-.5px); transition: opacity .8s; }
+  .compare:hover .divider{ opacity:0; }
+
+  /* Glow ring */
+  .glow-ring{ box-shadow: 0 0 0 1px var(--line-hard), 0 30px 100px -30px rgba(255,79,31,.4); }
+
+  /* Game tile */
+  .tile { position:relative; overflow:hidden; border-radius: 14px; aspect-ratio: 1/1; background: var(--bg-2); border:1px solid var(--line); }
+  .tile img { width:100%; height:100%; object-fit:cover; transition: transform .8s ease, filter .8s ease; filter: saturate(.85); }
+  .tile:hover img { transform: scale(1.06); filter: saturate(1.1); }
+  .tile .tag{ position:absolute; left:10px; bottom:10px; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.1em; background: rgba(11,10,9,.75); backdrop-filter: blur(6px); padding: 5px 8px; border-radius: 6px; border:1px solid var(--line-hard); }
+
+  /* Subtle dotted divider */
+  .dot-row{ display:grid; grid-auto-flow: column; gap: 6px; justify-content: start; }
+  .dot-row span{ width: 4px; height: 4px; background: var(--fg-dim); border-radius: 50%; }
+
+  /* Underline animated */
+  .ul-anim{ position:relative; }
+  .ul-anim::after{
+    content:""; position:absolute; left:0; bottom:-3px; width:100%; height:1px;
+    background: currentColor; transform: scaleX(0); transform-origin: 0 50%;
+    transition: transform .35s ease;
+  }
+  .ul-anim:hover::after{ transform: scaleX(1); }
+
+  /* CRT badge */
+  .crt-badge{
+    background: linear-gradient(180deg, #1a1612, #0e0c0a);
+    border: 1px solid var(--line-hard);
+    border-radius: 12px;
+  }
+
+  /* Pixel/voxel cube SVG container */
+  .deco-cube { position:absolute; pointer-events:none; opacity:.55; mix-blend-mode: lighten; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar{ width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track{ background: var(--bg); }
+  ::-webkit-scrollbar-thumb{ background: var(--bg-3); border-radius: 999px; border: 2px solid var(--bg); }
+
+  /* Selection */
+  ::selection{ background: var(--accent); color: var(--fg); }
+
+  /* Headline tag for "3D" */
+  .threeD{
+    display:inline-block; position:relative;
+    color: var(--accent);
+  }
+  .threeD::before{
+    content:"3D"; position:absolute; left:.06em; top:.06em;
+    color: rgba(74,222,222,.55);
+    z-index:-1;
+  }
+  .threeD::after{
+    content:"3D"; position:absolute; left:.12em; top:.12em;
+    color: rgba(255,200,87,.35);
+    z-index:-2;
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 640px){
+    .display{ letter-spacing: -.01em; }
+  }
+
+  /* Sticky bottom buy bar (mobile) */
+  .bottom-bar{
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50;
+    background: rgba(15,13,10,.85);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid var(--line-hard);
+    border-radius: 16px;
+    padding: 10px 12px;
+    display:flex; align-items:center; gap:10px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
+  }
+  @media (min-width: 768px){ .bottom-bar{ display:none; } }
+
+  /* Press strip card */
+  .quote-card{
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 28px;
+    transition: border-color .3s ease, transform .3s ease;
+  }
+  .quote-card:hover{ border-color: var(--line-hard); transform: translateY(-2px); }
+
+  /* Tab pill (for product switch) */
+  .pill-row{ display:inline-flex; padding: 4px; border-radius: 999px; background: var(--bg-2); border:1px solid var(--line); }
+  .pill{ padding: 8px 16px; border-radius: 999px; font-family:"JetBrains Mono",monospace; font-size: 11px; letter-spacing:.1em; cursor: pointer; color: var(--fg-muted); }
+  .pill.active{ background: var(--accent); color: var(--fg); }
+
+  /* Number ring */
+  .num-ring{
+    width: 40px; height: 40px; border-radius: 50%;
+    border:1px solid var(--line-hard);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"JetBrains Mono",monospace; font-size:13px;
+    color: var(--fg);
+  }
+
+  /* Gradient backdrops */
+  .glow-amber{ background: radial-gradient(60% 60% at 50% 0%, rgba(255,79,31,.18), transparent 70%); }
+  .glow-cyan{  background: radial-gradient(60% 60% at 50% 100%, rgba(74,222,222,.14), transparent 70%); }
+
+  /* Visually hidden */
+  .vh{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>
+</head>
+
+<body class="relative">
+
+<!-- ======================= NAV ======================= -->
+<header class="fixed top-0 left-0 right-0 z-40">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <nav class="mt-4 flex items-center justify-between rounded-full border" style="border-color:var(--line-hard); background:rgba(11,10,9,.7); backdrop-filter: blur(18px) saturate(140%); padding: 10px 14px;">
+      <a href="#top" class="flex items-center gap-2 pl-2">
+        <img src="images/geod.png" alt="" class="w-7 h-7 rounded-md" />
+        <span class="display text-[20px] tracking-tight">3dSen</span>
+        <span class="mono text-[10px] px-2 py-[3px] rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">v1.0</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7 text-[13px]" style="color:var(--fg-muted);">
+        <a href="#difference" class="ul-anim hover:text-white">The Diff</a>
+        <a href="#products"   class="ul-anim hover:text-white">Products</a>
+        <a href="#features"   class="ul-anim hover:text-white">Features</a>
+        <a href="#games"      class="ul-anim hover:text-white">Games</a>
+        <a href="#press"      class="ul-anim hover:text-white">Press</a>
+      </div>
+
+      <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="btn btn-primary !py-[9px] !px-4 text-[13px]">
+        Buy on Steam
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section id="top" class="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+  <!-- Decorative voxel grid -->
+  <div class="absolute inset-0 voxel-grid opacity-[.07]"></div>
+  <div class="absolute inset-0 glow-amber"></div>
+
+  <!-- Floating decorative voxel cubes -->
+  <svg class="deco-cube" style="top:18%; left:6%; width:120px;" viewBox="0 0 100 100">
+    <g fill="none" stroke="rgba(255,79,31,.6)" stroke-width="1">
+      <path d="M50 8 L88 30 L88 70 L50 92 L12 70 L12 30 Z"/>
+      <path d="M50 8 L50 92 M12 30 L88 30 M12 70 L88 70 M50 30 L50 70"/>
+    </g>
+  </svg>
+  <svg class="deco-cube" style="top:60%; right:5%; width:100px; opacity:.4;" viewBox="0 0 100 100">
+    <g fill="none" stroke="rgba(74,222,222,.65)" stroke-width="1">
+      <rect x="20" y="20" width="60" height="60"/>
+      <path d="M20 20 L40 5 L100 5 L80 20 M80 20 L80 80 M80 80 L100 65 L100 5"/>
+    </g>
+  </svg>
+
+  <div class="relative mx-auto max-w-[1280px] px-6 md:px-10">
+    <!-- Status -->
+    <div class="reveal flex items-center gap-3 flex-wrap">
+      <span class="eyebrow">001 / Now Shipping v1.0</span>
+      <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">10 yrs in development · solo dev</span>
+    </div>
+
+    <h1 class="reveal display mt-7 text-[14vw] md:text-[10.5vw] lg:text-[148px] leading-[0.92]">
+      Your NES games.<br/>
+      Now in <span class="threeD">3D</span><span style="color:var(--accent);">.</span>
+    </h1>
+
+    <div class="mt-10 grid md:grid-cols-12 gap-8 md:gap-12">
+      <p class="reveal delay-1 md:col-span-6 text-[18px] md:text-[20px] leading-[1.5]" style="color:var(--fg-muted);">
+        3dSen is a one-of-a-kind emulator that reads classic NES ROMs and reconstructs them into fully-playable
+        <span style="color:var(--fg);">voxel dioramas</span> in real time. Same physics. Same timing. Same childhood —
+        <span class="display-italic" style="color:var(--fg);">with depth</span>.
+      </p>
+
+      <div class="reveal delay-2 md:col-span-6 md:pl-8 md:border-l" style="border-color:var(--line);">
+        <div class="flex flex-wrap gap-3">
+          <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
+            Get 3dSen PC
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          </a>
+          <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-ghost">
+            Get 3dSen VR
+          </a>
+          <a href="#trailer" class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+            Watch trailer
+          </a>
         </div>
-    </header>
 
-    <section id="banner" class="wow fadeInUp">
-        <div class="container wrapper">
-            <div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="block">
-                        <img class="app-img img-responsive" src="images/3dsen_256.png" alt="">
-                    </div>
-                    
-                </div>
-                <div class="col-md-7 col-md-offset-1 col-sm-6">
-                    <div class="block">
-                        <h2>
-                            Play NES Games In 3D
-                        </h2>
-                        <p>
-                            3dSen PC is a unique NES emulator that converts classic and homebrew NES games into full 3D experiences and let you play them in realtime.
-                        </p> 
-                        <ul class="download-btn">
-                            <li>
-                                <a href="https://geod.itch.io/3dsenpc" class="btn btn-default btn-itch" ><i class="icon-itch"></i>Itch</a>
-                            </li>												
-						
-                            <li>
-                                <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" class="btn btn-steam"> <i class="fa fa-steam"></i>Steam</a>
-                            </li>
-<!--                             <li>
-                                <a href="https://geod.itch.io/3dnes" class="btn btn-default btn-itch" ><i class="icon-itch"></i>Itch</a>
-                            </li>
-                            <li>
-                                <a href="presskit.html" class="btn btn-default btn-windows">Presskit</a>
-                            </li>
- -->                        </ul>						
-                    </div>
-                </div>
-            </div>
+        <div class="mt-7 grid grid-cols-3 gap-3 max-w-md">
+          <div>
+            <div class="display text-[34px]" style="color:var(--fg);">100<span style="color:var(--accent);">+</span></div>
+            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">supported titles</div>
+          </div>
+          <div>
+            <div class="display text-[34px]">10<span style="color:var(--accent-2);">y</span></div>
+            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">in development</div>
+          </div>
+          <div>
+            <div class="display text-[34px]">VR<span style="color:var(--accent-3);">·</span></div>
+            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">SteamVR · Quest 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating screenshot stack -->
+    <div class="relative mt-16 md:mt-24">
+      <div class="grid grid-cols-12 gap-4 md:gap-6">
+        <div class="reveal delay-1 col-span-7 md:col-span-7">
+          <div class="float-card glow-ring rounded-2xl overflow-hidden border" style="border-color:var(--line-hard);">
+            <img src="images/mm3_thumb.jpg" alt="3dSen screenshot — Mega Man rendered in 3D voxels" class="w-full h-auto" loading="eager"/>
+          </div>
+          <div class="mt-3 flex items-center justify-between">
+            <span class="mono text-[11px]" style="color:var(--fg-muted);">/ MEGA_MAN_3.NES → 3D</span>
+            <span class="mono text-[11px]" style="color:var(--fg-muted);">REAL-TIME · 60FPS</span>
+          </div>
         </div>
 
-        <div class="container wrapper">
-            <div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="block">
-                        <img class="app-img img-responsive" src="images/3dsenvr_256.png" alt="">
-                    </div>
-                    
-                </div>
-                <div class="col-md-7 col-md-offset-1 col-sm-6">
-                    <div class="block">
-                        <h2>
-                            Play NES Games In 3D & VR							
-                        </h2>
-                        <p>
-                            3dSenVR is a unique NES emulator that converts classic and homebrew NES games into full 3D experiences in realtime and let you play them in VR.
-                        </p> 
-                        <ul class="download-btn">
-                            <li>
-                                <a href="https://geod.itch.io/3dnes" class="btn btn-default btn-itch" ><i class="icon-itch"></i>Itch</a>
-                            </li>						
-                            <li>
-                                <a href="https://store.steampowered.com/app/954280/3dSenVR/" class="btn btn-steam"> <i class="fa fa-steam"></i>Steam</a>
-                            </li>
-<!--							
-                            <li>
-                                <a href="https://www.viveport.com/apps/48e2cb9b-4499-4ad2-81dd-b89d241f1cbe/3dSenVR/" class="btn btn-default btn-viveport"> <i class="icon-viveport"></i>Viveport</a>
-                            </li>														
-                            <li>
-                                <a href="presskit.html" class="btn btn-default btn-windows">Presskit</a>
-                            </li> -->
-                        </ul>						
-                    </div>
-                </div>
-            </div>
+        <div class="reveal delay-2 col-span-5 md:col-span-5 flex flex-col gap-4 md:gap-6">
+          <div class="float-card rounded-2xl overflow-hidden border" style="border-color:var(--line-hard);">
+            <img src="images/SBP_thumb.jpg" alt="3dSen screenshot — voxel diorama of Super Bat Puncher" class="w-full h-auto"/>
+          </div>
+          <div class="float-card rounded-2xl overflow-hidden border" style="border-color:var(--line-hard);">
+            <img src="images/BK2_thumb.jpg" alt="3dSen screenshot — Battle Kid converted to 3D" class="w-full h-auto"/>
+          </div>
         </div>
-    
-        <div class="container wrapper">
-            <div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="block">
-                        <img class="app-img img-responsive" src="images/3dsenmk_256.png" alt="">
-                    </div>
-                    
-                </div>
-                <div class="col-md-7 col-md-offset-1 col-sm-6">
-                    <div class="block">
-                        <h2>
-                            3D Profile Maker						
-                        </h2>
-                        <p>
-                            A unique emulator/tool that is capable  to create 3d profiles of NES games and play them in realtime.
-                        </p> 
-                        <ul class="download-btn">
-                            <li>
-                                <a href="https://geod.itch.io/3dsen-maker" class="btn btn-default btn-itch" ><i class="icon-itch"></i>Itch</a>
-                            </li>						
-                        </ul>						
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PRESS MARQUEE ======================= -->
+<section class="relative py-8 border-y" style="border-color:var(--line); background: var(--bg-2);">
+  <div class="overflow-hidden">
+    <div class="marquee items-center" style="color:var(--fg-muted);">
+      <!-- duplicate set for seamless loop -->
+      <div class="flex items-center gap-16 mono text-[14px] whitespace-nowrap">
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Amazing emulator turns 2D NES games into fully 3D worlds."</span> — KOTAKU</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Adorable, fully-playable 3D dioramas."</span> — ROCK PAPER SHOTGUN</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Filled with emotion that cannot be expressed in words."</span> — IGN JAPAN</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"The next best thing to Nintendo's interest in VR."</span> — UPLOADVR</span>
+        <span style="color:var(--accent);">●</span>
+      </div>
+      <div class="flex items-center gap-16 mono text-[14px] whitespace-nowrap" aria-hidden="true">
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Amazing emulator turns 2D NES games into fully 3D worlds."</span> — KOTAKU</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Adorable, fully-playable 3D dioramas."</span> — ROCK PAPER SHOTGUN</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"Filled with emotion that cannot be expressed in words."</span> — IGN JAPAN</span>
+        <span style="color:var(--accent);">●</span>
+        <span><span class="display-italic" style="color:var(--fg); font-size:18px;">"The next best thing to Nintendo's interest in VR."</span> — UPLOADVR</span>
+        <span style="color:var(--accent);">●</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRAILER ======================= -->
+<section id="trailer" class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="grid md:grid-cols-12 gap-10 items-end mb-10">
+      <div class="md:col-span-7 reveal">
+        <span class="eyebrow">002 / In Motion</span>
+        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+          Best <span class="display-italic" style="color:var(--accent);">seen</span><br/>not described.
+        </h2>
+      </div>
+      <div class="md:col-span-5 reveal delay-1">
+        <p class="text-[16px]" style="color:var(--fg-muted);">
+          Sprites parse into voxels at frame-rate. The camera obeys you, not the cartridge.
+          Light, shadow and depth appear in worlds that never had them — without breaking the games that defined them.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal relative rounded-3xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
+      <!-- Replace this <video>'s src with your real trailer URL, or embed YouTube via iframe -->
+      <iframe
+        class="w-full h-full"
+        src="https://www.youtube-nocookie.com/embed/Bb02j-5b-OI?rel=0&modestbranding=1"
+        title="3dSen trailer"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= DIFFERENCE ======================= -->
+<section id="difference" class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="grid md:grid-cols-12 gap-10 mb-12">
+      <div class="md:col-span-6 reveal">
+        <span class="eyebrow">003 / The Difference</span>
+        <h2 class="display mt-5 text-[44px] md:text-[80px] leading-[0.92]">
+          Same game.<br/>
+          New <span class="display-italic" style="color:var(--accent-2);">dimension</span>.
+        </h2>
+      </div>
+      <div class="md:col-span-5 md:col-start-8 reveal delay-1 self-end">
+        <p class="text-[16px]" style="color:var(--fg-muted);">
+          Other emulators chase pixel-perfect fidelity. 3dSen chases something else — a third axis.
+          Hover the image. Drag your eyes from the flat past to the volumetric present.
+        </p>
+        <div class="mt-6 flex items-center gap-3">
+          <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">HOVER ME</span>
+          <span class="mono text-[11px] px-2 py-1 rounded-full" style="background:var(--accent); color:var(--fg);">↘</span>
         </div>
-    </section>	
-    
-    <section id="utility-2" name="_trailer">
-         <div class="container wrapper"> 
-		<div>
-			<h2 class="title">Trailer</h2>
-		</div>		
-		<div align="center">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/_y2AE-kWtjM" frameborder="0" allow="accelerometer; gyroscope; picture-in-picture" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
-		</div>
-		<div align="center">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/_MBHj9IGZgE" frameborder="0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-presentation"
-  				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen>				
-			</iframe>
-		</div>
-	 </div> 
-    </section>
+      </div>
+    </div>
 
-    <section id="utility-2" name="_ss">
-        <div class="container wrapper">
-			<div>
-				<h2 class="title">Screenshot</h2>
-			</div>		
-			<div class="row top-buffer">		
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/mm3.jpg" alt="">
-						<img class="img-responsive" src="images/mm3_thumb.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/mm2.jpg" alt="">
-						<img class="img-responsive" src="images/mm2_thumb.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/mm1.jpg" alt="">				
-						<img class="img-responsive" src="images/mm1_thumb.jpg" alt="">
-					</a>
-				</div>				
-			</div>	
-			<div class="row top-buffer">
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/BK2.jpg" alt="">				
-						<img class="img-responsive" src="images/BK2_thumb.jpg" alt="">			
-					</a>
-				</div>				
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/SBP.jpg" alt="">								
-						<img class="img-responsive" src="images/SBP_thumb.jpg" alt="">
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-3 wow fadeInRight" data-wow-delay=".8s">
-					<a target="_blank" href="assets/SBP1.jpg" alt="">								
-						<img class="img-responsive" src="images/SBP1_thumb.jpg" alt="">
-					</a>
-				</div>				
-			</div>
-		</div>
-    </section>
+    <div class="reveal grid md:grid-cols-2 gap-6">
+      <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
+        <img class="deep" src="images/mm1_thumb.jpg" alt="Mega Man rendered in 3D voxels" />
+        <!-- For a true 2D vs 3D you can replace below with the actual flat sprite shot -->
+        <img class="flat" src="images/mm1_thumb.jpg" alt="Mega Man flat reference" style="filter: grayscale(.85) contrast(1.1) brightness(.85);" />
+        <span class="label label-flat">2D · ORIGINAL</span>
+        <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
+        <span class="divider"></span>
+      </div>
+      <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
+        <img class="deep" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher in 3D" />
+        <img class="flat" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher flat reference" style="filter: grayscale(.85) contrast(1.1) brightness(.85);" />
+        <span class="label label-flat">2D · ORIGINAL</span>
+        <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
+        <span class="divider"></span>
+      </div>
+    </div>
 
-    <section id="service">
-        <div class="container">
-				<h2 class="title">Review</h2>		
-                <div class="row">
-					<a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="block wow fadeInRight" data-wow-delay="1s">
-                            <div class="icon">
-							   <i class="fa">
-									<img src="images/kotaku.jpg" class="img-fluid" alt="Responsive image">
-							   </i>
-                            </div>
-                            
-                            <h3>Kotaku</h3>
-                            <p>Amazing Emulator Turns 2D NES Games Into Fully 3D Worlds.</p>
-                        </div>
-                    </div>
-					</a>
-					
-					<a href="https://uploadvr.com/3dnesvr-lets-you-play-nes-games-like-super-mario-bros-in-vr/">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="block wow fadeInRight" data-wow-delay="1.3s">
-                            <div class="icon">
-							   <i class="fa">
-									<img src="images/uploadvr.png" class="img-fluid" alt="Responsive image">
-							   </i>
-                            </div>
-                            <h3>UploadVR</h3>
-                            <p>It seems like the next best thing to Nintendo’s lack of interest in VR.</p>
-                        </div>
-                    </div>
-					</a>
-					
-					<a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="block wow fadeInRight" data-wow-delay="1.6s">
-                            <div class="icon">
-								<i class="fa">
-									<img src="images/ars.png" class="img-fluid" alt="Responsive image">
-								</i>
-                            </div>
-                            <h3>Arstechnica</h3>
-                            <p>The world of NES emulation hasn't been all that exciting since the late '90s.</p>
-                        </div>
-                    </div>
-					</a>
-            </div>
+    <div class="reveal mt-10 grid md:grid-cols-3 gap-4">
+      <div class="quote-card">
+        <div class="mono text-[10px] tracking-[.18em] mb-3" style="color:var(--fg-muted);">PRESERVED</div>
+        <div class="display text-[28px]">Original mechanics.</div>
+        <p class="mt-2 text-[14px]" style="color:var(--fg-muted);">Same engine, same physics, same frame-by-frame timing. No shortcuts, no rewrites.</p>
+      </div>
+      <div class="quote-card">
+        <div class="mono text-[10px] tracking-[.18em] mb-3" style="color:var(--fg-muted);">ADDED</div>
+        <div class="display text-[28px]">Volume & light.</div>
+        <p class="mt-2 text-[14px]" style="color:var(--fg-muted);">Real-time voxel reconstruction with dynamic lighting and cast shadows in worlds that never had them.</p>
+      </div>
+      <div class="quote-card">
+        <div class="mono text-[10px] tracking-[.18em] mb-3" style="color:var(--fg-muted);">UNLOCKED</div>
+        <div class="display text-[28px]">Free camera.</div>
+        <p class="mt-2 text-[14px]" style="color:var(--fg-muted);">Pan, tilt, zoom, flip to first-person. Discover angles Shigeru Miyamoto never drew.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TWO PRODUCTS ======================= -->
+<section id="products" class="relative py-24 md:py-32">
+  <div class="absolute inset-x-0 top-0 h-1/2 glow-cyan pointer-events-none"></div>
+
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10 relative">
+    <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
+      <div>
+        <span class="eyebrow">004 / Two Editions</span>
+        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+          Pick your <span class="display-italic" style="color:var(--accent);">portal</span>.
+        </h2>
+      </div>
+      <p class="max-w-md text-[15px]" style="color:var(--fg-muted);">
+        Two builds, one engine. Choose the screen you want to play through —
+        or grab both and switch on a whim.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- 3dSen PC -->
+      <article class="reveal crt-badge p-7 md:p-10 relative overflow-hidden">
+        <div class="absolute -top-8 -right-8 deco-cube" style="opacity:.18;">
+          <svg width="160" height="160" viewBox="0 0 100 100"><g fill="none" stroke="var(--accent)" stroke-width="1"><path d="M50 5 L95 27 L95 73 L50 95 L5 73 L5 27 Z"/><path d="M50 5 L50 95 M5 27 L95 27 M5 73 L95 73"/></g></svg>
         </div>
-    </section>
 
-	
-	
-    <section id="subscribe" >
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 wow fadeInDown" data-wow-delay=".8s">
-                    <div class="block">
-                        <div class="title text-center">
-                            <h3>Keep updated with 3dSen project progress</h3>
-                        </div>
-                        
-						<!-- Begin Mailchimp Signup Form -->
-						<div id="mc_embed_signup">
-						<form action="https://gmail.us20.list-manage.com/subscribe/post?u=d85b375ba46c9dad2a50b7c25&amp;id=00bd141fbf" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-							<div id="mc_embed_signup_scroll">
-							
-							<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address"  autocomplete="email" required>
-							<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-							<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_d85b375ba46c9dad2a50b7c25_00bd141fbf" tabindex="-1" value=""></div>
-							<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-							</div>
-						</form>
-						</div>
-
-						<!--End mc_embed_signup-->
-
-                    </div>
-                    
-
-                </div>
-            </div>
+        <div class="flex items-center gap-4 mb-5">
+          <img src="images/3dsen_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+          <div>
+            <div class="mono text-[10px] tracking-[.18em]" style="color:var(--fg-muted);">FLAGSHIP · DESKTOP</div>
+            <h3 class="display text-[34px] leading-tight">3dSen PC</h3>
+          </div>
         </div>
-    </section>
 
-    <footer class="wow fadeInUp" data-wow-delay=".8s">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-12">
-                        <a class="footer-logo"href="#">
-                            <img class="img-responsive" src="images/geod.png"   height="48px" alt="">
-                        </a>
-                    <p>Copyright © 2015 - 2025 Geod Studio. All rights reserved.</p>
-                    
-                </div>
-            </div>
+        <p class="text-[15px]" style="color:var(--fg-muted);">
+          The original. Fully voxelized NES on Windows, Mac and Linux — with free-camera, rewind, save states and 3dSenMaker.
+        </p>
+
+        <ul class="mt-6 space-y-2 text-[14px]" style="color:var(--fg);">
+          <li class="flex gap-3"><span style="color:var(--accent);">→</span> Real-time 2D-to-3D voxel reconstruction</li>
+          <li class="flex gap-3"><span style="color:var(--accent);">→</span> Free camera + first-person modes</li>
+          <li class="flex gap-3"><span style="color:var(--accent);">→</span> Rewind, quick-save, scene export</li>
+          <li class="flex gap-3"><span style="color:var(--accent);">→</span> 100+ hand-tuned game profiles</li>
+        </ul>
+
+        <div class="mt-8 flex items-center gap-3 flex-wrap">
+          <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-primary">Buy on Steam</a>
+          <a href="https://geod.itch.io/3dsenpc" target="_blank" rel="noopener" class="btn btn-ghost">Itch.io</a>
         </div>
-    </footer>
+      </article>
+
+      <!-- 3dSen VR -->
+      <article class="reveal delay-1 crt-badge p-7 md:p-10 relative overflow-hidden" style="background: linear-gradient(180deg, #121b1c, #0e0c0a); border-color: rgba(74,222,222,.25);">
+        <div class="absolute -top-8 -right-8 deco-cube" style="opacity:.25;">
+          <svg width="160" height="160" viewBox="0 0 100 100"><g fill="none" stroke="var(--accent-2)" stroke-width="1"><circle cx="50" cy="50" r="44"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="16"/></g></svg>
+        </div>
+
+        <div class="flex items-center gap-4 mb-5">
+          <img src="images/3dsenvr_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+          <div>
+            <div class="mono text-[10px] tracking-[.18em]" style="color:var(--accent-2);">IMMERSIVE · VR</div>
+            <h3 class="display text-[34px] leading-tight">3dSen VR</h3>
+          </div>
+        </div>
+
+        <p class="text-[15px]" style="color:var(--fg-muted);">
+          Step inside the diorama. Full SteamVR support — Quest 3, Pico 4, Pimax — with motion controls for Punch-Out!! and Duck Hunt.
+        </p>
+
+        <ul class="mt-6 space-y-2 text-[14px]" style="color:var(--fg);">
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Full room-scale VR via SteamVR</li>
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Motion controls — duck, weave, punch</li>
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Light-gun support (Duck Hunt etc.)</li>
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Animated skyboxes & PC fallback</li>
+        </ul>
+
+        <div class="mt-8 flex items-center gap-3 flex-wrap">
+          <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--accent-2); color:#0a0a0a;">Buy on Steam</a>
+          <a href="https://geod.itch.io/3dnes" target="_blank" rel="noopener" class="btn btn-ghost">Itch.io</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- Maker tool -->
+    <div class="reveal delay-2 mt-6 quote-card flex flex-col md:flex-row md:items-center gap-6">
+      <img src="images/3dsenmk_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+      <div class="flex-1">
+        <div class="mono text-[10px] tracking-[.18em] mb-1" style="color:var(--fg-muted);">COMMUNITY · TOOL</div>
+        <div class="display text-[26px]">3dSenMaker</div>
+        <p class="text-[14px]" style="color:var(--fg-muted);">Build your own 3D profiles for unsupported games. Share them with the community.</p>
+      </div>
+      <a href="https://geod.itch.io/3dsen-maker" target="_blank" rel="noopener" class="btn btn-ghost">Get the Maker</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FEATURES ======================= -->
+<section id="features" class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="reveal grid md:grid-cols-12 gap-10 mb-14">
+      <div class="md:col-span-6">
+        <span class="eyebrow">005 / What's Inside</span>
+        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+          Not an emulator.<br/>
+          A <span class="display-italic" style="color:var(--accent-3);">transformation</span>.
+        </h2>
+      </div>
+      <div class="md:col-span-5 md:col-start-8 self-end">
+        <p class="text-[16px]" style="color:var(--fg-muted);">
+          Every feature exists to do one thing — let you re-encounter games you thought you'd memorized.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-px" style="background: var(--line);">
+      <!-- Feature -->
+      <div class="reveal p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">01</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--accent)" stroke-width="1.2"><path d="M16 4 L28 11 L28 21 L16 28 L4 21 L4 11 Z"/><path d="M16 4 L16 28 M4 11 L28 11 M4 21 L28 21"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">Real-time voxel rebuild</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Sprites become volumetric blocks the instant the game runs. No pre-conversion. No baking.</p>
+      </div>
+
+      <div class="reveal delay-1 p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">02</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--accent-2)" stroke-width="1.2"><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="12"/><path d="M16 4 L16 8 M16 24 L16 28 M4 16 L8 16 M24 16 L28 16"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">Free camera</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Pan, orbit, dolly, drop into first-person. Find angles that didn't exist on the cartridge.</p>
+      </div>
+
+      <div class="reveal delay-2 p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">03</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--accent-3)" stroke-width="1.2"><path d="M4 8 L28 8 L28 24 L4 24 Z"/><circle cx="22" cy="6" r="2"/><path d="M10 14 L22 14 M10 18 L18 18"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">VR-ready</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">SteamVR, Quest 3, Pico 4 Ultra, Pimax. Motion controls for Punch-Out!! and Duck Hunt.</p>
+      </div>
+
+      <div class="reveal p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">04</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--fg)" stroke-width="1.2"><path d="M6 8 L26 8 L26 24 L6 24 Z M10 8 L10 24 M22 8 L22 24"/><path d="M14 12 L14 20 M18 12 L18 20"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">Quick-save · rewind</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Modern conveniences for ancient cartridges. Skip the part where you die in pit number twelve.</p>
+      </div>
+
+      <div class="reveal delay-1 p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">05</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--fg)" stroke-width="1.2"><path d="M4 16 Q16 4 28 16 Q16 28 4 16 Z"/><circle cx="16" cy="16" r="3"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">Animated skyboxes</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Each diorama floats inside a chosen environment — moonlit ruins, cosmic voids, sunlit grasslands.</p>
+      </div>
+
+      <div class="reveal delay-2 p-8 md:p-10" style="background: var(--bg-2);">
+        <div class="flex items-start justify-between">
+          <div class="num-ring">06</div>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--fg)" stroke-width="1.2"><path d="M4 28 L4 4 L18 4 L24 10 L24 28 Z"/><path d="M18 4 L18 10 L24 10"/><path d="M9 18 L19 18 M9 22 L15 22"/></svg>
+        </div>
+        <div class="display text-[26px] mt-8">Export 3D scenes</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Save your favourite voxel moments as external 3D assets. Import them into Blender, your renderer, your scene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= GAMES ======================= -->
+<section id="games" class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
+      <div>
+        <span class="eyebrow">006 / The Library</span>
+        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+          100<span style="color:var(--accent);">+</span> games<br/>
+          <span class="display-italic" style="color:var(--fg-muted);">and counting.</span>
+        </h2>
+      </div>
+      <div class="max-w-md">
+        <p class="text-[15px]" style="color:var(--fg-muted);">
+          Every game is hand-tuned with a custom 3D profile.
+          Each title gets the depth it deserves — no auto-conversion sludge.
+        </p>
+        <div class="mt-4 dot-row" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured screenshots grid -->
+    <div class="reveal grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mb-10">
+      <a class="tile group" href="#"><img src="images/mm1_thumb.jpg" alt=""/><span class="tag">MEGA MAN</span></a>
+      <a class="tile group" href="#"><img src="images/mm2_thumb.jpg" alt=""/><span class="tag">MEGA MAN II</span></a>
+      <a class="tile group" href="#"><img src="images/mm3_thumb.jpg" alt=""/><span class="tag">MEGA MAN III</span></a>
+      <a class="tile group" href="#"><img src="images/SBP_thumb.jpg" alt=""/><span class="tag">SUPER BAT PUNCHER</span></a>
+      <a class="tile group" href="#"><img src="images/SBP1_thumb.jpg" alt=""/><span class="tag">SUPER BAT PUNCHER</span></a>
+      <a class="tile group" href="#"><img src="images/BK2_thumb.jpg" alt=""/><span class="tag">BATTLE KID 2</span></a>
+    </div>
+
+    <!-- Title chips -->
+    <div class="reveal delay-1">
+      <div class="flex flex-wrap gap-2">
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Super Mario Bros.</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Super Mario Bros. 3</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">The Legend of Zelda</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Zelda II</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Metroid</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Castlevania</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Castlevania III</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Mega Man 1–6</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Contra</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Punch-Out!!</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Duck Hunt</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">DuckTales</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Final Fantasy</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Dragon Warrior I–IV</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Batman</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Battle Kid</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Micro Mages</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--accent); color:#fff;">+ 80 more →</span>
+      </div>
+    </div>
+
+    <p class="reveal delay-2 mt-8 text-[13px]" style="color:var(--fg-dim);">
+      You provide the ROMs — 3dSen ships without any games, in keeping with copyright.
+    </p>
+  </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: linear-gradient(180deg, var(--bg-2), var(--bg));">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="reveal mb-14">
+      <span class="eyebrow">007 / How It Works</span>
+      <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+        Three steps,<br/>
+        one <span class="display-italic" style="color:var(--accent);">cartridge</span>.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal relative">
+        <div class="display text-[88px] leading-none" style="color:var(--accent);">01</div>
+        <div class="display text-[24px] mt-3">Drop your ROM.</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Point 3dSen at any compatible <span class="mono text-[12px]">.nes</span> file. The emulator loads instantly — no patching, no special builds.</p>
+      </div>
+      <div class="reveal delay-1 relative">
+        <div class="display text-[88px] leading-none" style="color:var(--accent-2);">02</div>
+        <div class="display text-[24px] mt-3">Profile loads.</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">A hand-crafted 3D profile maps every sprite to volume. Walls become walls. Bricks become bricks. Mario becomes Mario, with depth.</p>
+      </div>
+      <div class="reveal delay-2 relative">
+        <div class="display text-[88px] leading-none" style="color:var(--accent-3);">03</div>
+        <div class="display text-[24px] mt-3">Play. From any angle.</div>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Run, jump, fight as you always did — with a camera that's now yours, and a world you can finally walk around.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PRESS / REVIEWS ======================= -->
+<section id="press" class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
+      <div>
+        <span class="eyebrow">008 / Critical Reception</span>
+        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
+          What the press<br/>
+          <span class="display-italic" style="color:var(--accent);">actually said</span>.
+        </h2>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener" class="reveal quote-card block">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">KOTAKU</div>
+          <div class="hr flex-1"></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+        <blockquote class="display text-[28px] leading-[1.1]">"Amazing emulator turns 2D NES games into fully <span style="color:var(--accent);">3D worlds</span>."</blockquote>
+      </a>
+
+      <a href="https://www.rockpapershotgun.com/" target="_blank" rel="noopener" class="reveal delay-1 quote-card block">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ROCK PAPER SHOTGUN</div>
+          <div class="hr flex-1"></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+        <blockquote class="display text-[28px] leading-[1.1]">"Adorable, fully-playable <span style="color:var(--accent-2);">3D dioramas</span>."</blockquote>
+      </a>
+
+      <a href="https://uploadvr.com/3dnesvr-lets-you-play-nes-games-like-super-mario-bros-in-vr/" target="_blank" rel="noopener" class="reveal delay-2 quote-card block">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">UPLOADVR</div>
+          <div class="hr flex-1"></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+        <blockquote class="display text-[28px] leading-[1.1]">"The next best thing to Nintendo's <span style="color:var(--accent-3);">interest in VR</span>."</blockquote>
+      </a>
+
+      <a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/" target="_blank" rel="noopener" class="reveal quote-card block">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ARS TECHNICA</div>
+          <div class="hr flex-1"></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </div>
+        <blockquote class="display text-[28px] leading-[1.1]">"Generates 3D scenes from 2D NES games — <span style="color:var(--accent);">unlike anything else</span>."</blockquote>
+      </a>
+
+      <div class="reveal delay-1 quote-card">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">IGN JAPAN</div>
+          <div class="hr flex-1"></div>
+        </div>
+        <blockquote class="display text-[28px] leading-[1.1]">"<span class="display-italic">Filled with emotion that cannot be expressed in words.</span>"</blockquote>
+      </div>
+
+      <div class="reveal delay-2 quote-card flex flex-col justify-between" style="background: linear-gradient(180deg, rgba(255,79,31,.1), var(--bg-2)); border-color: rgba(255,79,31,.3);">
+        <div>
+          <div class="mono text-[11px] tracking-[.18em] mb-5" style="color:var(--accent);">STEAM · OVERWHELMINGLY POSITIVE</div>
+          <div class="display text-[64px] leading-none">95<span style="color:var(--fg-muted); font-size:.5em;">%</span></div>
+          <p class="mt-2 text-[14px]" style="color:var(--fg-muted);">player reviews on Steam · across both editions</p>
+        </div>
+        <a href="https://store.steampowered.com/app/1147940/3dSen_PC/#app_reviews_hash" target="_blank" rel="noopener" class="mono text-[11px] mt-4 inline-flex items-center gap-2 ul-anim">
+          READ THE REVIEWS
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-4 reveal">
+        <span class="eyebrow">009 / FAQ</span>
+        <h2 class="display mt-5 text-[44px] md:text-[60px] leading-[0.95]">
+          Things people<br/>actually <span class="display-italic" style="color:var(--accent);">ask</span>.
+        </h2>
+      </div>
+
+      <div class="md:col-span-8 reveal delay-1 divide-y" style="border-color:var(--line);">
+        <details class="group py-6" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">Do I need original NES games?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">Yes. 3dSen ships without any ROMs, in line with copyright. Bring your own legally-acquired <span class="mono text-[12px]">.nes</span> files and 3dSen handles the rest.</p>
+        </details>
+
+        <details class="group py-6 border-t" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">Does the 3D break the original gameplay?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">No. Every byte of the original NES game runs untouched. The 3D layer is a presentation pass — physics, timing, and behaviour are 100% authentic.</p>
+        </details>
+
+        <details class="group py-6 border-t" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">PC vs VR — which one should I buy?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">If you don't own a headset, get <strong style="color:var(--fg);">3dSen PC</strong>. If you do, <strong style="color:var(--fg);">3dSen VR</strong> includes both PC and VR modes in one purchase.</p>
+        </details>
+
+        <details class="group py-6 border-t" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">Which VR headsets are supported?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">Anything that runs SteamVR. Tested extensively on Meta Quest 2/3, Pico 4 Ultra, Pimax Crystal Light, Valve Index, and HTC Vive.</p>
+        </details>
+
+        <details class="group py-6 border-t" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">My favourite game isn't on the list — what now?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">Use <strong style="color:var(--fg);">3dSenMaker</strong> to build a 3D profile yourself, or request the title on the Steam community boards. New profiles ship regularly.</p>
+        </details>
+
+        <details class="group py-6 border-t" style="border-color:var(--line);">
+          <summary class="flex justify-between items-start cursor-pointer list-none">
+            <span class="display text-[22px] md:text-[26px]">Will my old laptop run it?</span>
+            <span class="mono text-[20px] ml-6 transition-transform group-open:rotate-45" style="color:var(--accent);">+</span>
+          </summary>
+          <p class="mt-4 text-[15px] max-w-[55ch]" style="color:var(--fg-muted);">Probably. The PC version targets a Core 2 Duo or equivalent, 4 GB RAM, ~400 MB disk. Windows, macOS and Linux supported.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FINAL CTA ======================= -->
+<section class="relative py-28 md:py-40 overflow-hidden">
+  <div class="absolute inset-0 voxel-grid opacity-[.05]"></div>
+  <div class="absolute inset-x-0 bottom-0 h-2/3 glow-amber pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 text-center">
+    <div class="reveal">
+      <span class="eyebrow justify-self-center inline-flex">010 / Get In</span>
+    </div>
+    <h2 class="reveal delay-1 display mt-6 text-[12vw] md:text-[9vw] lg:text-[128px] leading-[0.92]">
+      Don't replay them.<br/>
+      <span class="display-italic" style="color:var(--accent);">Step inside</span> them.
+    </h2>
+
+    <div class="reveal delay-2 mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-primary">3dSen PC on Steam</a>
+      <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-accent">3dSen VR on Steam</a>
+      <a href="#trailer" class="btn btn-ghost">Watch trailer</a>
+    </div>
+
+    <p class="reveal delay-3 mt-8 mono text-[12px] tracking-[.15em]" style="color:var(--fg-dim);">
+      ONE-TIME PURCHASE · FREE UPDATES · GROWING LIBRARY
+    </p>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="relative border-t pt-16 pb-10" style="border-color:var(--line); background: var(--bg-2);">
+  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
+
+    <div class="grid md:grid-cols-12 gap-10 mb-14">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <img src="images/geod.png" alt="" class="w-9 h-9 rounded-md"/>
+          <div>
+            <div class="display text-[24px]">Geod Studio</div>
+            <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">SOLO STUDIO · SINCE 2015</div>
+          </div>
+        </div>
+        <p class="mt-5 text-[14px] max-w-md" style="color:var(--fg-muted);">
+          Geod Studio is a one-person operation building tools that let people experience old games in new dimensions.
+          3dSen has been in continuous development since 2015.
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="mono text-[10px] tracking-[.18em] mb-4" style="color:var(--fg-muted);">PRODUCTS</div>
+        <ul class="space-y-2 text-[14px]">
+          <li><a class="ul-anim" href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener">3dSen PC →</a></li>
+          <li><a class="ul-anim" href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener">3dSen VR →</a></li>
+          <li><a class="ul-anim" href="https://geod.itch.io/3dsen-maker" target="_blank" rel="noopener">3dSenMaker →</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="mono text-[10px] tracking-[.18em] mb-4" style="color:var(--fg-muted);">STORES</div>
+        <ul class="space-y-2 text-[14px]">
+          <li><a class="ul-anim" href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener">Steam →</a></li>
+          <li><a class="ul-anim" href="https://geod.itch.io/3dsenpc" target="_blank" rel="noopener">Itch.io →</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="mono text-[10px] tracking-[.18em] mb-4" style="color:var(--fg-muted);">CONNECT</div>
+        <ul class="space-y-2 text-[14px]">
+          <li><a class="ul-anim" href="https://steamcommunity.com/app/1147940" target="_blank" rel="noopener">Community →</a></li>
+          <li><a class="ul-anim" href="https://www.youtube.com/@geodstudio" target="_blank" rel="noopener">YouTube →</a></li>
+          <li><a class="ul-anim" href="mailto:contact@geodstudio.net">Contact →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hr-dashed"></div>
+
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+      <p class="text-[12px]" style="color:var(--fg-dim);">
+        © 2015 – 2026 Geod Studio. All rights reserved.
+      </p>
+      <p class="text-[11px] max-w-md text-right mono" style="color:var(--fg-dim);">
+        NES IS A REGISTERED TRADEMARK OF NINTENDO. NINTENDO IS NOT AFFILIATED WITH 3DSEN.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= STICKY MOBILE BUY BAR ======================= -->
+<div class="bottom-bar">
+  <img src="images/3dsen_256.png" alt="" class="w-9 h-9 rounded-lg"/>
+  <div class="flex-1 leading-tight">
+    <div class="display text-[14px]">3dSen</div>
+    <div class="mono text-[10px] tracking-[.1em]" style="color:var(--fg-muted);">NES IN 3D · v1.0</div>
+  </div>
+  <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-primary !py-2 !px-4 text-[12px]">Buy</a>
+</div>
+
+<!-- ======================= JS — scroll reveal ======================= -->
+<script>
+  // Intersection-based reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Smooth anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (ev) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const target = document.querySelector(id);
+        if (target) { ev.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
