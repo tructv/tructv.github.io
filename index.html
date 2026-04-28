@@ -79,9 +79,9 @@
   .py-6{ padding-top:1.5rem; padding-bottom:1.5rem; }
   .py-8{ padding-top:2rem; padding-bottom:2rem; }
   .py-10{ padding-top:2.5rem; padding-bottom:2.5rem; }
-  .py-20{ padding-top:5rem; padding-bottom:5rem; }
-  .py-24{ padding-top:6rem; padding-bottom:6rem; }
-  .py-28{ padding-top:7rem; padding-bottom:7rem; }
+  .py-20{ padding-top:3.5rem; padding-bottom:3.5rem; }
+  .py-24{ padding-top:4rem; padding-bottom:4rem; }
+  .py-28{ padding-top:4.5rem; padding-bottom:4.5rem; }
   .pl-2{ padding-left:.5rem; } .pl-8{ padding-left:2rem; }
   .pt-16{ padding-top:4rem; } .pt-32{ padding-top:8rem; }
   .pb-10{ padding-bottom:2.5rem; } .pb-20{ padding-bottom:5rem; }
@@ -107,7 +107,7 @@
   .h-full{ height:100%; } .h-auto{ height:auto; }
   .h-1\/2{ height:50%; } .h-2\/3{ height:66.6667%; }
   .min-h-screen{ min-height:100vh; }
-  .max-w-md{ max-width:28rem; } .max-w-2xl{ max-width:42rem; } .max-w-3xl{ max-width:48rem; }
+  .max-w-md{ max-width:28rem; } .max-w-lg{ max-width:32rem; } .max-w-2xl{ max-width:42rem; } .max-w-3xl{ max-width:48rem; }
 
   /* ===== Typography ===== */
   .text-sm{ font-size:.875rem; line-height:1.5; }
@@ -180,11 +180,11 @@
   .text-\[11px\]{ font-size:11px; }
   .text-\[12px\]{ font-size:12px; }
   .text-\[13px\]{ font-size:13px; }
-  .text-\[14px\]{ font-size:14px; }
-  .text-\[15px\]{ font-size:15px; }
-  .text-\[16px\]{ font-size:16px; }
-  .text-\[17px\]{ font-size:17px; }
-  .text-\[18px\]{ font-size:18px; }
+  .text-\[14px\]{ font-size:15px; }
+  .text-\[15px\]{ font-size:16px; }
+  .text-\[16px\]{ font-size:17px; }
+  .text-\[17px\]{ font-size:18px; }
+  .text-\[18px\]{ font-size:19px; }
   .text-\[20px\]{ font-size:20px; }
   .text-\[22px\]{ font-size:22px; }
   .text-\[24px\]{ font-size:24px; }
@@ -222,7 +222,7 @@
   @media (min-width:768px){
     .md\:flex{ display:flex; }
     .md\:grid{ display:grid; }
-    .md\:hidden{ display:none; }
+    .md\:hidden{ display:none !important; }
     .md\:flex-row{ flex-direction:row; }
     .md\:items-center{ align-items:center; }
     .md\:items-end{ align-items:flex-end; }
@@ -240,8 +240,8 @@
     .md\:col-start-8{ grid-column-start:8; }
     .md\:gap-5{ gap:1.25rem; } .md\:gap-6{ gap:1.5rem; } .md\:gap-12{ gap:3rem; }
     .md\:px-10{ padding-left:2.5rem; padding-right:2.5rem; }
-    .md\:py-32{ padding-top:8rem; padding-bottom:8rem; }
-    .md\:py-40{ padding-top:10rem; padding-bottom:10rem; }
+    .md\:py-32{ padding-top:5.5rem; padding-bottom:5.5rem; }
+    .md\:py-40{ padding-top:7rem; padding-bottom:7rem; }
     .md\:p-10{ padding:2.5rem; }
     .md\:pt-40{ padding-top:10rem; }
     .md\:pb-28{ padding-bottom:7rem; }
@@ -249,7 +249,7 @@
     .md\:mt-24{ margin-top:6rem; }
     .md\:border-l{ border-left-width:1px; border-left-style:solid; border-color:var(--line); }
     .md\:text-\[20px\]{ font-size:20px; }
-    .md\:text-\[18px\]{ font-size:18px; }
+    .md\:text-\[18px\]{ font-size:19px; }
     .md\:text-\[26px\]{ font-size:26px; }
     .md\:text-\[34px\]{ font-size:34px; }
     .md\:text-\[60px\]{ font-size:60px; }
@@ -299,8 +299,12 @@
     color: var(--fg);
     font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01","cv11";
-    line-height: 1.5;
+    font-size: 17px;
+    line-height: 1.55;
     overflow-x: hidden;
+  }
+  @media (max-width: 640px){
+    html, body{ font-size: 16px; }
   }
 
   /* Type tokens */
@@ -522,6 +526,18 @@
     transition: border-color .3s ease, transform .3s ease;
   }
   .quote-card:hover{ border-color: var(--line-hard); transform: translateY(-2px); }
+
+  /* Steam stars */
+  .stars{ display:inline-flex; gap:2px; color: var(--accent); }
+  .stars svg{ width:14px; height:14px; flex-shrink:0; }
+  .stars-sm svg{ width:12px; height:12px; }
+
+  /* Compact mini-review tile (Steam quote grid) */
+  .mini-review{
+    padding: 18px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255,79,31,.04), var(--bg-2));
+  }
 
   /* Tab pill (for product switch) */
   .pill-row{ display:inline-flex; padding: 4px; border-radius: 999px; background: var(--bg-2); border:1px solid var(--line); }
@@ -753,7 +769,7 @@
           </a>
         </div>
 
-        <div class="reveal delay-3 mt-7 grid grid-cols-3 gap-3 max-w-md">
+        <div class="reveal delay-3 mt-7 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-lg">
           <div>
             <div class="display text-[30px] md:text-[34px]" style="color:var(--fg);">100<span style="color:var(--accent);">+</span></div>
             <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">supported titles</div>
@@ -764,7 +780,11 @@
           </div>
           <div>
             <div class="display text-[30px] md:text-[34px]">VR<span style="color:var(--accent-3);">·</span></div>
-            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">SteamVR · Quest 3</div>
+            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">SteamVR</div>
+          </div>
+          <div>
+            <div class="display text-[30px] md:text-[34px]">AR<span style="color:var(--accent-3);">·</span></div>
+            <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">SteamVR + Virtual Desktop Passthrough</div>
           </div>
         </div>
       </div>
@@ -963,12 +983,12 @@
         </div>
 
         <p class="text-[15px]" style="color:var(--fg-muted);">
-          Step inside the diorama. Full SteamVR support — Quest 3, Pico 4, Pimax — with motion controls in <em>Mike Tyson's Punch-Out!!</em> and light-gun support for Duck Hunt.
+          Step inside the diorama. Full SteamVR support — Quest 3, Pico 4, Pimax — with motion controls for <em>Mike Tyson's Punch-Out!!</em> and light-gun support for Duck Hunt.
         </p>
 
         <ul class="mt-6 space-y-2 text-[14px]" style="color:var(--fg);">
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Full room-scale VR via SteamVR</li>
-          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Motion controls — duck, weave, punch in <em>Mike Tyson's Punch-Out!!</em></li>
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Motion controls for <em>Mike Tyson's Punch-Out!!</em> — duck, weave, punch</li>
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Light-gun support (Duck Hunt etc.)</li>
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Animated skyboxes & PC fallback</li>
         </ul>
@@ -1037,7 +1057,7 @@
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--accent-3)" stroke-width="1.2"><path d="M4 8 L28 8 L28 24 L4 24 Z"/><circle cx="22" cy="6" r="2"/><path d="M10 14 L22 14 M10 18 L18 18"/></svg>
         </div>
         <div class="display text-[26px] mt-8">VR-ready</div>
-        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">SteamVR, Quest 3, Pico 4 Ultra, Pimax. Motion controls in <em>Mike Tyson's Punch-Out!!</em>; light-gun for Duck Hunt.</p>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">SteamVR, Quest 3, Pico 4 Ultra, Pimax. Motion controls for <em>Mike Tyson's Punch-Out!!</em>; light-gun for Duck Hunt.</p>
       </div>
 
       <div class="reveal p-8 md:p-10" style="background: var(--bg-2);">
@@ -1055,7 +1075,7 @@
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--fg)" stroke-width="1.2"><path d="M4 16 Q16 4 28 16 Q16 28 4 16 Z"/><circle cx="16" cy="16" r="3"/></svg>
         </div>
         <div class="display text-[26px] mt-8">Animated skyboxes</div>
-        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Each diorama floats inside a chosen environment — moonlit ruins, cosmic voids, sunlit grasslands.</p>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Each diorama floats inside a chosen environment — galaxy, gradient or custom color.</p>
       </div>
 
       <div class="reveal delay-2 p-8 md:p-10" style="background: var(--bg-2);">
@@ -1267,12 +1287,12 @@
         <!-- Player review excerpts -->
         <div class="reveal delay-1 quote-card mb-5">
           <div class="flex items-center gap-2 mb-3">
-            <div class="flex gap-px" style="color:var(--accent);">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            <div class="flex gap-px stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
             </div>
             <span class="mono text-[10px] tracking-[.15em]" style="color:var(--fg-muted);">VERIFIED PURCHASE</span>
           </div>
@@ -1282,14 +1302,14 @@
           <div class="mono text-[11px] mt-4" style="color:var(--fg-dim);">— STEAM REVIEWER</div>
         </div>
 
-        <div class="reveal delay-2 quote-card">
+        <div class="reveal delay-2 quote-card mb-5">
           <div class="flex items-center gap-2 mb-3">
-            <div class="flex gap-px" style="color:var(--accent);">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            <div class="flex gap-px stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
             </div>
             <span class="mono text-[10px] tracking-[.15em]" style="color:var(--fg-muted);">VERIFIED PURCHASE</span>
           </div>
@@ -1297,6 +1317,61 @@
             "The 3D really breathes <span style="color:var(--accent);">new life</span> into old games. Camera control alone is worth the price."
           </blockquote>
           <div class="mono text-[11px] mt-4" style="color:var(--fg-dim);">— STEAM REVIEWER</div>
+        </div>
+
+        <!-- Compact grid of short Steam reviews -->
+        <div class="reveal delay-2 grid grid-cols-2 gap-3">
+          <div class="quote-card mini-review">
+            <div class="stars stars-sm mb-2" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <blockquote class="text-[14px] leading-[1.4]" style="color:var(--fg);">
+              "This is absolutely amazing… <span style="color:var(--accent);">a whole new level</span>."
+            </blockquote>
+          </div>
+
+          <div class="quote-card mini-review">
+            <div class="stars stars-sm mb-2" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <blockquote class="text-[14px] leading-[1.4]" style="color:var(--fg);">
+              "I felt like a <span style="color:var(--accent-2);">kid again</span>."
+            </blockquote>
+          </div>
+
+          <div class="quote-card mini-review">
+            <div class="stars stars-sm mb-2" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <blockquote class="text-[14px] leading-[1.4]" style="color:var(--fg);">
+              "Blows my mind this isn't <span style="color:var(--accent-3);">more well known</span>."
+            </blockquote>
+          </div>
+
+          <div class="quote-card mini-review">
+            <div class="stars stars-sm mb-2" aria-label="5 out of 5 stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <blockquote class="text-[14px] leading-[1.4]" style="color:var(--fg);">
+              "A genuinely <span style="color:var(--accent);">fun way</span> to relive classic NES games."
+            </blockquote>
+          </div>
         </div>
       </div>
 
