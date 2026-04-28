@@ -183,12 +183,14 @@
   .text-\[14px\]{ font-size:14px; }
   .text-\[15px\]{ font-size:15px; }
   .text-\[16px\]{ font-size:16px; }
+  .text-\[17px\]{ font-size:17px; }
   .text-\[18px\]{ font-size:18px; }
   .text-\[20px\]{ font-size:20px; }
   .text-\[22px\]{ font-size:22px; }
   .text-\[24px\]{ font-size:24px; }
   .text-\[26px\]{ font-size:26px; }
   .text-\[28px\]{ font-size:28px; }
+  .text-\[30px\]{ font-size:30px; }
   .text-\[34px\]{ font-size:34px; }
   .text-\[44px\]{ font-size:44px; }
   .text-\[64px\]{ font-size:64px; }
@@ -247,17 +249,24 @@
     .md\:mt-24{ margin-top:6rem; }
     .md\:border-l{ border-left-width:1px; border-left-style:solid; border-color:var(--line); }
     .md\:text-\[20px\]{ font-size:20px; }
+    .md\:text-\[18px\]{ font-size:18px; }
     .md\:text-\[26px\]{ font-size:26px; }
+    .md\:text-\[34px\]{ font-size:34px; }
     .md\:text-\[60px\]{ font-size:60px; }
     .md\:text-\[72px\]{ font-size:72px; }
     .md\:text-\[80px\]{ font-size:80px; }
     .md\:text-\[10\.5vw\]{ font-size:10.5vw; }
+    .md\:text-\[6\.6vw\]{ font-size:6.6vw; }
     .md\:text-\[9vw\]{ font-size:9vw; }
     .md\:text-7xl{ font-size:4.5rem; line-height:1; }
+    .md\:pt-32{ padding-top:8rem; }
+    .md\:pb-16{ padding-bottom:4rem; }
+    .md\:pb-20{ padding-bottom:5rem; }
   }
   @media (min-width:1024px){
     .lg\:text-\[148px\]{ font-size:148px; }
     .lg\:text-\[128px\]{ font-size:128px; }
+    .lg\:text-\[92px\]{ font-size:92px; line-height:0.95; }
   }
 </style>
 
@@ -535,6 +544,27 @@
   /* Visually hidden */
   .vh{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
+  /* Merged hero: headline column + trailer column */
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @media (min-width: 900px){
+    .hero-grid{
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-right{ position: sticky; }
+  }
+  @media (min-width: 1200px){
+    .hero-grid{
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 4rem;
+    }
+  }
+
   /* Mobile nav: hamburger + menu panel */
   .hamburger{
     width: 38px; height: 38px;
@@ -560,6 +590,9 @@
   .hamburger.is-open span:nth-child(2){ opacity: 0; transform: scaleX(0); }
   .hamburger.is-open span:nth-child(3){ transform: translateY(-5.5px) rotate(-45deg); }
 
+  /* Make [hidden] attribute always win over display rules */
+  [hidden]{ display: none !important; }
+
   .mobile-menu{
     margin-top: 8px;
     background: rgba(11,10,9,.92);
@@ -574,6 +607,10 @@
     transform-origin: top right;
     animation: mm-in .25s cubic-bezier(.2,.7,.2,1);
   }
+  /* Never show the menu panel on desktop, regardless of toggle state */
+  @media (min-width: 768px){
+    .mobile-menu{ display: none !important; }
+  }
   @keyframes mm-in{
     from{ opacity:0; transform: translateY(-8px) scale(.98); }
     to  { opacity:1; transform: none; }
@@ -585,6 +622,14 @@
     transition: background .2s ease, transform .2s ease;
   }
   .mm-link:hover, .mm-link:active{ background: rgba(255,79,31,.08); }
+  .mm-arrow{
+    font-family:"JetBrains Mono", monospace;
+    color: var(--accent);
+    font-size: 14px;
+    width: 14px; display: inline-block;
+    transition: transform .2s ease;
+  }
+  .mm-link:hover .mm-arrow{ transform: translateX(3px); }
 
   /* Trim CTA label on very narrow screens */
   .show-on-xs{ display: none; }
@@ -632,23 +677,23 @@
     <!-- Mobile menu panel -->
     <div id="mobile-menu" class="md:hidden mobile-menu" hidden>
       <a href="#difference" class="mm-link">
-        <span class="mono text-[11px] tracking-[.18em]" style="color:var(--accent);">003</span>
+        <span class="mm-arrow" aria-hidden="true">→</span>
         <span class="display text-[22px]">The Difference</span>
       </a>
       <a href="#products" class="mm-link">
-        <span class="mono text-[11px] tracking-[.18em]" style="color:var(--accent);">004</span>
+        <span class="mm-arrow" aria-hidden="true">→</span>
         <span class="display text-[22px]">Products</span>
       </a>
       <a href="#features" class="mm-link">
-        <span class="mono text-[11px] tracking-[.18em]" style="color:var(--accent);">005</span>
+        <span class="mm-arrow" aria-hidden="true">→</span>
         <span class="display text-[22px]">Features</span>
       </a>
       <a href="#games" class="mm-link">
-        <span class="mono text-[11px] tracking-[.18em]" style="color:var(--accent);">006</span>
+        <span class="mm-arrow" aria-hidden="true">→</span>
         <span class="display text-[22px]">Games</span>
       </a>
       <a href="#press" class="mm-link">
-        <span class="mono text-[11px] tracking-[.18em]" style="color:var(--accent);">008</span>
+        <span class="mm-arrow" aria-hidden="true">→</span>
         <span class="display text-[22px]">Press &amp; Players</span>
       </a>
     </div>
@@ -656,7 +701,7 @@
 </header>
 
 <!-- ======================= HERO ======================= -->
-<section id="top" class="relative pt-32 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+<section id="top" class="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
   <!-- Decorative voxel grid -->
   <div class="absolute inset-0 voxel-grid opacity-[.07]"></div>
   <div class="absolute inset-0 glow-amber"></div>
@@ -678,24 +723,27 @@
   <div class="relative mx-auto max-w-[1280px] px-6 md:px-10">
     <!-- Status -->
     <div class="reveal flex items-center gap-3 flex-wrap">
-      <span class="eyebrow">001 / Now Shipping v1.0</span>
+      <span class="eyebrow">Now Shipping v1.0</span>
       <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">10 yrs in development · solo dev</span>
     </div>
 
-    <h1 class="reveal display mt-7 text-[14vw] md:text-[10.5vw] lg:text-[148px] leading-[0.92]">
-      Your NES games.<br/>
-      Now in <span class="threeD">3D</span><span style="color:var(--accent);">.</span>
-    </h1>
+    <!-- Two-column hero: headline + copy on left, trailer on right -->
+    <div class="hero-grid mt-7">
 
-    <div class="mt-10 grid md:grid-cols-12 gap-8 md:gap-12">
-      <p class="reveal delay-1 md:col-span-6 text-[18px] md:text-[20px] leading-[1.5]" style="color:var(--fg-muted);">
-        3dSen is a one-of-a-kind emulator that reads classic NES ROMs and reconstructs them into fully-playable
-        <span style="color:var(--fg);">voxel dioramas</span> in real time. Same physics. Same timing. Same childhood —
-        <span class="display-italic" style="color:var(--fg);">with depth</span>.
-      </p>
+      <!-- LEFT — headline, copy, CTAs, stats -->
+      <div class="hero-left">
+        <h1 class="reveal display text-[12vw] md:text-[6.6vw] lg:text-[92px] leading-[0.92]">
+          Your NES games.<br/>
+          Now in <span class="threeD">3D</span><span style="color:var(--accent);">.</span>
+        </h1>
 
-      <div class="reveal delay-2 md:col-span-6 md:pl-8 md:border-l" style="border-color:var(--line);">
-        <div class="flex flex-wrap gap-3">
+        <p class="reveal delay-1 mt-6 text-[17px] md:text-[18px] leading-[1.5]" style="color:var(--fg-muted);">
+          3dSen is a one-of-a-kind emulator that reads classic NES ROMs and reconstructs them into fully-playable
+          <span style="color:var(--fg);">voxel dioramas</span> in real time. Same physics. Same timing. Same childhood —
+          <span class="display-italic" style="color:var(--fg);">with depth</span>.
+        </p>
+
+        <div class="reveal delay-2 mt-7 flex flex-wrap gap-3">
           <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
             Get 3dSen PC
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
@@ -703,30 +751,52 @@
           <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-ghost">
             Get 3dSen VR
           </a>
-          <a href="#trailer" class="btn btn-ghost">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
-            Watch trailer
-          </a>
         </div>
 
-        <div class="mt-7 grid grid-cols-3 gap-3 max-w-md">
+        <div class="reveal delay-3 mt-7 grid grid-cols-3 gap-3 max-w-md">
           <div>
-            <div class="display text-[34px]" style="color:var(--fg);">100<span style="color:var(--accent);">+</span></div>
+            <div class="display text-[30px] md:text-[34px]" style="color:var(--fg);">100<span style="color:var(--accent);">+</span></div>
             <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">supported titles</div>
           </div>
           <div>
-            <div class="display text-[34px]">10<span style="color:var(--accent-2);">y</span></div>
+            <div class="display text-[30px] md:text-[34px]">10<span style="color:var(--accent-2);">y</span></div>
             <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">in development</div>
           </div>
           <div>
-            <div class="display text-[34px]">VR<span style="color:var(--accent-3);">·</span></div>
+            <div class="display text-[30px] md:text-[34px]">VR<span style="color:var(--accent-3);">·</span></div>
             <div class="mono text-[10px] uppercase tracking-[.18em]" style="color:var(--fg-muted);">SteamVR · Quest 3</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Floating screenshot stack removed -->
+      <!-- RIGHT — trailer player + toggle -->
+      <div class="hero-right">
+        <div class="reveal delay-1 flex items-center justify-between gap-3 mb-3 flex-wrap">
+          <div class="pill-row">
+            <button class="pill active trailer-btn" data-trailer="_y2AE-kWtjM" data-meta="v1.0 LAUNCH">1.0 Launch</button>
+            <button class="pill trailer-btn" data-trailer="_MBHj9IGZgE" data-meta="EARLY ACCESS">Early Access</button>
+          </div>
+          <span id="trailer-meta" class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">v1.0 LAUNCH</span>
+        </div>
+
+        <div id="trailer" class="reveal delay-2 relative rounded-2xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
+          <iframe
+            id="trailer-frame"
+            class="w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/_y2AE-kWtjM?rel=0&modestbranding=1"
+            title="3dSen trailer"
+            loading="eager"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
+        </div>
+
+        <p class="reveal delay-3 mt-3 mono text-[11px] tracking-[.18em]" style="color:var(--fg-dim);">
+          BEST SEEN, NOT DESCRIBED.
+        </p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -759,53 +829,15 @@
   </div>
 </section>
 
-<!-- ======================= TRAILER ======================= -->
-<section id="trailer" class="relative py-24 md:py-32">
-  <div class="mx-auto max-w-[1280px] px-6 md:px-10">
-    <div class="grid md:grid-cols-12 gap-10 items-end mb-10">
-      <div class="md:col-span-7 reveal">
-        <span class="eyebrow">002 / In Motion</span>
-        <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
-          Best <span class="display-italic" style="color:var(--accent);">seen</span><br/>not described.
-        </h2>
-      </div>
-      <div class="md:col-span-5 reveal delay-1">
-        <p class="text-[16px]" style="color:var(--fg-muted);">
-          Sprites parse into voxels at frame-rate. The camera obeys you, not the cartridge.
-          Light, shadow and depth appear in worlds that never had them — without breaking the games that defined them.
-        </p>
-      </div>
-    </div>
+<!-- Trailer is now merged into the hero -->
 
-    <!-- Trailer toggle -->
-    <div class="reveal flex items-center justify-between flex-wrap gap-3 mb-4">
-      <div class="pill-row">
-        <button class="pill active trailer-btn" data-trailer="_y2AE-kWtjM" data-meta="v1.0 LAUNCH · 2025">1.0 Launch</button>
-        <button class="pill trailer-btn" data-trailer="_MBHj9IGZgE" data-meta="EARLY ACCESS · 2020">Early Access</button>
-      </div>
-      <span id="trailer-meta" class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">v1.0 LAUNCH · 2025</span>
-    </div>
-
-    <div class="reveal relative rounded-3xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
-      <iframe
-        id="trailer-frame"
-        class="w-full h-full"
-        src="https://www.youtube-nocookie.com/embed/_y2AE-kWtjM?rel=0&modestbranding=1"
-        title="3dSen trailer"
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
 
 <!-- ======================= DIFFERENCE ======================= -->
 <section id="difference" class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="grid md:grid-cols-12 gap-10 mb-12">
       <div class="md:col-span-6 reveal">
-        <span class="eyebrow">003 / The Difference</span>
+        <span class="eyebrow">The Difference</span>
         <h2 class="display mt-5 text-[44px] md:text-[80px] leading-[0.92]">
           Same game.<br/>
           New <span class="display-italic" style="color:var(--accent-2);">dimension</span>.
@@ -873,7 +905,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10 relative">
     <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
       <div>
-        <span class="eyebrow">004 / Two Editions</span>
+        <span class="eyebrow">Two Editions</span>
         <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
           Pick your <span class="display-italic" style="color:var(--accent);">portal</span>.
         </h2>
@@ -966,7 +998,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal grid md:grid-cols-12 gap-10 mb-14">
       <div class="md:col-span-6">
-        <span class="eyebrow">005 / What's Inside</span>
+        <span class="eyebrow">What's Inside</span>
         <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
           Not an emulator.<br/>
           A <span class="display-italic" style="color:var(--accent-3);">transformation</span>.
@@ -1043,7 +1075,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
       <div>
-        <span class="eyebrow">006 / The Library</span>
+        <span class="eyebrow">The Library</span>
         <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
           100<span style="color:var(--accent);">+</span> games<br/>
           <span class="display-italic" style="color:var(--fg-muted);">and counting.</span>
@@ -1104,7 +1136,7 @@
 <section class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: linear-gradient(180deg, var(--bg-2), var(--bg));">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-14">
-      <span class="eyebrow">007 / How It Works</span>
+      <span class="eyebrow">How It Works</span>
       <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
         Three steps,<br/>
         one <span class="display-italic" style="color:var(--accent);">cartridge</span>.
@@ -1136,7 +1168,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
       <div>
-        <span class="eyebrow">008 / Reception</span>
+        <span class="eyebrow">Reception</span>
         <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
           What critics<br/>
           <span class="display-italic" style="color:var(--accent);">and players</span> say.
@@ -1277,7 +1309,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="grid md:grid-cols-12 gap-10">
       <div class="md:col-span-4 reveal">
-        <span class="eyebrow">009 / FAQ</span>
+        <span class="eyebrow">FAQ</span>
         <h2 class="display mt-5 text-[44px] md:text-[60px] leading-[0.95]">
           Things people<br/>actually <span class="display-italic" style="color:var(--accent);">ask</span>.
         </h2>
@@ -1343,7 +1375,7 @@
 
   <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 text-center">
     <div class="reveal">
-      <span class="eyebrow justify-self-center inline-flex">010 / Get In</span>
+      <span class="eyebrow justify-self-center inline-flex">Get In</span>
     </div>
     <h2 class="reveal delay-1 display mt-6 text-[12vw] md:text-[9vw] lg:text-[128px] leading-[0.92]">
       Don't replay them.<br/>
