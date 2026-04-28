@@ -16,8 +16,250 @@
 
 <link rel="icon" href="images/geod.png" type="image/png" />
 
-<!-- Tailwind (kept from original) -->
-<script src="https://cdn.tailwindcss.com"></script>
+<!-- Self-contained utility CSS (replaces Tailwind CDN) -->
+<style>
+  /* ===== Reset / base ===== */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  ul,ol{ margin:0; padding:0; list-style:none; }
+  blockquote,figure{ margin:0; }
+  details > summary{ list-style:none; }
+  details > summary::-webkit-details-marker{ display:none; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+  img,svg,iframe,video{ display:block; max-width:100%; }
+
+  /* ===== Position ===== */
+  .relative{ position:relative; }
+  .absolute{ position:absolute; }
+  .fixed{ position:fixed; }
+  .inset-0{ inset:0; }
+  .inset-x-0{ left:0; right:0; }
+  .top-0{ top:0; } .left-0{ left:0; } .right-0{ right:0; } .bottom-0{ bottom:0; }
+  .-top-8{ top:-2rem; } .-right-8{ right:-2rem; }
+  .z-40{ z-index:40; } .z-50{ z-index:50; }
+
+  /* ===== Display ===== */
+  .block{ display:block; }
+  .inline-block{ display:inline-block; }
+  .inline-flex{ display:inline-flex; }
+  .flex{ display:flex; }
+  .grid{ display:grid; }
+  .hidden{ display:none; }
+
+  /* ===== Flex / grid helpers ===== */
+  .flex-col{ flex-direction:column; }
+  .flex-wrap{ flex-wrap:wrap; }
+  .flex-1{ flex:1 1 0%; }
+  .items-start{ align-items:flex-start; }
+  .items-center{ align-items:center; }
+  .items-end{ align-items:flex-end; }
+  .justify-center{ justify-content:center; }
+  .justify-between{ justify-content:space-between; }
+  .justify-self-center{ justify-self:center; }
+  .self-end{ align-self:flex-end; }
+  .grid-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .grid-cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .grid-cols-12{ grid-template-columns:repeat(12,minmax(0,1fr)); }
+
+  /* ===== Gap ===== */
+  .gap-2{ gap:.5rem; } .gap-3{ gap:.75rem; } .gap-4{ gap:1rem; } .gap-5{ gap:1.25rem; }
+  .gap-6{ gap:1.5rem; } .gap-7{ gap:1.75rem; } .gap-8{ gap:2rem; } .gap-10{ gap:2.5rem; }
+  .gap-16{ gap:4rem; }
+
+  /* ===== Spacing ===== */
+  .p-6{ padding:1.5rem; } .p-7{ padding:1.75rem; } .p-8{ padding:2rem; } .p-10{ padding:2.5rem; }
+  .px-2{ padding-left:.5rem; padding-right:.5rem; }
+  .px-3{ padding-left:.75rem; padding-right:.75rem; }
+  .px-4{ padding-left:1rem; padding-right:1rem; }
+  .px-6{ padding-left:1.5rem; padding-right:1.5rem; }
+  .py-1{ padding-top:.25rem; padding-bottom:.25rem; }
+  .py-2{ padding-top:.5rem; padding-bottom:.5rem; }
+  .py-3{ padding-top:.75rem; padding-bottom:.75rem; }
+  .py-6{ padding-top:1.5rem; padding-bottom:1.5rem; }
+  .py-8{ padding-top:2rem; padding-bottom:2rem; }
+  .py-10{ padding-top:2.5rem; padding-bottom:2.5rem; }
+  .py-20{ padding-top:5rem; padding-bottom:5rem; }
+  .py-24{ padding-top:6rem; padding-bottom:6rem; }
+  .py-28{ padding-top:7rem; padding-bottom:7rem; }
+  .pl-2{ padding-left:.5rem; } .pl-8{ padding-left:2rem; }
+  .pt-16{ padding-top:4rem; } .pt-32{ padding-top:8rem; }
+  .pb-10{ padding-bottom:2.5rem; } .pb-20{ padding-bottom:5rem; }
+  .py-1\.5{ padding-top:.375rem; padding-bottom:.375rem; }
+
+  .mx-auto{ margin-left:auto; margin-right:auto; }
+  .ml-6{ margin-left:1.5rem; }
+  .mt-2{ margin-top:.5rem; } .mt-3{ margin-top:.75rem; } .mt-4{ margin-top:1rem; }
+  .mt-5{ margin-top:1.25rem; } .mt-6{ margin-top:1.5rem; } .mt-7{ margin-top:1.75rem; }
+  .mt-8{ margin-top:2rem; } .mt-9{ margin-top:2.25rem; } .mt-10{ margin-top:2.5rem; }
+  .mt-14{ margin-top:3.5rem; } .mt-16{ margin-top:4rem; }
+  .mb-1{ margin-bottom:.25rem; } .mb-3{ margin-bottom:.75rem; } .mb-4{ margin-bottom:1rem; }
+  .mb-5{ margin-bottom:1.25rem; } .mb-6{ margin-bottom:1.5rem; }
+  .mb-10{ margin-bottom:2.5rem; } .mb-12{ margin-bottom:3rem; } .mb-14{ margin-bottom:3.5rem; }
+
+  .space-y-2 > * + *{ margin-top:.5rem; }
+  .space-y-6 > * + *{ margin-top:1.5rem; }
+  .divide-y > * + *{ border-top-width:1px; border-top-style:solid; border-color:var(--line); }
+
+  /* ===== Sizing ===== */
+  .w-7{ width:1.75rem; } .w-9{ width:2.25rem; } .w-14{ width:3.5rem; } .w-full{ width:100%; }
+  .h-7{ height:1.75rem; } .h-9{ height:2.25rem; } .h-14{ height:3.5rem; }
+  .h-full{ height:100%; } .h-auto{ height:auto; }
+  .h-1\/2{ height:50%; } .h-2\/3{ height:66.6667%; }
+  .min-h-screen{ min-height:100vh; }
+  .max-w-md{ max-width:28rem; } .max-w-2xl{ max-width:42rem; } .max-w-3xl{ max-width:48rem; }
+
+  /* ===== Typography ===== */
+  .text-sm{ font-size:.875rem; line-height:1.5; }
+  .text-lg{ font-size:1.125rem; }
+  .text-xl{ font-size:1.25rem; }
+  .text-4xl{ font-size:2.25rem; line-height:1.1; }
+  .text-5xl{ font-size:3rem; line-height:1.05; }
+  .text-7xl{ font-size:4.5rem; line-height:1; }
+  .font-medium{ font-weight:500; }
+  .font-semibold{ font-weight:600; }
+  .font-bold{ font-weight:700; }
+  .font-sans{ font-family:"DM Sans", ui-sans-serif, system-ui, sans-serif; }
+  .text-center{ text-align:center; }
+  .text-right{ text-align:right; }
+  .leading-tight{ line-height:1.25; }
+  .leading-none{ line-height:1; }
+  .uppercase{ text-transform:uppercase; }
+  .tracking-tight{ letter-spacing:-.025em; }
+  .whitespace-nowrap{ white-space:nowrap; }
+
+  /* ===== Colors ===== */
+  .bg-black{ background-color:#000; }
+  .bg-white{ background-color:#fff; }
+  .text-white{ color:#fff; }
+  .text-black{ color:#000; }
+  .text-gray-300{ color:#d1d5db; }
+  .text-gray-400{ color:#9ca3af; }
+  .text-gray-500{ color:#6b7280; }
+  .text-gray-600{ color:#4b5563; }
+  .bg-gray-900{ background-color:#111827; }
+
+  /* ===== Border ===== */
+  .border{ border-width:1px; border-style:solid; border-color:var(--line); }
+  .border-t{ border-top-width:1px; border-top-style:solid; border-color:var(--line); }
+  .border-y{ border-top-width:1px; border-bottom-width:1px; border-style:solid; border-color:var(--line); }
+  .border-l{ border-left-width:1px; border-left-style:solid; border-color:var(--line); }
+  .rounded-md{ border-radius:.375rem; }
+  .rounded-lg{ border-radius:.5rem; }
+  .rounded-xl{ border-radius:.75rem; }
+  .rounded-2xl{ border-radius:1rem; }
+  .rounded-3xl{ border-radius:1.5rem; }
+  .rounded-full{ border-radius:9999px; }
+
+  /* ===== Effects ===== */
+  .opacity-50{ opacity:.5; }
+  .opacity-\[\.07\]{ opacity:.07; }
+  .opacity-\[\.05\]{ opacity:.05; }
+  .shadow-2xl{ box-shadow:0 25px 50px -12px rgba(0,0,0,.25); }
+  .overflow-hidden{ overflow:hidden; }
+  .overflow-x-hidden{ overflow-x:hidden; }
+  .pointer-events-none{ pointer-events:none; }
+  .cursor-pointer{ cursor:pointer; }
+  .list-none{ list-style:none; }
+  .backdrop-blur{ backdrop-filter:blur(12px); }
+  .transition-transform{ transition:transform .2s ease; }
+
+  /* ===== Open state for FAQ ===== */
+  details[open] .group-open\:rotate-45{ transform:rotate(45deg); }
+
+  /* ===== Hover utilities ===== */
+  .hover\:opacity-80:hover{ opacity:.8; }
+  .hover\:bg-white:hover{ background:#fff; }
+  .hover\:text-black:hover{ color:#000; }
+  .hover\:text-white:hover{ color:#fff; }
+
+  /* ===== Arbitrary values used in markup ===== */
+  .max-w-\[1280px\]{ max-width:1280px; }
+  .max-w-\[55ch\]{ max-width:55ch; }
+  .text-\[10px\]{ font-size:10px; }
+  .text-\[11px\]{ font-size:11px; }
+  .text-\[12px\]{ font-size:12px; }
+  .text-\[13px\]{ font-size:13px; }
+  .text-\[14px\]{ font-size:14px; }
+  .text-\[15px\]{ font-size:15px; }
+  .text-\[16px\]{ font-size:16px; }
+  .text-\[18px\]{ font-size:18px; }
+  .text-\[20px\]{ font-size:20px; }
+  .text-\[22px\]{ font-size:22px; }
+  .text-\[24px\]{ font-size:24px; }
+  .text-\[26px\]{ font-size:26px; }
+  .text-\[28px\]{ font-size:28px; }
+  .text-\[34px\]{ font-size:34px; }
+  .text-\[44px\]{ font-size:44px; }
+  .text-\[64px\]{ font-size:64px; }
+  .text-\[88px\]{ font-size:88px; }
+  .text-\[12vw\]{ font-size:12vw; }
+  .text-\[14vw\]{ font-size:14vw; }
+
+  .leading-\[0\.92\]{ line-height:0.92; }
+  .leading-\[0\.95\]{ line-height:0.95; }
+  .leading-\[1\.1\]{ line-height:1.1; }
+  .leading-\[1\.5\]{ line-height:1.5; }
+
+  .tracking-\[\.1em\]{ letter-spacing:.1em; }
+  .tracking-\[\.15em\]{ letter-spacing:.15em; }
+  .tracking-\[\.18em\]{ letter-spacing:.18em; }
+
+  .py-\[3px\]{ padding-top:3px; padding-bottom:3px; }
+
+  .col-span-5{ grid-column:span 5 / span 5; }
+  .col-span-7{ grid-column:span 7 / span 7; }
+  .gap-px{ gap:1px; }
+
+  /* ===== Custom !important overrides used in nav button ===== */
+  .\!py-\[9px\]{ padding-top:9px !important; padding-bottom:9px !important; }
+  .\!px-4{ padding-left:1rem !important; padding-right:1rem !important; }
+  .\!py-2{ padding-top:.5rem !important; padding-bottom:.5rem !important; }
+
+  /* ===== Responsive (md: 768px+) ===== */
+  @media (min-width:768px){
+    .md\:flex{ display:flex; }
+    .md\:grid{ display:grid; }
+    .md\:hidden{ display:none; }
+    .md\:flex-row{ flex-direction:row; }
+    .md\:items-center{ align-items:center; }
+    .md\:items-end{ align-items:flex-end; }
+    .md\:grid-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .md\:grid-cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .md\:grid-cols-4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .md\:grid-cols-12{ grid-template-columns:repeat(12,minmax(0,1fr)); }
+    .md\:col-span-2{ grid-column:span 2 / span 2; }
+    .md\:col-span-3{ grid-column:span 3 / span 3; }
+    .md\:col-span-4{ grid-column:span 4 / span 4; }
+    .md\:col-span-5{ grid-column:span 5 / span 5; }
+    .md\:col-span-6{ grid-column:span 6 / span 6; }
+    .md\:col-span-7{ grid-column:span 7 / span 7; }
+    .md\:col-span-8{ grid-column:span 8 / span 8; }
+    .md\:col-start-8{ grid-column-start:8; }
+    .md\:gap-5{ gap:1.25rem; } .md\:gap-6{ gap:1.5rem; } .md\:gap-12{ gap:3rem; }
+    .md\:px-10{ padding-left:2.5rem; padding-right:2.5rem; }
+    .md\:py-32{ padding-top:8rem; padding-bottom:8rem; }
+    .md\:py-40{ padding-top:10rem; padding-bottom:10rem; }
+    .md\:p-10{ padding:2.5rem; }
+    .md\:pt-40{ padding-top:10rem; }
+    .md\:pb-28{ padding-bottom:7rem; }
+    .md\:pl-8{ padding-left:2rem; }
+    .md\:mt-24{ margin-top:6rem; }
+    .md\:border-l{ border-left-width:1px; border-left-style:solid; border-color:var(--line); }
+    .md\:text-\[20px\]{ font-size:20px; }
+    .md\:text-\[26px\]{ font-size:26px; }
+    .md\:text-\[60px\]{ font-size:60px; }
+    .md\:text-\[72px\]{ font-size:72px; }
+    .md\:text-\[80px\]{ font-size:80px; }
+    .md\:text-\[10\.5vw\]{ font-size:10.5vw; }
+    .md\:text-\[9vw\]{ font-size:9vw; }
+    .md\:text-7xl{ font-size:4.5rem; line-height:1; }
+  }
+  @media (min-width:1024px){
+    .lg\:text-\[148px\]{ font-size:148px; }
+    .lg\:text-\[128px\]{ font-size:128px; }
+  }
+</style>
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,16 +370,57 @@
   /* Hero image floating cards */
   .float-card{ box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), 0 1px 0 0 rgba(255,255,255,.04) inset; }
 
-  /* Comparison hover effect */
-  .compare{ position: relative; overflow: hidden; }
+  /* Comparison drag slider (works on touch + mouse) */
+  .compare{ position: relative; overflow: hidden; user-select: none; touch-action: none; cursor: ew-resize; --clip: 50%; }
   .compare .flat, .compare .deep { width:100%; height:100%; object-fit:cover; }
-  .compare .flat { position:absolute; inset:0; clip-path: inset(0 50% 0 0); transition: clip-path .8s cubic-bezier(.2,.7,.2,1); }
-  .compare:hover .flat { clip-path: inset(0 100% 0 0); }
-  .compare .label{ position:absolute; top:14px; padding:6px 10px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; backdrop-filter: blur(8px); }
+  .compare .flat {
+    position:absolute; inset:0;
+    clip-path: inset(0 var(--clip) 0 0);
+    -webkit-clip-path: inset(0 var(--clip) 0 0);
+    filter: grayscale(.6) contrast(1.7) saturate(.45) brightness(.7) hue-rotate(-12deg);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    pointer-events: none;
+  }
+  .compare .label{ position:absolute; top:14px; padding:6px 10px; border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em; backdrop-filter: blur(8px); pointer-events:none; z-index:3; }
   .compare .label-flat{ left:14px; background: rgba(11,10,9,.7); border:1px solid var(--line-hard); }
   .compare .label-deep{ right:14px; background: var(--accent); }
-  .compare .divider{ position:absolute; top:0; bottom:0; left:50%; width:1px; background: var(--accent); transform: translateX(-.5px); transition: opacity .8s; }
-  .compare:hover .divider{ opacity:0; }
+
+  .compare .divider{
+    position:absolute; top:0; bottom:0;
+    left: calc(100% - var(--clip));
+    width: 2px;
+    background: var(--accent);
+    transform: translateX(-1px);
+    pointer-events: none;
+    box-shadow: 0 0 24px rgba(255,79,31,.5);
+    z-index: 2;
+  }
+  .compare .handle{
+    position:absolute; top:50%;
+    left: calc(100% - var(--clip));
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--fg);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--fg);
+    box-shadow: 0 8px 28px rgba(0,0,0,.5), 0 0 0 6px rgba(255,79,31,.18);
+    pointer-events: none;
+    z-index: 3;
+    transition: transform .12s ease;
+  }
+  .compare:active .handle{ transform: translate(-50%, -50%) scale(.92); }
+  .compare .handle::before{
+    content:""; width:14px; height:14px;
+    background: 
+      linear-gradient(currentColor, currentColor) center/2px 60% no-repeat,
+      linear-gradient(currentColor, currentColor) center/60% 2px no-repeat;
+    opacity: 0;
+  }
+  .compare .handle svg{ width: 16px; height: 16px; }
 
   /* Glow ring */
   .glow-ring{ box-shadow: 0 0 0 1px var(--line-hard), 0 30px 100px -30px rgba(255,79,31,.4); }
@@ -202,16 +485,24 @@
 
   /* Sticky bottom buy bar (mobile) */
   .bottom-bar{
-    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50;
-    background: rgba(15,13,10,.85);
+    position: fixed; left: 12px; right: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 60;
+    background: rgba(15,13,10,.88);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
     backdrop-filter: blur(18px) saturate(140%);
     border: 1px solid var(--line-hard);
     border-radius: 16px;
     padding: 10px 12px;
-    display:flex; align-items:center; gap:10px;
+    display:flex !important;
+    align-items:center; gap:10px;
     box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
   }
-  @media (min-width: 768px){ .bottom-bar{ display:none; } }
+  @media (min-width: 768px){ .bottom-bar{ display:none !important; } }
+  /* Reserve room at the bottom of the page so the bar never covers footer text */
+  @media (max-width: 767px){
+    body{ padding-bottom: 80px; }
+  }
 
   /* Press strip card */
   .quote-card{
@@ -455,11 +746,11 @@
       <div class="md:col-span-5 md:col-start-8 reveal delay-1 self-end">
         <p class="text-[16px]" style="color:var(--fg-muted);">
           Other emulators chase pixel-perfect fidelity. 3dSen chases something else — a third axis.
-          Hover the image. Drag your eyes from the flat past to the volumetric present.
+          Drag the handle. Slide from the flat past to the volumetric present.
         </p>
         <div class="mt-6 flex items-center gap-3">
-          <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">HOVER ME</span>
-          <span class="mono text-[11px] px-2 py-1 rounded-full" style="background:var(--accent); color:var(--fg);">↘</span>
+          <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">DRAG TO COMPARE</span>
+          <span class="mono text-[11px] px-2 py-1 rounded-full" style="background:var(--accent); color:var(--fg);">↔</span>
         </div>
       </div>
     </div>
@@ -467,18 +758,23 @@
     <div class="reveal grid md:grid-cols-2 gap-6">
       <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
         <img class="deep" src="images/mm1_thumb.jpg" alt="Mega Man rendered in 3D voxels" />
-        <!-- For a true 2D vs 3D you can replace below with the actual flat sprite shot -->
-        <img class="flat" src="images/mm1_thumb.jpg" alt="Mega Man flat reference" style="filter: grayscale(.85) contrast(1.1) brightness(.85);" />
+        <img class="flat" src="images/mm1_thumb.jpg" alt="Mega Man flat reference" />
         <span class="label label-flat">2D · ORIGINAL</span>
         <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
         <span class="divider"></span>
+        <span class="handle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6 L4 12 L9 18 M15 6 L20 12 L15 18"/></svg>
+        </span>
       </div>
       <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
         <img class="deep" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher in 3D" />
-        <img class="flat" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher flat reference" style="filter: grayscale(.85) contrast(1.1) brightness(.85);" />
+        <img class="flat" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher flat reference" />
         <span class="label label-flat">2D · ORIGINAL</span>
         <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
         <span class="divider"></span>
+        <span class="handle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6 L4 12 L9 18 M15 6 L20 12 L15 18"/></svg>
+        </span>
       </div>
     </div>
 
@@ -567,12 +863,12 @@
         </div>
 
         <p class="text-[15px]" style="color:var(--fg-muted);">
-          Step inside the diorama. Full SteamVR support — Quest 3, Pico 4, Pimax — with motion controls for Punch-Out!! and Duck Hunt.
+          Step inside the diorama. Full SteamVR support — Quest 3, Pico 4, Pimax — with motion controls in <em>Mike Tyson's Punch-Out!!</em> and light-gun support for Duck Hunt.
         </p>
 
         <ul class="mt-6 space-y-2 text-[14px]" style="color:var(--fg);">
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Full room-scale VR via SteamVR</li>
-          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Motion controls — duck, weave, punch</li>
+          <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Motion controls — duck, weave, punch in <em>Mike Tyson's Punch-Out!!</em></li>
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Light-gun support (Duck Hunt etc.)</li>
           <li class="flex gap-3"><span style="color:var(--accent-2);">→</span> Animated skyboxes & PC fallback</li>
         </ul>
@@ -641,7 +937,7 @@
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--accent-3)" stroke-width="1.2"><path d="M4 8 L28 8 L28 24 L4 24 Z"/><circle cx="22" cy="6" r="2"/><path d="M10 14 L22 14 M10 18 L18 18"/></svg>
         </div>
         <div class="display text-[26px] mt-8">VR-ready</div>
-        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">SteamVR, Quest 3, Pico 4 Ultra, Pimax. Motion controls for Punch-Out!! and Duck Hunt.</p>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">SteamVR, Quest 3, Pico 4 Ultra, Pimax. Motion controls in <em>Mike Tyson's Punch-Out!!</em>; light-gun for Duck Hunt.</p>
       </div>
 
       <div class="reveal p-8 md:p-10" style="background: var(--bg-2);">
@@ -772,70 +1068,138 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal flex items-end justify-between flex-wrap gap-6 mb-12">
       <div>
-        <span class="eyebrow">008 / Critical Reception</span>
+        <span class="eyebrow">008 / Reception</span>
         <h2 class="display mt-5 text-[44px] md:text-[72px] leading-[0.95]">
-          What the press<br/>
-          <span class="display-italic" style="color:var(--accent);">actually said</span>.
+          What critics<br/>
+          <span class="display-italic" style="color:var(--accent);">and players</span> say.
         </h2>
       </div>
+      <p class="max-w-md text-[15px]" style="color:var(--fg-muted);">
+        Press loved the idea. Players keep coming back to play it.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-5">
-      <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener" class="reveal quote-card block">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">KOTAKU</div>
-          <div class="hr flex-1"></div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </div>
-        <blockquote class="display text-[28px] leading-[1.1]">"Amazing emulator turns 2D NES games into fully <span style="color:var(--accent);">3D worlds</span>."</blockquote>
-      </a>
+    <div class="grid md:grid-cols-12 gap-5">
 
-      <a href="https://www.rockpapershotgun.com/" target="_blank" rel="noopener" class="reveal delay-1 quote-card block">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ROCK PAPER SHOTGUN</div>
-          <div class="hr flex-1"></div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </div>
-        <blockquote class="display text-[28px] leading-[1.1]">"Adorable, fully-playable <span style="color:var(--accent-2);">3D dioramas</span>."</blockquote>
-      </a>
+      <!-- LEFT — Press / Critics -->
+      <div class="md:col-span-7">
+        <div class="mono text-[11px] tracking-[.18em] mb-4" style="color:var(--fg-muted);">CRITICAL PRESS</div>
 
-      <a href="https://uploadvr.com/3dnesvr-lets-you-play-nes-games-like-super-mario-bros-in-vr/" target="_blank" rel="noopener" class="reveal delay-2 quote-card block">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">UPLOADVR</div>
-          <div class="hr flex-1"></div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </div>
-        <blockquote class="display text-[28px] leading-[1.1]">"The next best thing to Nintendo's <span style="color:var(--accent-3);">interest in VR</span>."</blockquote>
-      </a>
+        <div class="grid md:grid-cols-2 gap-5">
+          <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener" class="reveal quote-card block">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">KOTAKU</div>
+              <div class="hr flex-1"></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </div>
+            <blockquote class="display text-[24px] leading-[1.1]">"Amazing emulator turns 2D NES games into fully <span style="color:var(--accent);">3D worlds</span>."</blockquote>
+          </a>
 
-      <a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/" target="_blank" rel="noopener" class="reveal quote-card block">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ARS TECHNICA</div>
-          <div class="hr flex-1"></div>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </div>
-        <blockquote class="display text-[28px] leading-[1.1]">"Generates 3D scenes from 2D NES games — <span style="color:var(--accent);">unlike anything else</span>."</blockquote>
-      </a>
+          <a href="https://www.rockpapershotgun.com/" target="_blank" rel="noopener" class="reveal delay-1 quote-card block">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ROCK PAPER SHOTGUN</div>
+              <div class="hr flex-1"></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </div>
+            <blockquote class="display text-[24px] leading-[1.1]">"Adorable, fully-playable <span style="color:var(--accent-2);">3D dioramas</span>."</blockquote>
+          </a>
 
-      <div class="reveal delay-1 quote-card">
-        <div class="flex items-center gap-3 mb-5">
-          <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">IGN JAPAN</div>
-          <div class="hr flex-1"></div>
+          <a href="https://uploadvr.com/3dnesvr-lets-you-play-nes-games-like-super-mario-bros-in-vr/" target="_blank" rel="noopener" class="reveal delay-2 quote-card block">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">UPLOADVR</div>
+              <div class="hr flex-1"></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </div>
+            <blockquote class="display text-[24px] leading-[1.1]">"The next best thing to Nintendo's <span style="color:var(--accent-3);">interest in VR</span>."</blockquote>
+          </a>
+
+          <a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/" target="_blank" rel="noopener" class="reveal quote-card block">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">ARS TECHNICA</div>
+              <div class="hr flex-1"></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </div>
+            <blockquote class="display text-[24px] leading-[1.1]">"Generates 3D scenes from 2D NES games — <span style="color:var(--accent);">unlike anything else</span>."</blockquote>
+          </a>
+
+          <div class="reveal delay-1 quote-card md:col-span-2">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">IGN JAPAN</div>
+              <div class="hr flex-1"></div>
+            </div>
+            <blockquote class="display text-[24px] leading-[1.1]">"<span class="display-italic">Filled with emotion that cannot be expressed in words.</span>"</blockquote>
+          </div>
         </div>
-        <blockquote class="display text-[28px] leading-[1.1]">"<span class="display-italic">Filled with emotion that cannot be expressed in words.</span>"</blockquote>
       </div>
 
-      <div class="reveal delay-2 quote-card flex flex-col justify-between" style="background: linear-gradient(180deg, rgba(255,79,31,.1), var(--bg-2)); border-color: rgba(255,79,31,.3);">
-        <div>
-          <div class="mono text-[11px] tracking-[.18em] mb-5" style="color:var(--accent);">STEAM · OVERWHELMINGLY POSITIVE</div>
-          <div class="display text-[64px] leading-none">95<span style="color:var(--fg-muted); font-size:.5em;">%</span></div>
-          <p class="mt-2 text-[14px]" style="color:var(--fg-muted);">player reviews on Steam · across both editions</p>
+      <!-- RIGHT — Steam Player Reviews -->
+      <div class="md:col-span-5">
+        <div class="mono text-[11px] tracking-[.18em] mb-4" style="color:var(--accent);">STEAM PLAYERS</div>
+
+        <!-- Steam stat hero card -->
+        <div class="reveal quote-card mb-5" style="background: linear-gradient(180deg, rgba(255,79,31,.12), var(--bg-2)); border-color: rgba(255,79,31,.32);">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="mono text-[11px] tracking-[.18em] mb-3" style="color:var(--accent);">VERY POSITIVE</div>
+              <div class="display text-[88px] leading-none">91<span style="color:var(--fg-muted); font-size:.45em;">%</span></div>
+              <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">of player reviews on Steam · both editions combined</p>
+            </div>
+            <!-- Steam logo SVG -->
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" style="flex-shrink:0;">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="9" cy="12" r="3"/>
+              <circle cx="16" cy="9" r="2"/>
+              <path d="M2 11.5 L7.5 14"/>
+            </svg>
+          </div>
+
+          <div class="mt-6 flex items-center gap-2 flex-wrap">
+            <a href="https://store.steampowered.com/app/1147940/3dSen_PC/#app_reviews_hash" target="_blank" rel="noopener" class="mono text-[11px] inline-flex items-center gap-2 ul-anim">
+              3DSEN PC REVIEWS →
+            </a>
+            <span style="color:var(--fg-dim);">·</span>
+            <a href="https://store.steampowered.com/app/954280/3dSen_VR/#app_reviews_hash" target="_blank" rel="noopener" class="mono text-[11px] inline-flex items-center gap-2 ul-anim">
+              3DSEN VR REVIEWS →
+            </a>
+          </div>
         </div>
-        <a href="https://store.steampowered.com/app/1147940/3dSen_PC/#app_reviews_hash" target="_blank" rel="noopener" class="mono text-[11px] mt-4 inline-flex items-center gap-2 ul-anim">
-          READ THE REVIEWS
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </a>
+
+        <!-- Player review excerpts -->
+        <div class="reveal delay-1 quote-card mb-5">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="flex gap-px" style="color:var(--accent);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <span class="mono text-[10px] tracking-[.15em]" style="color:var(--fg-muted);">VERIFIED PURCHASE</span>
+          </div>
+          <blockquote class="text-[16px] leading-[1.5]" style="color:var(--fg);">
+            "An emulator like no other. Transforms NES games into a 2.5D experience. <span style="color:var(--accent-2);">Castlevania</span> and Super Mario Bros. are highlights."
+          </blockquote>
+          <div class="mono text-[11px] mt-4" style="color:var(--fg-dim);">— STEAM REVIEWER</div>
+        </div>
+
+        <div class="reveal delay-2 quote-card">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="flex gap-px" style="color:var(--accent);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L15 8.5 L22 9.3 L17 14 L18.2 21 L12 17.7 L5.8 21 L7 14 L2 9.3 L9 8.5 Z"/></svg>
+            </div>
+            <span class="mono text-[10px] tracking-[.15em]" style="color:var(--fg-muted);">VERIFIED PURCHASE</span>
+          </div>
+          <blockquote class="text-[16px] leading-[1.5]" style="color:var(--fg);">
+            "The 3D really breathes <span style="color:var(--accent);">new life</span> into old games. Camera control alone is worth the price."
+          </blockquote>
+          <div class="mono text-[11px] mt-4" style="color:var(--fg-dim);">— STEAM REVIEWER</div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -944,8 +1308,7 @@
           </div>
         </div>
         <p class="mt-5 text-[14px] max-w-md" style="color:var(--fg-muted);">
-          Geod Studio is a one-person operation building tools that let people experience old games in new dimensions.
-          3dSen has been in continuous development since 2015.
+          Geod Studio is a one-person studio. Since 2015, every line of 3dSen, 3dSenVR and the 3dSenMaker authoring tool has been written by a single developer.
         </p>
       </div>
 
@@ -969,7 +1332,7 @@
       <div class="md:col-span-2">
         <div class="mono text-[10px] tracking-[.18em] mb-4" style="color:var(--fg-muted);">CONNECT</div>
         <ul class="space-y-2 text-[14px]">
-          <li><a class="ul-anim" href="https://steamcommunity.com/app/1147940" target="_blank" rel="noopener">Community →</a></li>
+          <li><a class="ul-anim" href="https://discord.gg/3dsen" target="_blank" rel="noopener">Discord →</a></li>
           <li><a class="ul-anim" href="https://www.youtube.com/@geodstudio" target="_blank" rel="noopener">YouTube →</a></li>
           <li><a class="ul-anim" href="mailto:contact@geodstudio.net">Contact →</a></li>
         </ul>
@@ -1023,6 +1386,41 @@
       document.querySelectorAll('.trailer-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     });
+  });
+
+  // Compare slider — drag/touch
+  document.querySelectorAll('.compare').forEach(el => {
+    const setFromX = (clientX) => {
+      const rect = el.getBoundingClientRect();
+      const x = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+      const clipPct = 100 - (x / rect.width) * 100;
+      el.style.setProperty('--clip', clipPct + '%');
+    };
+    let dragging = false;
+    el.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      setFromX(e.clientX);
+      el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener('pointermove', (e) => {
+      if (dragging) setFromX(e.clientX);
+    });
+    const stop = () => { dragging = false; };
+    el.addEventListener('pointerup', stop);
+    el.addEventListener('pointercancel', stop);
+    el.addEventListener('pointerleave', stop);
+
+    // Subtle attention nudge on first scroll-into-view
+    const peek = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          el.style.setProperty('--clip', '40%');
+          setTimeout(() => el.style.setProperty('--clip', '50%'), 700);
+          peek.unobserve(el);
+        }
+      });
+    }, { threshold: .4 });
+    peek.observe(el);
   });
 
   // Smooth anchors
