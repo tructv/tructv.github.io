@@ -418,11 +418,20 @@
       </div>
     </div>
 
+    <!-- Trailer toggle -->
+    <div class="reveal flex items-center justify-between flex-wrap gap-3 mb-4">
+      <div class="pill-row">
+        <button class="pill active trailer-btn" data-trailer="_y2AE-kWtjM" data-meta="v1.0 LAUNCH · 2025">1.0 Launch</button>
+        <button class="pill trailer-btn" data-trailer="_MBHj9IGZgE" data-meta="EARLY ACCESS · 2020">Early Access</button>
+      </div>
+      <span id="trailer-meta" class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">v1.0 LAUNCH · 2025</span>
+    </div>
+
     <div class="reveal relative rounded-3xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
-      <!-- Replace this <video>'s src with your real trailer URL, or embed YouTube via iframe -->
       <iframe
+        id="trailer-frame"
         class="w-full h-full"
-        src="https://www.youtube-nocookie.com/embed/Bb02j-5b-OI?rel=0&modestbranding=1"
+        src="https://www.youtube-nocookie.com/embed/_y2AE-kWtjM?rel=0&modestbranding=1"
         title="3dSen trailer"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1002,6 +1011,19 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Trailer toggle
+  const trailerFrame = document.getElementById('trailer-frame');
+  const trailerMeta = document.getElementById('trailer-meta');
+  document.querySelectorAll('.trailer-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.trailer;
+      trailerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+      trailerMeta.textContent = btn.dataset.meta;
+      document.querySelectorAll('.trailer-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
 
   // Smooth anchors
   document.querySelectorAll('a[href^="#"]').forEach(a => {
