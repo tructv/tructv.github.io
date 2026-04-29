@@ -384,7 +384,7 @@
   .float-card{ box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), 0 1px 0 0 rgba(255,255,255,.04) inset; }
 
   /* Comparison drag slider (works on touch + mouse) */
-  .compare{ position: relative; overflow: hidden; user-select: none; touch-action: none; cursor: ew-resize; --clip: 50%; }
+  .compare{ position: relative; overflow: hidden; user-select: none; touch-action: none; cursor: col-resize; --clip: 50%; }
   .compare .flat, .compare .deep { width:100%; height:100%; object-fit:cover; }
   .compare .flat {
     position:absolute; inset:0;
@@ -770,10 +770,9 @@
       <div class="hero-trailer">
         <div class="reveal delay-1 flex items-center justify-between gap-3 mb-3 flex-wrap">
           <div class="pill-row">
-            <button class="pill active trailer-btn" data-trailer="_y2AE-kWtjM" data-meta="v1.0 LAUNCH">1.0 Launch</button>
-            <button class="pill trailer-btn" data-trailer="_MBHj9IGZgE" data-meta="EARLY ACCESS">Early Access</button>
+            <button class="pill active trailer-btn" data-trailer="_y2AE-kWtjM">1.0 Launch</button>
+            <button class="pill trailer-btn" data-trailer="_MBHj9IGZgE">Early Access</button>
           </div>
-          <span id="trailer-meta" class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">v1.0 LAUNCH</span>
         </div>
 
         <div id="trailer" class="reveal delay-2 relative rounded-2xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
@@ -881,10 +880,10 @@
       <div class="md:col-span-5 md:col-start-8 reveal delay-1 self-end">
         <p class="text-[16px]" style="color:var(--fg-muted);">
           Other emulators chase pixel-perfect fidelity. 3dSen chases something else — a third axis.
-          Drag the handle. Slide from the flat past to the volumetric present.
+          Move your cursor across the image — or drag on touch — to slide between the flat past and the volumetric present.
         </p>
         <div class="mt-6 flex items-center gap-3">
-          <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">DRAG TO COMPARE</span>
+          <span class="mono text-[11px] px-2 py-1 rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">HOVER OR DRAG TO COMPARE</span>
           <span class="mono text-[11px] px-2 py-1 rounded-full" style="background:var(--accent); color:var(--fg);">↔</span>
         </div>
       </div>
@@ -974,7 +973,7 @@
           <li class="flex gap-3"><span style="color:var(--accent);">→</span> Real-time 2D-to-3D voxel reconstruction</li>
           <li class="flex gap-3"><span style="color:var(--accent);">→</span> Free camera + first-person modes</li>
           <li class="flex gap-3"><span style="color:var(--accent);">→</span> Rewind, quick-save, scene export</li>
-          <li class="flex gap-3"><span style="color:var(--accent);">→</span> Animated skyboxes — galaxy, gradient or custom color</li>
+          <li class="flex gap-3"><span style="color:var(--accent);">→</span> Animated skyboxes — fantasy, gradient or custom color</li>
           <li class="flex gap-3"><span style="color:var(--accent);">→</span> 100+ hand-tuned game profiles</li>
         </ul>
 
@@ -1091,7 +1090,7 @@
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--fg)" stroke-width="1.2"><path d="M4 16 Q16 4 28 16 Q16 28 4 16 Z"/><circle cx="16" cy="16" r="3"/></svg>
         </div>
         <div class="display text-[26px] mt-8">Animated skyboxes</div>
-        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Each diorama floats inside a chosen environment — galaxy, gradient or custom color.</p>
+        <p class="mt-3 text-[14px]" style="color:var(--fg-muted);">Each diorama floats inside a chosen environment — fantasy, gradient or custom color.</p>
       </div>
 
       <div class="reveal delay-2 p-8 md:p-10" style="background: var(--bg-2);">
@@ -1154,11 +1153,11 @@
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Duck Hunt</span>
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">DuckTales</span>
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Final Fantasy</span>
-        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Dragon Warrior I–IV</span>
+        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Dragon Warrior I–III</span>
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Batman</span>
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Battle Kid</span>
         <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--bg-2); border:1px solid var(--line-hard);">Micro Mages</span>
-        <span class="mono text-[12px] px-3 py-1.5 rounded-full" style="background:var(--accent); color:#fff;">+ 80 more →</span>
+        <a href="https://steamcommunity.com/app/1147940/discussions/0/1640927858845729617/" target="_blank" rel="noopener" class="mono text-[12px] px-3 py-1.5 rounded-full inline-flex items-center gap-1" style="background:var(--accent); color:#fff; transition: opacity .2s ease;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">+ 80 more →</a>
       </div>
     </div>
 
@@ -1599,18 +1598,16 @@
 
   // Trailer toggle
   const trailerFrame = document.getElementById('trailer-frame');
-  const trailerMeta = document.getElementById('trailer-meta');
   document.querySelectorAll('.trailer-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.trailer;
       trailerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
-      trailerMeta.textContent = btn.dataset.meta;
       document.querySelectorAll('.trailer-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
     });
   });
 
-  // Compare slider — drag/touch
+  // Compare slider — drag/touch + desktop hover follow
   document.querySelectorAll('.compare').forEach(el => {
     const setFromX = (clientX) => {
       const rect = el.getBoundingClientRect();
@@ -1618,19 +1615,33 @@
       const clipPct = 100 - (x / rect.width) * 100;
       el.style.setProperty('--clip', clipPct + '%');
     };
-    let dragging = false;
-    el.addEventListener('pointerdown', (e) => {
-      dragging = true;
-      setFromX(e.clientX);
-      el.setPointerCapture(e.pointerId);
-    });
-    el.addEventListener('pointermove', (e) => {
-      if (dragging) setFromX(e.clientX);
-    });
-    const stop = () => { dragging = false; };
-    el.addEventListener('pointerup', stop);
-    el.addEventListener('pointercancel', stop);
-    el.addEventListener('pointerleave', stop);
+
+    // Detect coarse pointers (touch) once
+    const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+
+    if (isCoarse) {
+      // Touch / coarse pointer — drag to compare
+      let dragging = false;
+      el.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        setFromX(e.clientX);
+        try { el.setPointerCapture(e.pointerId); } catch(_) {}
+      });
+      el.addEventListener('pointermove', (e) => {
+        if (dragging) setFromX(e.clientX);
+      });
+      const stop = () => { dragging = false; };
+      el.addEventListener('pointerup', stop);
+      el.addEventListener('pointercancel', stop);
+      el.addEventListener('pointerleave', stop);
+    } else {
+      // Desktop — slider follows cursor while inside the area
+      el.addEventListener('mousemove', (e) => setFromX(e.clientX));
+      // Reset to 50% when cursor leaves so it doesn't get stuck off-center
+      el.addEventListener('mouseleave', () => {
+        el.style.setProperty('--clip', '50%');
+      });
+    }
 
     // Subtle attention nudge on first scroll-into-view
     const peek = new IntersectionObserver((entries) => {
