@@ -4,17 +4,95 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>3dSen — Play NES Games in 3D | Geod Studio</title>
-<meta name="description" content="3dSen is a one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR. 100+ supported titles. Available on Steam." />
+<meta name="description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR. 100+ titles. On Steam." />
+
+<!-- Canonical & robots -->
+<link rel="canonical" href="https://geodstudio.net/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0B0A09" />
 
 <!-- Open Graph -->
+<meta property="og:site_name" content="Geod Studio" />
 <meta property="og:title" content="3dSen — Play NES Games in 3D" />
 <meta property="og:description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://geodstudio.net/" />
 <meta property="og:image" content="https://geodstudio.net/images/mm3_thumb.jpg" />
+<meta property="og:image:alt" content="3dSen — a NES game rendered as a 3D voxel diorama" />
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="3dSen — Play NES Games in 3D" />
+<meta name="twitter:description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR." />
+<meta name="twitter:image" content="https://geodstudio.net/images/mm3_thumb.jpg" />
+<meta name="twitter:image:alt" content="3dSen — a NES game rendered as a 3D voxel diorama" />
 
 <link rel="icon" href="images/geod.png" type="image/png" />
+
+<!-- Structured data: SoftwareApplication (rich snippets in search) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "3dSen PC",
+      "url": "https://store.steampowered.com/app/1147940/3dSen_PC/",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Emulator",
+      "operatingSystem": "Windows, macOS, Linux",
+      "image": "https://geodstudio.net/images/mm3_thumb.jpg",
+      "description": "Real-time NES-to-3D voxel emulator with free camera, rewind, save states and animated skyboxes.",
+      "publisher": { "@type": "Organization", "name": "Geod Studio", "url": "https://geodstudio.net/" },
+      "offers": { "@type": "Offer", "url": "https://store.steampowered.com/app/1147940/3dSen_PC/", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "bestRating": "5", "reviewCount": "100" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "3dSen VR",
+      "url": "https://store.steampowered.com/app/954280/3dSen_VR/",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Emulator",
+      "operatingSystem": "Windows (SteamVR)",
+      "image": "https://geodstudio.net/images/mm3_thumb.jpg",
+      "description": "Step inside classic NES games in VR. Full SteamVR support including Quest 3, Pico 4 Ultra, Pimax Crystal Light. Motion controls for Mike Tyson's Punch-Out!! and light-gun support for Duck Hunt.",
+      "publisher": { "@type": "Organization", "name": "Geod Studio", "url": "https://geodstudio.net/" },
+      "offers": { "@type": "Offer", "url": "https://store.steampowered.com/app/954280/3dSen_VR/", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.6", "bestRating": "5", "reviewCount": "100" }
+    },
+    {
+      "@type": "Organization",
+      "name": "Geod Studio",
+      "url": "https://geodstudio.net/",
+      "logo": "https://geodstudio.net/images/geod.png",
+      "foundingDate": "2015",
+      "sameAs": [
+        "https://store.steampowered.com/curator/35762166",
+        "https://geod.itch.io",
+        "https://www.facebook.com/3dnes",
+        "https://discord.gg/2ZP6mRq"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Do I need original NES games?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. 3dSen ships without any ROMs, in line with copyright. Bring your own legally-acquired .nes files and 3dSen handles the rest." } },
+        { "@type": "Question", "name": "Does the 3D break the original gameplay?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Every byte of the original NES game runs untouched. The 3D layer is a presentation pass — physics, timing, and behaviour are 100% authentic." } },
+        { "@type": "Question", "name": "PC vs VR — which one should I buy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "If you don't own a headset, get 3dSen PC. If you do, 3dSen VR includes both PC and VR modes in one purchase." } },
+        { "@type": "Question", "name": "Which VR headsets are supported?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Anything that runs SteamVR. Highlights include Quest 3, Pico 4 Ultra and Pimax Crystal Light, with broader compatibility for Quest 2, Valve Index and HTC Vive." } },
+        { "@type": "Question", "name": "My favourite game isn't on the list — what now?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use 3dSenMaker to build a 3D profile yourself, or request the title on the Steam community boards." } },
+        { "@type": "Question", "name": "Will my old laptop run it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Probably. The PC version targets a Core 2 Duo or equivalent, 4 GB RAM, ~400 MB disk. Windows, macOS and Linux supported." } }
+      ]
+    }
+  ]
+}
+</script>
 
 <!-- Self-contained utility CSS (replaces Tailwind CDN) -->
 <style>
@@ -340,6 +418,8 @@
     font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
     color: var(--fg-muted);
     display: inline-flex; align-items: center; gap: 10px;
+    /* reset native h2 styles when used as a heading */
+    margin: 0; padding: 0; font-weight: 500; line-height: 1.2;
   }
   .eyebrow::before{
     content:""; width: 8px; height: 8px; background: var(--accent);
@@ -870,7 +950,7 @@
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="grid md:grid-cols-12 gap-10 mb-12">
       <div class="md:col-span-6 reveal">
-        <span class="eyebrow">The Difference</span>
+        <h2 class="eyebrow">The Difference</h2>
         <h2 class="display mt-5 text-[44px] md:text-[80px] leading-[0.92]">
           Same game.<br/>
           New <span class="display-italic" style="color:var(--accent-2);">dimension</span>.
@@ -890,8 +970,8 @@
 
     <div class="reveal grid md:grid-cols-2 gap-6">
       <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
-        <img class="deep" src="images/compare_1_3D.jpg" alt="Super Mario Bros. rendered in 3D voxels" />
-        <img class="flat" src="images/compare_1_2D.jpg" alt="Super Mario Bros. flat reference" />
+        <img loading="lazy" class="deep" src="images/compare_1_3D.jpg" alt="Super Mario Bros. rendered in 3D voxels" />
+        <img loading="lazy" class="flat" src="images/compare_1_2D.jpg" alt="Super Mario Bros. flat reference" />
         <span class="label label-flat">2D · ORIGINAL</span>
         <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
         <span class="divider"></span>
@@ -900,8 +980,8 @@
         </span>
       </div>
       <div class="compare rounded-2xl overflow-hidden border" style="border-color:var(--line-hard); aspect-ratio: 4/3;">
-        <img class="deep" src="images/compare_2_3D.jpg" alt="Mega Man 2 in 3D" />
-        <img class="flat" src="images/compare_2_2D.jpg" alt="Mega Man 2 flat reference" />
+        <img loading="lazy" class="deep" src="images/compare_2_3D.jpg" alt="Mega Man 2 in 3D" />
+        <img loading="lazy" class="flat" src="images/compare_2_2D.jpg" alt="Mega Man 2 flat reference" />
         <span class="label label-flat">2D · ORIGINAL</span>
         <span class="label label-deep" style="color:#fff;">3D · 3DSEN</span>
         <span class="divider"></span>
@@ -937,7 +1017,7 @@
 
   <div class="mx-auto max-w-[1280px] px-6 md:px-10 relative">
     <div class="reveal mb-10">
-      <span class="eyebrow">Two Editions</span>
+      <h2 class="eyebrow">Two Editions</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6">
@@ -948,7 +1028,7 @@
         </div>
 
         <div class="flex items-center gap-4 mb-5">
-          <img src="images/3dsen_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+          <img loading="lazy" src="images/3dsen_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
           <div>
             <div class="mono text-[10px] tracking-[.18em]" style="color:var(--fg-muted);">FLAGSHIP · DESKTOP</div>
             <h3 class="display text-[34px] leading-tight">3dSen PC</h3>
@@ -980,7 +1060,7 @@
         </div>
 
         <div class="flex items-center gap-4 mb-5">
-          <img src="images/3dsenvr_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+          <img loading="lazy" src="images/3dsenvr_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
           <div>
             <div class="mono text-[10px] tracking-[.18em]" style="color:var(--accent-2);">IMMERSIVE · VR</div>
             <h3 class="display text-[34px] leading-tight">3dSen VR</h3>
@@ -1007,7 +1087,7 @@
 
     <!-- Maker tool -->
     <div class="reveal delay-2 mt-6 quote-card flex flex-col md:flex-row md:items-center gap-6">
-      <img src="images/3dsenmk_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
+      <img loading="lazy" src="images/3dsenmk_256.png" alt="" class="w-14 h-14 rounded-xl border" style="border-color:var(--line-hard);"/>
       <div class="flex-1">
         <div class="mono text-[10px] tracking-[.18em] mb-1" style="color:var(--fg-muted);">COMMUNITY · TOOL</div>
         <div class="display text-[26px]">3dSenMaker</div>
@@ -1022,7 +1102,7 @@
 <section id="features" class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">What's Inside</span>
+      <h2 class="eyebrow">What's Inside</h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-px" style="background: var(--line);">
@@ -1088,17 +1168,17 @@
 <section id="games" class="relative py-24 md:py-32">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">The Library</span>
+      <h2 class="eyebrow">The Library</h2>
     </div>
 
     <!-- Featured screenshots grid -->
     <div class="reveal grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mb-10">
-      <a class="tile group" href="#"><img src="images/mm1_thumb.jpg" alt=""/><span class="tag">MEGA MAN</span></a>
-      <a class="tile group" href="#"><img src="images/mm2_thumb.jpg" alt=""/><span class="tag">MEGA MAN II</span></a>
-      <a class="tile group" href="#"><img src="images/mm3_thumb.jpg" alt=""/><span class="tag">MEGA MAN III</span></a>
-      <a class="tile group" href="#"><img src="images/SBP_thumb.jpg" alt=""/><span class="tag">SUPER BAT PUNCHER</span></a>
-      <a class="tile group" href="#"><img src="images/SBP1_thumb.jpg" alt=""/><span class="tag">SUPER BAT PUNCHER</span></a>
-      <a class="tile group" href="#"><img src="images/BK2_thumb.jpg" alt=""/><span class="tag">BATTLE KID 2</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/mm1_thumb.jpg" alt="Mega Man rendered as a 3D voxel diorama in 3dSen"/><span class="tag">MEGA MAN</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/mm2_thumb.jpg" alt="Mega Man 2 rendered as a 3D voxel diorama in 3dSen"/><span class="tag">MEGA MAN II</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/mm3_thumb.jpg" alt="Mega Man 3 rendered as a 3D voxel diorama in 3dSen"/><span class="tag">MEGA MAN III</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/SBP_thumb.jpg" alt="Super Bat Puncher rendered as a 3D voxel diorama in 3dSen"/><span class="tag">SUPER BAT PUNCHER</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/SBP1_thumb.jpg" alt="Super Bat Puncher (alternate scene) rendered as a 3D voxel diorama in 3dSen"/><span class="tag">SUPER BAT PUNCHER</span></a>
+      <a class="tile group" href="#"><img loading="lazy" src="images/BK2_thumb.jpg" alt="Battle Kid 2 rendered as a 3D voxel diorama in 3dSen"/><span class="tag">BATTLE KID 2</span></a>
     </div>
 
     <!-- Title chips -->
@@ -1135,7 +1215,7 @@
 <section class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: linear-gradient(180deg, var(--bg-2), var(--bg));">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">How It Works</span>
+      <h2 class="eyebrow">How It Works</h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-6">
@@ -1162,7 +1242,7 @@
 <section id="press" class="relative py-24 md:py-32">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">Reception</span>
+      <h2 class="eyebrow">Reception</h2>
     </div>
 
     <div class="grid md:grid-cols-12 gap-5">
@@ -1350,7 +1430,7 @@
 <section class="relative py-24 md:py-32 border-t" style="border-color:var(--line); background: var(--bg-2);">
   <div class="mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">FAQ</span>
+      <h2 class="eyebrow">FAQ</h2>
     </div>
 
     <div class="reveal delay-1 divide-y max-w-3xl mx-auto" style="border-color:var(--line);">
@@ -1412,7 +1492,7 @@
 
   <div class="relative mx-auto max-w-[1280px] px-6 md:px-10">
     <div class="reveal mb-10">
-      <span class="eyebrow">Community</span>
+      <h2 class="eyebrow">Community</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5">
@@ -1478,7 +1558,7 @@
     <div class="grid md:grid-cols-12 gap-10 mb-14">
       <div class="md:col-span-5">
         <div class="flex items-center gap-3">
-          <img src="images/geod.png" alt="" class="w-9 h-9 rounded-md"/>
+          <img loading="lazy" src="images/geod.png" alt="" class="w-9 h-9 rounded-md"/>
           <div>
             <div class="display text-[24px]">Geod Studio</div>
             <div class="mono text-[11px] tracking-[.18em]" style="color:var(--fg-muted);">SOLO STUDIO · SINCE 2015</div>
@@ -1531,7 +1611,7 @@
 
 <!-- ======================= STICKY MOBILE BUY BAR ======================= -->
 <div class="bottom-bar">
-  <img src="images/3dsen_256.png" alt="" class="w-9 h-9 rounded-lg"/>
+  <img loading="lazy" src="images/3dsen_256.png" alt="" class="w-9 h-9 rounded-lg"/>
   <div class="flex-1 leading-tight">
     <div class="display text-[14px]">3dSen</div>
     <div class="mono text-[10px] tracking-[.1em]" style="color:var(--fg-muted);">NES IN 3D · v1.0</div>
