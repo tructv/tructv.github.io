@@ -17,17 +17,23 @@
 <meta property="og:description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://geodstudio.net/" />
-<meta property="og:image" content="https://geodstudio.net/images/mm3_thumb.jpg" />
+<meta property="og:image" content="https://geodstudio.net/images/og_card.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="3dSen — a NES game rendered as a 3D voxel diorama" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="3dSen — Play NES Games in 3D" />
 <meta name="twitter:description" content="A one-of-a-kind NES emulator that turns classic 8-bit games into fully playable 3D voxel dioramas — on screen or in VR." />
-<meta name="twitter:image" content="https://geodstudio.net/images/mm3_thumb.jpg" />
+<meta name="twitter:image" content="https://geodstudio.net/images/og_card.jpg" />
 <meta name="twitter:image:alt" content="3dSen — a NES game rendered as a 3D voxel diorama" />
 
 <link rel="icon" href="images/geod.png" type="image/png" />
+
+<!-- Warm up YouTube connections (only used if user plays the trailer) -->
+<link rel="preconnect" href="https://www.youtube-nocookie.com" />
+<link rel="dns-prefetch" href="https://i.ytimg.com" />
 
 <!-- Structured data: SoftwareApplication (rich snippets in search) -->
 <script type="application/ld+json">
@@ -41,7 +47,7 @@
       "applicationCategory": "GameApplication",
       "applicationSubCategory": "Emulator",
       "operatingSystem": "Windows, macOS, Linux",
-      "image": "https://geodstudio.net/images/mm3_thumb.jpg",
+      "image": "https://geodstudio.net/images/og_card.jpg",
       "description": "Real-time NES-to-3D voxel emulator with free camera, rewind, save states and animated skyboxes.",
       "publisher": { "@type": "Organization", "name": "Geod Studio", "url": "https://geodstudio.net/" },
       "offers": { "@type": "Offer", "url": "https://store.steampowered.com/app/1147940/3dSen_PC/", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
@@ -54,7 +60,7 @@
       "applicationCategory": "GameApplication",
       "applicationSubCategory": "Emulator",
       "operatingSystem": "Windows (SteamVR)",
-      "image": "https://geodstudio.net/images/mm3_thumb.jpg",
+      "image": "https://geodstudio.net/images/og_card.jpg",
       "description": "Step inside classic NES games in VR. Full SteamVR support including Quest 3, Pico 4 Ultra, Pimax Crystal Light. Motion controls for Mike Tyson's Punch-Out!! and light-gun support for Duck Hunt.",
       "publisher": { "@type": "Organization", "name": "Geod Studio", "url": "https://geodstudio.net/" },
       "offers": { "@type": "Offer", "url": "https://store.steampowered.com/app/954280/3dSen_VR/", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
@@ -636,6 +642,12 @@
   .glow-amber{ background: radial-gradient(60% 60% at 50% 0%, rgba(255,79,31,.18), transparent 70%); }
   .glow-cyan{  background: radial-gradient(60% 60% at 50% 100%, rgba(74,222,222,.14), transparent 70%); }
 
+  /* Trailer click-to-play facade */
+  #trailer-facade > img:hover { opacity: 1 !important; }
+  #trailer-facade:hover span > span,
+  #trailer-facade:focus-visible span > span { transform: scale(1.08); }
+  #trailer-facade:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+
   /* Visually hidden */
   .vh{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
@@ -859,15 +871,26 @@
         </div>
 
         <div id="trailer" class="reveal delay-2 relative rounded-2xl overflow-hidden border glow-ring" style="border-color:var(--line-hard); aspect-ratio: 16/9; background: var(--bg-2);">
-          <iframe
-            id="trailer-frame"
-            class="w-full h-full"
-            src="https://www.youtube-nocookie.com/embed/_y2AE-kWtjM?rel=0&modestbranding=1"
-            title="3dSen trailer"
-            loading="eager"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen></iframe>
+          <!-- Click-to-play facade: full YouTube iframe loads only on click -->
+          <button id="trailer-facade"
+                  type="button"
+                  data-trailer="_y2AE-kWtjM"
+                  class="absolute inset-0 w-full h-full block group"
+                  aria-label="Play 3dSen 1.0 launch trailer"
+                  style="cursor:pointer; padding:0; background:#000; border:0;">
+            <img loading="lazy"
+                 src="https://i.ytimg.com/vi_webp/_y2AE-kWtjM/maxresdefault.webp"
+                 alt="3dSen 1.0 launch trailer thumbnail"
+                 class="absolute inset-0 w-full h-full"
+                 style="object-fit:cover; opacity:.92; transition:opacity .25s ease;"
+                 onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/_y2AE-kWtjM/hqdefault.jpg';" />
+            <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span style="display:flex; align-items:center; justify-content:center; width:84px; height:84px; border-radius:50%; background:rgba(255,79,31,.92); box-shadow:0 12px 40px rgba(0,0,0,.5), 0 0 0 6px rgba(255,79,31,.18); transition:transform .2s ease;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>
+              </span>
+            </span>
+            <span class="absolute" style="left:14px; bottom:14px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; color:#fff; background:rgba(11,10,9,.55); padding:5px 9px; border-radius:6px; backdrop-filter: blur(6px);">WATCH TRAILER · YOUTUBE</span>
+          </button>
         </div>
       </div>
 
@@ -1663,16 +1686,66 @@
     if (window.innerWidth >= 768 && !mobileMenu.hidden) closeMenu();
   });
 
-  // Trailer toggle
-  const trailerFrame = document.getElementById('trailer-frame');
-  document.querySelectorAll('.trailer-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.trailer;
-      trailerFrame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
-      document.querySelectorAll('.trailer-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Trailer — click-to-play facade + pill toggle
+  // The facade is a poster image; the real YouTube iframe only loads on click,
+  // saving ~600KB of YouTube player JS for visitors who never play.
+  (function () {
+    const trailerWrap = document.getElementById('trailer');
+    const facade = document.getElementById('trailer-facade');
+    if (!trailerWrap || !facade) return;
+
+    const buildEmbedUrl = (id) =>
+      `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+
+    // Activate the iframe — replaces the facade with a real YouTube player
+    const playTrailer = (id) => {
+      const iframe = document.createElement('iframe');
+      iframe.id = 'trailer-frame';
+      iframe.className = 'w-full h-full';
+      iframe.src = buildEmbedUrl(id);
+      iframe.title = '3dSen trailer';
+      iframe.loading = 'eager';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      facade.replaceWith(iframe);
+    };
+
+    // Update facade thumbnail if user picks a different trailer before playing
+    const updateFacadePoster = (id) => {
+      facade.dataset.trailer = id;
+      const img = facade.querySelector('img');
+      if (img) {
+        img.src = `https://i.ytimg.com/vi_webp/${id}/maxresdefault.webp`;
+        img.onerror = function () {
+          this.onerror = null;
+          this.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+        };
+      }
+    };
+
+    // Tap the poster → load real iframe + autoplay
+    facade.addEventListener('click', () => playTrailer(facade.dataset.trailer));
+
+    // Pill toggle
+    document.querySelectorAll('.trailer-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.trailer;
+        document.querySelectorAll('.trailer-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // If facade is still up, just swap its poster — don't load YouTube yet
+        const liveFacade = document.getElementById('trailer-facade');
+        if (liveFacade) {
+          updateFacadePoster(id);
+        } else {
+          // Iframe already loaded — change its src (autoplay)
+          const frame = document.getElementById('trailer-frame');
+          if (frame) frame.src = buildEmbedUrl(id);
+        }
+      });
     });
-  });
+  })();
 
   // Compare slider — drag/touch + desktop hover follow
   document.querySelectorAll('.compare').forEach(el => {
