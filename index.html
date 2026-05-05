@@ -1815,6 +1815,137 @@
       }
     });
   });
+  // ============================================================
+  // Google Analytics — custom event tracking
+  // ============================================================
+  // Sends GA events for outbound clicks (Steam, itch, Discord, Facebook),
+  // trailer plays, FAQ opens, and comparison-slider engagement.
+  // No-op if gtag isn't loaded (e.g. ad blockers).
+  (function () {
+    const ga = (name, params = {}) => {
+      if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    };
+
+    // --- 1. Outbound link clicks: Steam, itch.io, Discord, Facebook ---
+    // Map URL substrings to a clean event label
+    const outboundMap = [
+      // Steam — specific products
+      { match: 'app/1147940',                label: 'steam_pc',         destination: 'steam',    product: '3dsen_pc' },
+      { match: 'app/954280',                 label: 'steam_vr',         destination: 'steam',    product: '3dsen_vr' },
+      // Steam — curator / generic
+      { match: 'store.steampowered.com/curator', label: 'steam_curator',destination: 'steam',    product: 'curator' },
+      // itch.io — specific products
+      { match: 'geod.itch.io/3dsenpc',       label: 'itch_pc',          destination: 'itch',     product: '3dsen_pc' },
+      { match: 'geod.itch.io/3dnes',         label: 'itch_vr',          destination: 'itch',     product: '3dsen_vr' },
+      { match: 'geod.itch.io/3dsen-maker',   label: 'itch_maker',       destination: 'itch',     product: '3dsen_maker' },
+      { match: 'geod.itch.io',               label: 'itch_profile',     destination: 'itch',     product: 'profile' },
+      // Community / social
+      { match: 'discord.gg',                 label: 'discord',          destination: 'discord',  product: '' },
+      { match: 'facebook.com',               label: 'facebook',         destination: 'facebook', product: '' },
+      // Press
+      { match: 'kotaku.com',                 label: 'press_kotaku',     destination: 'press',    product: 'kotaku' },
+      { match: 'rockpapershotgun.com',       label: 'press_rps',        destination: 'press',    product: 'rps' },
+      { match: 'uploadvr.com',               label: 'press_uploadvr',   destination: 'press',    product: 'uploadvr' },
+      { match: 'arstechnica.com',            label: 'press_arstechnica',destination: 'press',    product: 'arstechnica' },
+      { match: 'jp.ign.com',                 label: 'press_ign',        destination: 'press',    product: 'ign_japan' }
+    ];
+
+    // Identify which page section a clicked element lives in (hero / products / community / footer / etc.)
+    const sectionOf = (el) => {
+      const sec = el.closest('section[id], header, footer');
+      if (!sec) return 'unknown';
+      if (sec.tagName === 'HEADER') return 'header';
+      if (sec.tagName === 'FOOTER') return 'footer';
+      return sec.id || 'unknown';
+    };
+
+    document.addEventListener('click', (ev) => {
+      const a = ev.target.closest('a[href]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:')) return;
+
+      const entry = outboundMap.find(e => href.includes(e.match));
+      if (!entry) return;
+
+      ga('click_outbound', {
+        link_label:    entry.label,
+        link_destination: entry.destination,
+        product:       entry.product,
+        link_url:      href,
+        section:       sectionOf(a)
+      });
+
+      // Specific high-value conversion event for store clicks
+      if (entry.destination === 'steam' || entry.destination === 'itch') {
+        ga('click_buy', {
+          store:   entry.destination,
+          product: entry.product,
+          section: sectionOf(a)
+        });
+      }
+    }, { capture: true });
+
+    // --- 2. Trailer plays (which one + first-play vs subsequent-switch) ---
+    let trailerHasPlayed = false;
+    const trailerLabels = { '_y2AE-kWtjM': 'launch_1.0', '_MBHj9IGZgE': 'early_access' };
+
+    // Initial play (facade → real iframe)
+    const facade = document.getElementById('trailer-facade');
+    if (facade) {
+      facade.addEventListener('click', () => {
+        const id = facade.dataset.trailer;
+        ga('trailer_play', {
+          trailer_id:  id,
+          trailer_name: trailerLabels[id] || 'unknown',
+          play_kind:   'first'
+        });
+        trailerHasPlayed = true;
+      });
+    }
+
+    // Pill switching (different trailer chosen)
+    document.querySelectorAll('.trailer-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.trailer;
+        ga('trailer_switch', {
+          trailer_id:   id,
+          trailer_name: trailerLabels[id] || 'unknown',
+          // 'while_facade' = user toggled before clicking play (no YT loaded yet)
+          // 'while_playing' = user toggled after play (YT autoplay'd a new trailer)
+          state: trailerHasPlayed ? 'while_playing' : 'while_facade'
+        });
+      });
+    });
+
+    // --- 3. FAQ opens (which questions are friction points) ---
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          const summary = d.querySelector('summary');
+          const question = summary ? summary.textContent.trim().replace(/\s+\+\s*$/, '').trim() : '(unknown)';
+          ga('faq_open', { question });
+        }
+      });
+    });
+
+    // --- 4. Comparison slider — fire once per slider, on first meaningful interaction ---
+    document.querySelectorAll('.compare').forEach((el, idx) => {
+      let used = false;
+      const fire = () => {
+        if (used) return;
+        used = true;
+        ga('compare_used', { slider_index: idx });
+      };
+      el.addEventListener('pointerdown', fire);     // touch / drag start
+      el.addEventListener('mousemove', fire);       // desktop hover-follow
+    });
+
+    // --- 5. Email link in footer ---
+    document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+      a.addEventListener('click', () => ga('click_email', { url: a.href }));
+    });
+  })();
 </script>
 
 </body>
