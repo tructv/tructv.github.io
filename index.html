@@ -172,9 +172,9 @@
   .py-6{ padding-top:1.5rem; padding-bottom:1.5rem; }
   .py-8{ padding-top:2rem; padding-bottom:2rem; }
   .py-10{ padding-top:2.5rem; padding-bottom:2.5rem; }
-  .py-20{ padding-top:3.5rem; padding-bottom:3.5rem; }
-  .py-24{ padding-top:4rem; padding-bottom:4rem; }
-  .py-28{ padding-top:4.5rem; padding-bottom:4.5rem; }
+  .py-20{ padding-top:1.75rem; padding-bottom:1.75rem; }
+  .py-24{ padding-top:2rem; padding-bottom:2rem; }
+  .py-28{ padding-top:2.25rem; padding-bottom:2.25rem; }
   .pl-2{ padding-left:.5rem; } .pl-8{ padding-left:2rem; }
   .pt-16{ padding-top:4rem; } .pt-32{ padding-top:8rem; }
   .pb-10{ padding-bottom:2.5rem; } .pb-20{ padding-bottom:5rem; }
@@ -333,8 +333,8 @@
     .md\:col-start-8{ grid-column-start:8; }
     .md\:gap-5{ gap:1.25rem; } .md\:gap-6{ gap:1.5rem; } .md\:gap-12{ gap:3rem; }
     .md\:px-10{ padding-left:2.5rem; padding-right:2.5rem; }
-    .md\:py-32{ padding-top:5.5rem; padding-bottom:5.5rem; }
-    .md\:py-40{ padding-top:7rem; padding-bottom:7rem; }
+    .md\:py-32{ padding-top:2.75rem; padding-bottom:2.75rem; }
+    .md\:py-40{ padding-top:3.5rem; padding-bottom:3.5rem; }
     .md\:p-10{ padding:2.5rem; }
     .md\:pt-40{ padding-top:10rem; }
     .md\:pb-28{ padding-bottom:7rem; }
@@ -350,6 +350,7 @@
     .md\:text-\[80px\]{ font-size:80px; }
     .md\:text-\[10\.5vw\]{ font-size:10.5vw; }
     .md\:text-\[6\.6vw\]{ font-size:6.6vw; }
+    .md\:text-\[7\.5vw\]{ font-size:7.5vw; }
     .md\:text-\[9vw\]{ font-size:9vw; }
     .md\:text-7xl{ font-size:4.5rem; line-height:1; }
     .md\:pt-32{ padding-top:8rem; }
@@ -359,6 +360,7 @@
   @media (min-width:1024px){
     .lg\:text-\[148px\]{ font-size:148px; }
     .lg\:text-\[128px\]{ font-size:128px; }
+    .lg\:text-\[112px\]{ font-size:112px; line-height:0.95; }
     .lg\:text-\[92px\]{ font-size:92px; line-height:0.95; }
   }
 </style>
@@ -675,21 +677,22 @@
   .hero-body    { grid-area: body; }
 
   @media (min-width: 900px){
+    /* Two-column top row: headline + body. Trailer spans full width below. */
     .hero-grid{
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       grid-template-areas:
-        "headline trailer"
-        "body     trailer";
+        "headline body"
+        "trailer  trailer";
       align-items: start;
-      row-gap: 1.75rem;
+      row-gap: 3rem;
     }
-    .hero-trailer{ align-self: center; }
-    .hero-body{ margin-top: .5rem; }
+    .hero-headline{ align-self: end; }
+    .hero-body{ align-self: end; padding-top: .5rem; }
   }
   @media (min-width: 1200px){
     .hero-grid{
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       column-gap: 4rem;
+      row-gap: 3.5rem;
     }
   }
 
@@ -864,7 +867,7 @@
 
       <!-- A — headline -->
       <div class="hero-headline">
-        <h1 class="reveal display text-[12vw] md:text-[6.6vw] lg:text-[92px] leading-[0.92]">
+        <h1 class="reveal display text-[12vw] md:text-[7.5vw] lg:text-[112px] leading-[0.92]">
           Your NES games.<br/>
           Now in <span class="threeD">3D</span><span style="color:var(--accent);">.</span>
         </h1>
