@@ -136,7 +136,7 @@
     mix-blend-mode: overlay; opacity:.5;
   }
 
-  /* Eyebrow (small accent label, matched with homepage) */
+  /* Eyebrow */
   .eyebrow{
     font-family:"JetBrains Mono", monospace;
     font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
@@ -150,7 +150,6 @@
     box-shadow: 0 0 0 2px rgba(255,79,31,.18);
   }
 
-  /* Selection */
   ::selection{ background: var(--accent); color: var(--fg); }
 
   /* ============ NAV ============ */
@@ -197,7 +196,6 @@
     position: relative; z-index: 2;
   }
 
-  /* Header section */
   .article-header { padding-top: 140px; padding-bottom: 32px; }
   @media (min-width: 768px){ .article-header { padding-top: 160px; padding-bottom: 40px; } }
   .article-header .meta-row {
@@ -226,7 +224,6 @@
     margin: 0;
   }
 
-  /* Back link */
   .back-link {
     display: inline-flex; align-items: center; gap: 8px;
     text-decoration: none;
@@ -239,7 +236,6 @@
   .back-link:hover { color: var(--fg); transform: translateX(-2px); }
   .back-link svg { width: 12px; height: 12px; }
 
-  /* Hairline divider */
   .article-hr {
     height: 1px; border: 0; margin: 36px 0;
     background: var(--line);
@@ -290,7 +286,6 @@
     font-size: 1.06em;
   }
 
-  /* Step list inside the pipeline section */
   .pipeline-step {
     margin: 0 0 18px;
     padding-left: 0;
@@ -384,7 +379,7 @@
     text-underline-offset: 2px;
   }
 
-  /* ============ FOOTER (article-tail CTA) ============ */
+  /* ============ TAIL CTA ============ */
   .article-tail {
     margin-top: 56px;
     padding: 32px;
@@ -450,9 +445,10 @@
         <a href="../#difference">The Diff</a>
         <a href="../#products">Products</a>
         <a href="../#features">Features</a>
-        <a href="../#games">Games</a>
+        <a href="../games/">Games</a>
         <a href="../#press">Press</a>
         <a href="../#community">Community</a>
+        <a href="3dsen-10-year-story.html" style="color:var(--fg);">Story</a>
       </div>
 
       <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="nav-cta">
@@ -489,27 +485,27 @@
   <!-- ============ PROSE ============ -->
   <article class="prose">
 
-    <p>In March 2016, a beta of a small project I'd been working on showed up on Ars Technica. The headline was <a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/" target="_blank" rel="noopener"><em>"How a new emulator generates 3D scenes from 2D NES games."</em></a> The emulator was mine. It only ran in Firefox. It was full of bugs. I was honestly surprised that anyone wrote about it at all.</p>
+    <p>In March 2016, a beta of a small project I was working on showed up on Ars Technica. The headline was <a href="https://arstechnica.com/gaming/2016/03/how-a-new-emulator-generates-3d-scenes-from-2d-nes-games/" target="_blank" rel="noopener"><em>"How a new emulator generates 3D scenes from 2D NES games."</em></a> The emulator was mine. It only ran in Firefox. It was full of bugs. I was honestly surprised that anyone wrote about it at all.</p>
 
-    <p>Ten years later — in 2025 — that project finally shipped as 3dSen 1.0 on Steam, with VR support and around 100 supported games. I'd never planned for it to take this long. This is a brief look back at what changed in those years and what I got wrong along the way.</p>
+    <p>That project shipped as 3dSen 1.0 on Steam in 2025, ten years later. I'd never planned for it to take this long. This is a brief look back at what changed in those years and what I got wrong along the way.</p>
 
     <h2>How it started</h2>
 
-    <p>I grew up in Vietnam in the 1980s. The NES was my first console. Like a lot of kids my age, I used to imagine what those flat 8-bit worlds would look like in real space — the pipes you went <em>into</em>, the pits you fell <em>down</em>, the towers you climbed <em>up</em>.</p>
+    <p>I grew up in Vietnam in the 1980s. The NES was my first console. Like a lot of kids my age, I used to imagine what those flat 8-bit worlds would look like in real space. The pipes you went <em>into</em>. The pits you fell <em>down</em>. The towers you climbed <em>up</em>.</p>
 
-    <p>By 2015 I was a developer at an outsourcing company. The work was repetitive and I'd lost most of my motivation for it. I kept asking myself why I wasn't building something I actually cared about. I didn't have a plan or a business case. I just wanted to see Mario in 3D, and as far as I could tell, nobody else was doing it.</p>
+    <p>By 2015 I was a developer at an outsourcing company. The work didn't fit me well. The work was repetitive and I lost most of my motivation. I kept asking myself why I wasn't building something I actually cared about. I had no plan and no business case. I just wanted to see Mario in 3D, and as far as I could tell, nobody else was doing it.</p>
 
     <p>So I started.</p>
 
-    <h2>The first idea: do everything automatically</h2>
+    <h2>The first idea was full automation</h2>
 
-    <p>The first version of 3dSen tried to do something I was pretty proud of at the time: convert any NES game into 3D, fully automatically, with no per-game data. The same algorithm should look at any ROM, identify shapes on screen, and reconstruct them in 3D in real time.</p>
+    <p>The first version of 3dSen tried to do everything automatically. The same algorithm should look at any ROM, identify shapes on screen, and reconstruct them in 3D in real time. No per-game data. No manual work.</p>
 
     <p>When Ars Technica asked me about it, I told them: <em>"Everything is calculated automatically in runtime. Nothing is done manually."</em> I believed it, and at the time it was true.</p>
 
-    <p>The approach worked for a lot of games. Pipes in Super Mario Bros. became cylinders. Ladders in Mega Man stayed in the background while wall enemies came forward. The shape-recognition algorithm clustered tiles by colour patterns, and that was enough roughly 70% of the time.</p>
+    <p>The approach seems promising for the initial set of testing games. Pipes in Super Mario Bros. became cylinders. Ladders in Mega Man stayed in the background while wall enemies came forward. The shape-recognition algorithm clustered tiles by colour patterns. That worked roughly 50% of the time.</p>
 
-    <p>The other 30% was bad. Some games rendered as floating cubes. Others looked correct on a title screen and broke as soon as you started a level. The algorithm wasn't buggy — it was doing exactly what I'd asked it to do. The problem was that I was asking it to do something it couldn't.</p>
+    <p>The other 50% was bad. Some games rendered as floating cubes. Others looked correct on a title screen and broke as soon as you started a level. The algorithm wasn't buggy. The algorithm was doing exactly what I told it to do. The problem was that I was asking it to do something it couldn't.</p>
 
     <figure class="trailer">
       <div class="trailer-frame">
@@ -535,15 +531,15 @@
 
     <h2>The thing I didn't see at first</h2>
 
-    <p>Here's what took me a while to admit. The NES doesn't actually know what it's drawing.</p>
+    <p>The NES doesn't actually know what it's drawing.</p>
 
     <p>The hardware just paints 8×8-pixel tiles. It doesn't know which tiles are walls, which are decorations, which are characters. It doesn't know a pipe is a pipe.</p>
 
     <p>When you ask "is this tile a wall, or a backdrop?" — there's no answer hiding in the ROM. The same 8×8 tile pattern can be a brick in a wall, a cloud in the sky, or a UI element. Three different 3D interpretations. The NES sees them as identical.</p>
 
-    <p>A few years later, I <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener">told <em>Kotaku</em></a>: <em>"I often have difficulties to fully understand the pixelated graphics in NES games. They have a high level of abstraction, so sometimes it takes a lot of time to fully understand what some graphic elements represent."</em> And that's the strange part — even <em>I</em> can't always tell what a chunk of NES pixels is supposed to represent. I've been staring at sprite sheets for over a decade. If I struggle, an algorithm definitely will.</p>
+    <p>A few years later I <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener">told <em>Kotaku</em></a>: <em>"I often have difficulties to fully understand the pixelated graphics in NES games. They have a high level of abstraction, so sometimes it takes a lot of time to fully understand what some graphic elements represent."</em> Even I can't always tell what a chunk of NES pixels is supposed to represent. I've been staring at sprite sheets for over a decade. If I struggle, an algorithm definitely will.</p>
 
-    <p>So I was trying to solve, automatically, a problem that doesn't have a single right answer.</p>
+    <p>I was trying to solve, automatically, a problem that doesn't have a single right answer.</p>
 
     <h2>What 3dSen actually does</h2>
 
@@ -571,29 +567,31 @@
       </figcaption>
     </figure>
 
-    <p class="pipeline-step"><strong>Step 1 — Sample.</strong> Take the PPU's output and divide it into 8×8 tiles. Fully automatic, game-agnostic.</p>
+    <p class="pipeline-step"><strong>Step 1.</strong> Sample the PPU's output and divide it into 8×8 tiles. Fully automatic, game-agnostic.</p>
 
-    <p class="pipeline-step"><strong>Step 2 — Cluster into shapes.</strong> Group adjacent tiles that look like they belong to the same object — a pipe, a wall, a character. The algorithm makes the first pass; a profile maker can adjust the result. Semi-automatic.</p>
+    <p class="pipeline-step"><strong>Step 2.</strong> Cluster adjacent tiles into shapes — a pipe, a wall, a character. The algorithm makes the first pass. A profile maker can adjust the result. Semi-automatic.</p>
 
-    <p class="pipeline-step"><strong>Step 3 — Map to 3D.</strong> Project each 2D shape into a 3D shape and a position in space. Walls become walls, pipes become cylinders, characters get volume.</p>
+    <p class="pipeline-step"><strong>Step 3.</strong> Map each 2D shape into a 3D shape and a position in space. Walls become walls, pipes become cylinders, characters get volume.</p>
 
-    <p class="pipeline-step"><strong>Step 4 — Run the profile script.</strong> Apply per-game adjustments — rotations, animations, depth tweaks, hidden shapes, added shapes. This is where most of the work lives.</p>
+    <p class="pipeline-step"><strong>Step 4.</strong> Run the profile script. Apply per-game adjustments — rotations, animations, depth tweaks, hidden shapes, added shapes. This is where most of the work lives.</p>
 
-    <p>A profile is a mix of two things: <strong>static shape settings</strong> that say "this tile is a wall, that tile is a backdrop, this sprite is a cylinder," and <strong>runtime scripts</strong> that handle the situations static rules can't. The scripts matter because shape properties aren't fixed across a game — the same on-screen tile can need to behave like a wall in one room and a foreground prop in the next. Only by inspecting the running game state can a profile decide what's correct in any given frame.</p>
+    <p>A profile is two things. <strong>Static shape settings</strong> that say "this tile is a wall, that tile is a backdrop, this sprite is a cylinder." And <strong>runtime scripts</strong> that handle situations the static rules can't. The scripts matter because shape properties aren't fixed across a game. The same on-screen tile can need to behave like a wall in one room and a foreground prop in the next. Only by inspecting the running game state can a profile decide what's correct in any given frame.</p>
 
-    <p>That's why the work scales the way it does. Simple games like <em>Mario Bros.</em>, <em>Dr. Mario</em>, <em>Donkey Kong</em>, and <em>Galaga</em> fit comfortably into mostly-static rules and take a few days each. Bigger games — <em>Super Mario Bros. 3</em>, <em>The Legend of Zelda</em>, <em>Excitebike</em> — depend heavily on context and need substantial scripting; they take weeks, sometimes months. The profile is essentially a small program that runs alongside the emulator.</p>
+    <p>That's why the work scales the way it does. Simple games like <em>Mario Bros.</em>, <em>Dr. Mario</em>, <em>Donkey Kong</em>, <em>Galaga</em> take a few days each. Bigger games like <em>Super Mario Bros. 3</em>, <em>The Legend of Zelda</em>, <em>Excitebike</em> depend heavily on context and need substantial scripting. Those take weeks, sometimes months. The profile is a small program that runs alongside the emulator.</p>
 
     <h2>Making peace with profiles</h2>
 
-    <p>It took me a long time to feel okay about profiles. They felt like a defeat. The 2016 vision of universal automation was elegant, and going to per-game work seemed like giving up.</p>
+    <p>It took a long time to feel okay about profiles. They felt like a defeat. The 2016 vision of universal automation was elegant. Per-game work seemed like giving up.</p>
 
-    <p>I think what helped me eventually was understanding that the <em>interpretation</em> of a game is a creative decision and the <em>implementation</em> of that interpretation is just code. Choosing whether a cluster of pixels is a tower, a hat, or a window is something a person has to decide. Writing the script that detects the cluster and renders it correctly is engineering. Both halves are needed, and a profile is just where they meet.</p>
+    <p>What helped me was understanding that the <em>interpretation</em> of a game is a creative decision, and the <em>implementation</em> of that interpretation is just code. Choosing whether a cluster of pixels is a tower, a hat, or a window is something a person has to decide. Writing the script that detects the cluster and renders it correctly is engineering. Both halves are needed. A profile is where they meet.</p>
 
-    <p>Once I let go of "fully automatic," other things became possible. The conversions got better — much better. As I <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener">told <em>Kotaku</em></a>, every supported game in 3dSen has been <em>"painstakingly handmade."</em> I don't think that work could have been done by an algorithm. The polish that makes Mario <em>feel</em> like Mario in 3D requires someone to sit with the game and decide.</p>
+    <p>Once I let go of "fully automatic," other things became possible. The conversions got better. As I <a href="https://kotaku.com/amazing-emulator-turns-2d-nes-games-into-fully-3d-world-1844225861" target="_blank" rel="noopener">told <em>Kotaku</em></a>, every supported game in 3dSen has been <em>"painstakingly handmade."</em> I don't think that work could have been done by an algorithm. The polish that makes Mario <em>feel</em> like Mario in 3D requires someone to sit with the game and decide.</p>
 
-    <p>There's also something about this approach that I find genuinely nice: there isn't one right answer. With the <a href="https://geod.itch.io/3dsen-maker" target="_blank" rel="noopener">3dSenMaker tool</a>, anyone can author a profile. You don't have to agree with my interpretation of <em>Castlevania</em> — you can build your own. Different profile makers will produce different <em>Zelda</em>s. None of them is wrong.</p>
+    <p>There's something about this approach I find genuinely nice. There isn't one right answer. With the <a href="https://geod.itch.io/3dsen-maker" target="_blank" rel="noopener">3dSenMaker tool</a>, anyone can author a profile. You don't have to agree with my interpretation of <em>Castlevania</em>. You can build your own. Different profile makers will produce different <em>Zelda</em>s. None of them is wrong.</p>
 
-    <p>That's already happening. The roughly 100 profiles that ship with 3dSen are the ones I've built myself — the games I've spent the last decade tuning. But there are now also over 30 community-made profiles in <a href="https://itch.io/board/872690/profile-repository" target="_blank" rel="noopener">the public repository on itch.io</a>, built by people I've never met, for games I might not have prioritised on my own. Some of those community profiles are collaborations — a community member starts one, hits a wall, and we work through the hard parts together. That part still surprises me a little. I made the tool because I needed it; I didn't expect anyone else to use it the way they have.</p>
+    <p>That's already happening. The roughly 100 profiles that ship with 3dSen are the ones I built myself. The games I've spent the last decade tuning. There are now also over 30 community-made profiles in <a href="https://itch.io/board/872690/profile-repository" target="_blank" rel="noopener">the public repository on itch.io</a>, built by people I've never met, for games I might not have prioritised. Some of those community profiles are collaborations. A community member starts one, hits a wall, and we work through the hard parts together.</p>
+
+    <p>That part still surprises me. I made the tool because I needed it. I didn't expect anyone else to use it the way they have.</p>
 
     <h2>Looking back</h2>
 
@@ -618,20 +616,20 @@
       </figcaption>
     </figure>
 
-    <p>I won't pretend ten years on a single project is what I planned in 2015. I thought 3dSen would be a one-year hobby that I'd finish and move on from.</p>
+    <p>Ten years on a single project is not what I planned in 2015. I thought 3dSen would be a one-year hobby that I'd finish and move on from.</p>
 
-    <p>What actually happened is that every problem I solved revealed two more behind it. Games that swap tile graphics every frame. Games that abuse mid-frame PPU tricks. Z-layer ambiguities. Animation timing. And, oddly, <em>games that already use perspective or pseudo-3D effects</em> — those turn out to be the hardest of all. Trying to 3Dify a game that's already trying to look 3D is its own special kind of headache.</p>
+    <p>What actually happened is that every problem I solved revealed two more behind it. Games that swap tile graphics every frame. Games that abuse mid-frame PPU tricks. Z-layer ambiguities. Animation timing. And, oddly, <em>games that already use perspective or pseudo-3D effects</em>. Those turn out to be the hardest of all. Trying to 3Dify a game that's already trying to look 3D is its own special kind of headache.</p>
 
-    <p>I also won't pretend the original 2016 framing was a mistake. The fully-automatic version was a real attempt at a hard problem, and I learned a lot from watching it fail. If I'd started with profiles, I don't think I'd have understood why they were necessary.</p>
+    <p>The original 2016 framing wasn't a mistake either. The fully-automatic version was a real attempt at a hard problem. I learned a lot from watching it fail. If I'd started with profiles, I don't think I would have understood why they were necessary.</p>
 
-    <p>3dSen 1.0 is shipping now with the games I've built profiles for over the years, plus a growing list contributed by the community. Together they cover well over a hundred titles, and more arrive every few weeks. It's smaller than I once hoped, larger than I had any right to expect, and the result of more late nights than I want to count. The kid in 1980s Vietnam who wanted to see Mario's pipes in 3D would, I think, be quietly happy.</p>
+    <p>3dSen 1.0 ships now with the games I built profiles for over the years, plus a growing list contributed by the community. Together they cover well over a hundred titles. More arrive every few weeks. It's smaller than I once hoped, larger than I had any right to expect, and the result of a lot of late nights. The kid in 1980s Vietnam who wanted to see Mario's pipes in 3D would, I think, be quietly happy.</p>
 
     <p>And I think that's okay.</p>
 
     <!-- ============ TAIL CTA ============ -->
     <aside class="article-tail">
       <h3 class="eyebrow">Try it yourself</h3>
-      <p>3dSen and 3dSen VR are available on Steam. The 3dSenMaker authoring tool is free on itch.io — anyone can build a 3D profile for an unsupported game.</p>
+      <p>3dSen and 3dSen VR are available on Steam. The 3dSenMaker authoring tool is free on itch.io. Anyone can build a 3D profile for an unsupported game.</p>
       <div class="ctas">
         <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
           3dSen PC on Steam
@@ -661,8 +659,6 @@
 
 <!-- ============ TRAILER FACADE JS ============ -->
 <script>
-  // Click-to-play: replace each facade with the real YouTube iframe on first click.
-  // Saves ~600KB per facade-that-stays-unclicked. Same pattern as the homepage.
   (function () {
     document.querySelectorAll('.trailer-facade').forEach(facade => {
       facade.addEventListener('click', () => {
@@ -677,7 +673,6 @@
         iframe.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:0;';
         facade.replaceWith(iframe);
 
-        // GA event
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'article_video_play', {
             video_id: id,
@@ -687,7 +682,6 @@
       });
     });
 
-    // Track outbound link clicks within the article (Steam, itch, press)
     document.addEventListener('click', (ev) => {
       const a = ev.target.closest('a[href]');
       if (!a) return;
