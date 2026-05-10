@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Supported Games — 3dSen | Geod Studio</title>
+<meta name="description" content="101 NES games supported in 3dSen — fully playable in real-time 3D, VR and AR. Browse the complete library and watch each game in action." />
+
+<link rel="canonical" href="https://geodstudio.net/games/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0B0A09" />
+
+<meta property="og:site_name" content="Geod Studio" />
+<meta property="og:title" content="Supported Games — 3dSen" />
+<meta property="og:description" content="101 NES games supported in 3dSen — fully playable in real-time 3D, VR and AR." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://geodstudio.net/games/" />
+<meta property="og:image" content="https://geodstudio.net/images/og_card.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Supported Games — 3dSen" />
+<meta name="twitter:description" content="101 NES games supported in 3dSen — fully playable in real-time 3D, VR and AR." />
+<meta name="twitter:image" content="https://geodstudio.net/images/og_card.jpg" />
+
+<link rel="icon" href="../images/geod.png" type="image/png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Supported Games — 3dSen",
+  "description": "Complete list of 101 NES games supported in 3dSen, playable in real-time 3D, VR, and AR.",
+  "url": "https://geodstudio.net/games/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Geod Studio",
+    "url": "https://geodstudio.net/"
+  }
+}
+</script>
+
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWG7C1BXXH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WWG7C1BXXH');
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #0B0A09;
+    --bg-2:      #131110;
+    --bg-3:      #1B1815;
+    --fg:        #F5EEE0;
+    --fg-muted:  #A39B8A;
+    --fg-dim:    #6F6757;
+    --line:      rgba(245,238,224,.10);
+    --line-hard: rgba(245,238,224,.22);
+    --accent:    #FF4F1F;
+    --accent-2:  #4ADEDE;
+    --accent-3:  #FFC857;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  html,body{ margin:0; padding:0; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+
+  html,body{
+    background:var(--bg); color:var(--fg);
+    font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;
+    font-size:17px; line-height:1.55;
+  }
+  @media(max-width:640px){ html,body{ font-size:16px; } }
+
+  .display{ font-family:"Fraunces",ui-serif,Georgia,serif; font-weight:600; letter-spacing:-0.02em; line-height:0.95; font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1; }
+  .mono{ font-family:"JetBrains Mono",ui-monospace,monospace; }
+
+  body::before{
+    content:""; position:fixed; inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:3px 3px; pointer-events:none; z-index:1;
+    mix-blend-mode:overlay; opacity:.6;
+  }
+  body::after{
+    content:""; position:fixed; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.02) 50%,transparent 50%);
+    background-size:100% 3px; pointer-events:none; z-index:1;
+    mix-blend-mode:overlay; opacity:.5;
+  }
+
+  ::selection{ background:var(--accent); color:var(--fg); }
+
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--fg-muted); display:inline-flex; align-items:center; gap:10px;
+    margin:0; padding:0; font-weight:500; line-height:1.2;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; background:var(--accent);
+    display:inline-block; border-radius:1px;
+    box-shadow:0 0 0 2px rgba(255,79,31,.18);
+  }
+
+  /* ===== NAV ===== */
+  header.nav-wrap{ position:fixed; top:0; left:0; right:0; z-index:40; }
+  .nav-inner{ margin:16px auto 0; max-width:1280px; padding:0 24px; }
+  @media(min-width:768px){ .nav-inner{ padding:0 40px; } }
+  nav.nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px; border:1px solid var(--line-hard); border-radius:999px;
+    background:rgba(11,10,9,.7);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+  }
+  .nav-brand{ display:flex; align-items:center; gap:8px; padding-left:8px; }
+  .nav-brand img{ width:28px; height:28px; border-radius:6px; }
+  .nav-brand .nav-title{ font-family:"Fraunces",serif; font-weight:600; font-size:20px; letter-spacing:-0.02em; }
+  .nav-brand .nav-version{ font-family:"JetBrains Mono",monospace; font-size:10px; padding:3px 8px; border-radius:999px; border:1px solid var(--line-hard); color:var(--fg-muted); }
+  .nav-links{ display:none; gap:28px; font-size:13px; color:var(--fg-muted); }
+  @media(min-width:768px){ .nav-links{ display:flex; align-items:center; } }
+  .nav-links a{ transition:color .2s; }
+  .nav-links a:hover{ color:var(--fg); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:999px;
+    background:var(--fg); color:#0a0a0a;
+    font-size:13px; font-weight:500;
+    transition:transform .25s ease, background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ background:var(--accent); color:var(--fg); transform:translateY(-2px); }
+
+  /* ===== PAGE ===== */
+  .page-wrap{ max-width:1280px; margin:0 auto; padding:0 24px; position:relative; z-index:2; }
+  @media(min-width:768px){ .page-wrap{ padding:0 40px; } }
+
+  .page-header{
+    padding-top:130px; padding-bottom:40px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:48px;
+  }
+  @media(min-width:768px){ .page-header{ padding-top:150px; } }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--fg-muted); margin-bottom:20px;
+    transition:color .2s, transform .2s;
+  }
+  .back-link:hover{ color:var(--fg); transform:translateX(-2px); }
+  .back-link svg{ width:12px; height:12px; }
+
+  h1.page-title{
+    font-family:"Fraunces",serif; font-weight:600;
+    letter-spacing:-0.025em; line-height:1.0;
+    font-size:clamp(40px,7vw,80px); margin:16px 0 12px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+
+  .page-sub{ color:var(--fg-muted); font-size:16px; margin:0; }
+
+  /* ===== SEARCH ===== */
+  .search-row{
+    margin-bottom:32px;
+    display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  }
+  .search-wrap{
+    flex:1; min-width:200px; max-width:400px;
+    position:relative;
+  }
+  .search-input{
+    width:100%; padding:10px 14px 10px 38px;
+    border:1px solid var(--line-hard); border-radius:999px;
+    background:var(--bg-2); color:var(--fg);
+    font-family:"DM Sans",sans-serif; font-size:14px;
+    outline:none; transition:border-color .2s;
+  }
+  .search-input:focus{ border-color:var(--accent); }
+  .search-input::placeholder{ color:var(--fg-dim); }
+  .search-icon{
+    position:absolute; left:12px; top:50%; transform:translateY(-50%);
+    color:var(--fg-dim); pointer-events:none;
+  }
+  .count-label{
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.15em;
+    color:var(--fg-muted); white-space:nowrap;
+  }
+
+  /* ===== FEATURED GAME CARDS ===== */
+  .section-label{
+    font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--fg-muted);
+    display:block; margin-bottom:16px;
+  }
+
+  .featured-grid{
+    display:grid; grid-template-columns:1fr;
+    gap:16px; margin-bottom:48px;
+  }
+  @media(min-width:600px){ .featured-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(min-width:900px){ .featured-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .game-card{
+    border:1px solid var(--line-hard); border-radius:16px;
+    overflow:hidden; background:var(--bg-2);
+    transition:border-color .3s, transform .3s;
+    display:flex; flex-direction:column;
+  }
+  .game-card:hover{ border-color:var(--accent); transform:translateY(-3px); }
+  .game-card .card-thumb{
+    aspect-ratio:16/9; overflow:hidden; background:var(--bg-3);
+  }
+  .game-card .card-thumb img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .6s ease; filter:saturate(.85);
+  }
+  .game-card:hover .card-thumb img{ transform:scale(1.05); filter:saturate(1.1); }
+  .game-card .card-body{ padding:16px 18px 18px; flex:1; display:flex; flex-direction:column; }
+  .game-card .card-title{
+    font-family:"Fraunces",serif; font-weight:600;
+    font-size:20px; letter-spacing:-0.01em; line-height:1.1;
+    margin:0 0 8px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+  .game-card .card-chips{ display:flex; gap:6px; margin-bottom:14px; }
+  .card-chip{
+    font-family:"JetBrains Mono",monospace; font-size:9px;
+    letter-spacing:.12em; padding:3px 8px; border-radius:999px; border:1px solid;
+  }
+  .card-chip.pc{ border-color:var(--accent); color:var(--accent); }
+  .card-chip.vr{ border-color:var(--accent-2); color:var(--accent-2); }
+  .card-chip.ar{ border-color:var(--accent-3); color:var(--accent-3); }
+  .game-card .card-link{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:500; color:var(--fg);
+    background:var(--accent); padding:9px 16px; border-radius:999px;
+    margin-top:auto; width:fit-content;
+    transition:background .2s;
+  }
+  .game-card .card-link:hover{ background:#FF6133; }
+  .game-card .card-link svg{ width:12px; height:12px; }
+
+  /* ===== FULL GAME LIST ===== */
+  .game-list-wrap{
+    border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; margin-bottom:64px;
+  }
+  .game-list-header{
+    padding:14px 20px;
+    background:var(--bg-2);
+    border-bottom:1px solid var(--line);
+    font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--fg-muted);
+    display:grid; grid-template-columns:1fr auto auto;
+    gap:16px; align-items:center;
+  }
+  .game-row{
+    display:grid; grid-template-columns:1fr auto auto;
+    gap:16px; align-items:center;
+    padding:12px 20px;
+    border-bottom:1px solid var(--line);
+    transition:background .15s;
+  }
+  .game-row:last-child{ border-bottom:0; }
+  .game-row:hover{ background:rgba(245,238,224,.03); }
+  .game-row.hidden{ display:none; }
+  .game-row .game-name{
+    font-size:15px; color:var(--fg);
+  }
+  .game-row .game-modes{
+    display:flex; gap:5px;
+  }
+  .mode-dot{
+    width:6px; height:6px; border-radius:50%;
+  }
+  .mode-dot.pc{ background:var(--accent); }
+  .mode-dot.vr{ background:var(--accent-2); }
+  .mode-dot.ar{ background:var(--accent-3); }
+  .game-row .game-yt a{
+    font-family:"JetBrains Mono",monospace; font-size:10px;
+    letter-spacing:.1em; color:var(--fg-dim);
+    display:inline-flex; align-items:center; gap:4px;
+    transition:color .2s;
+  }
+  .game-row .game-yt a:hover{ color:var(--accent); }
+  .no-results{
+    padding:40px 20px; text-align:center;
+    color:var(--fg-muted); font-size:15px;
+    display:none;
+  }
+
+  /* ===== CTA TAIL ===== */
+  .tail-cta{
+    padding:36px; border:1px solid var(--line-hard); border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,79,31,.05),var(--bg-2));
+    margin-bottom:64px;
+    display:flex; flex-direction:column; gap:20px;
+  }
+  @media(min-width:768px){
+    .tail-cta{ flex-direction:row; align-items:center; gap:32px; }
+    .tail-cta .tail-text{ flex:1; }
+  }
+  .tail-cta h2{
+    font-family:"Fraunces",serif; font-weight:600;
+    font-size:clamp(22px,3vw,30px); letter-spacing:-0.02em; line-height:1.1;
+    margin:0 0 8px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+  .tail-cta p{ margin:0; color:var(--fg-muted); font-size:14px; }
+  .ctas{ display:flex; flex-wrap:wrap; gap:10px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px; border-radius:999px;
+    font-size:14px; font-weight:500;
+    transition:transform .25s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-accent{ background:var(--accent); color:var(--fg); }
+  .btn-accent:hover{ background:#FF6133; transform:translateY(-2px); }
+  .btn-cyan{ background:var(--accent-2); color:#0a0a0a; }
+  .btn-cyan:hover{ transform:translateY(-2px); opacity:.9; }
+
+  /* ===== FOOTER ===== */
+  footer.site-footer{
+    padding:40px 24px 28px; border-top:1px solid var(--line);
+    background:var(--bg-2); text-align:center; position:relative; z-index:2;
+  }
+  .footer-meta{ font-size:12px; color:var(--fg-dim); margin:0; }
+  .footer-meta a{ color:var(--fg-muted); }
+  .footer-meta a:hover{ color:var(--fg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav-wrap">
+  <div class="nav-inner">
+    <nav class="nav">
+      <a href="../" class="nav-brand">
+        <img src="../images/geod.png" alt="" loading="eager" />
+        <span class="nav-title">3dSen</span>
+        <span class="nav-version">v1.0</span>
+      </a>
+      <div class="nav-links">
+        <a href="../#difference">The Diff</a>
+        <a href="../#products">Products</a>
+        <a href="../#features">Features</a>
+        <a href="./" style="color:var(--fg);">Games</a>
+        <a href="../#press">Press</a>
+        <a href="../#community">Community</a>
+        <a href="../blog/3dsen-10-year-story.html">Story</a>
+      </div>
+      <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="nav-cta">
+        Steam
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-wrap">
+  <div class="page-header">
+    <a href="../" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to Geod Studio
+    </a>
+    <h2 class="eyebrow">The Library</h2>
+    <h1 class="page-title">Supported Games</h1>
+    <p class="page-sub">101 NES titles — each playable in 3D, VR, and AR. Bring your own ROM.</p>
+  </div>
+
+  <!-- FEATURED — has dedicated page -->
+  <span class="section-label">Featured</span>
+  <div class="featured-grid">
+
+    <a href="super-mario-bros.html" class="game-card">
+      <div class="card-thumb">
+        <img src="../images/smb_1.jpg" alt="Super Mario Bros. in 3dSen" loading="lazy" />
+      </div>
+      <div class="card-body">
+        <div class="card-title">Super Mario Bros.</div>
+        <div class="card-chips">
+          <span class="card-chip pc">PC</span>
+          <span class="card-chip vr">VR</span>
+          <span class="card-chip ar">AR</span>
+        </div>
+        <span class="card-link">
+          View game
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Add more featured cards here as game pages are built -->
+
+  </div>
+
+  <!-- FULL LIST -->
+  <span class="section-label">All 101 supported titles</span>
+
+  <div class="search-row">
+    <div class="search-wrap">
+      <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="search" id="game-search" class="search-input" placeholder="Search games…" autocomplete="off" />
+    </div>
+    <span class="count-label" id="count-label">101 games</span>
+  </div>
+
+  <div class="game-list-wrap">
+    <div class="game-list-header">
+      <span>Title</span>
+      <span>Modes</span>
+      <span>Video</span>
+    </div>
+    <div id="game-list">
+
+      <div class="game-row" data-name="2d profile">
+        <span class="game-name">2D Profile</span>
+        <span class="game-modes"><span class="mode-dot pc" title="PC"></span><span class="mode-dot vr" title="VR"></span><span class="mode-dot ar" title="AR"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/1Lyr6P4e2c8" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="adventure island">
+        <span class="game-name">Adventure Island</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/G8Htg0ErJ-Q" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="adventure of lolo">
+        <span class="game-name">Adventure Of Lolo</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/5MUS3-HKB80" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="adventure of lolo 2">
+        <span class="game-name">Adventure Of Lolo 2</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="adventure of lolo 3">
+        <span class="game-name">Adventure Of Lolo 3</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="antarctic adventure">
+        <span class="game-name">Antarctic Adventure</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/IT84Vkd4Fuw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="arkanoid">
+        <span class="game-name">Arkanoid</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/RF-EEYgZ_Zs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="balloon fight">
+        <span class="game-name">Balloon Fight</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/y0t1e37kpLw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="batman">
+        <span class="game-name">Batman</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/7_JpqFlOaA8" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="battle city">
+        <span class="game-name">Battle City</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/4pfn620Sthw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="battle kid">
+        <span class="game-name">Battle Kid</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/0ANGpUgpN9M" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="binary land">
+        <span class="game-name">Binary Land</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/oWAcFItwEKo" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="blaster master">
+        <span class="game-name">Blaster Master</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/QVQL7PJ_xl4" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="bomberman">
+        <span class="game-name">Bomberman</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/P9-p8WfswCs?t=328" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="bubble bobble">
+        <span class="game-name">Bubble Bobble</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/YSP7b83txic" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="burger time">
+        <span class="game-name">Burger Time</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/mNPdRI4fYB0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="castlevania">
+        <span class="game-name">Castlevania</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/HHswjAJIImA" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="castlevania ii simon's quest">
+        <span class="game-name">Castlevania II: Simon's Quest</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/lGYMM0ZiQpw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="chip n dale rescue rangers">
+        <span class="game-name">Chip 'n Dale: Rescue Rangers</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/Iu6x-1T_ams" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="circus charlie">
+        <span class="game-name">Circus Charlie</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/CUWKwygYr2g" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="city connection">
+        <span class="game-name">City Connection</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/wczYDnWmOWM" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="clu clu land">
+        <span class="game-name">Clu Clu Land</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/apM0Ni_OIYk" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="contra">
+        <span class="game-name">Contra</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/csZCD0OiwEs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="depths">
+        <span class="game-name">Depths</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/gNc19QF0XWs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="dig dug">
+        <span class="game-name">Dig Dug</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/ez1JfTqIn6Y" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="donkey kong">
+        <span class="game-name">Donkey Kong</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/OICpKUqRIX0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="donkey kong 3">
+        <span class="game-name">Donkey Kong 3</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="donkey kong jr">
+        <span class="game-name">Donkey Kong Jr.</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="dr mario">
+        <span class="game-name">Dr. Mario</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/_ZkDAxlX_oU?t=270" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="dragon warrior i">
+        <span class="game-name">Dragon Warrior I</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/TkvDAYtR0RI" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="dragon warrior ii">
+        <span class="game-name">Dragon Warrior II</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/TkvDAYtR0RI" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="dragon warrior iii">
+        <span class="game-name">Dragon Warrior III</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/S7nuu2AIin0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="duck hunt">
+        <span class="game-name">Duck Hunt</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/0Z-aMAoraZU" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="ducktales">
+        <span class="game-name">DuckTales</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/cRHLcC7rfNE" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="ducktales 2">
+        <span class="game-name">DuckTales 2</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/Y7OqbciALWA" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="elevator action">
+        <span class="game-name">Elevator Action</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/540JodcHAOQ" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="excitebike">
+        <span class="game-name">Excitebike</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/_EVfTjKhsdQ" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="felix the cat">
+        <span class="game-name">Felix the Cat</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/3JFaEObV130" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="final fantasy">
+        <span class="game-name">Final Fantasy</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/TkvDAYtR0RI" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="fire n ice">
+        <span class="game-name">Fire 'n Ice</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/UCVC_Y6mbt8" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="flappy bird">
+        <span class="game-name">Flappy Bird</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/Sk7JWQfpvJY" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="flappy bird fpv">
+        <span class="game-name">Flappy Bird FPV</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/I5ksOw89P8g" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="flappy">
+        <span class="game-name">Flappy</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/7rUMWxOl_6k" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="flipull">
+        <span class="game-name">Flipull</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/MdDxEvUvAYI" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="galaga">
+        <span class="game-name">Galaga</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="ghosts n goblins">
+        <span class="game-name">Ghosts 'N Goblins</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="goonies">
+        <span class="game-name">Goonies</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/9TY4-CAQEOc" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="gradius">
+        <span class="game-name">Gradius</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/O07Ktqpmv8Y" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="gyromite">
+        <span class="game-name">Gyromite</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="hogans alley">
+        <span class="game-name">Hogan's Alley</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/FmAd6NhLoBs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="ice climber">
+        <span class="game-name">Ice Climber</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/P9-p8WfswCs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="jackal">
+        <span class="game-name">Jackal</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/s1qOrk7S--I" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="jackie chan action kung fu">
+        <span class="game-name">Jackie Chan's Action Kung-Fu</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/s_ZKhmCkOB0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="journey to silius">
+        <span class="game-name">Journey to Silius</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/5iH5ApC9NY0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="kung fu">
+        <span class="game-name">Kung-Fu</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/kzQt_ZJ6JjQ" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="legacy of the wizard">
+        <span class="game-name">Legacy of the Wizard</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/ToNXqu7jrG4" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="legend of kage">
+        <span class="game-name">Legend of Kage</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/uiuj8h4L9QA" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="legend of zelda">
+        <span class="game-name">Legend of Zelda</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/N2aPfdY_5sw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="life force">
+        <span class="game-name">Life Force</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/6CP5pF9cs_w" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="lode runner">
+        <span class="game-name">Lode Runner</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/P9-p8WfswCs?t=453" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="lunar pool">
+        <span class="game-name">Lunar Pool</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/e3qDgU4tl78" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="mappy">
+        <span class="game-name">Mappy</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/2Nb1JxTTz4E" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="mario bros">
+        <span class="game-name">Mario Bros.</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="mega man">
+        <span class="game-name">Mega Man</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/VTy6-NbsJ6c" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="mega man 2">
+        <span class="game-name">Mega Man 2</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/fMy-quQabBQ" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="mega man 3">
+        <span class="game-name">Mega Man 3</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/GzpgaSVJAOU" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="metroid">
+        <span class="game-name">Metroid</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/kzot-ox7N7s" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="micro mages">
+        <span class="game-name">Micro Mages</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/hZzZfBajo00" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="mike tyson punch out">
+        <span class="game-name">Mike Tyson's Punch-Out!!</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/8WtcaZ0IXJk" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="moai-kun">
+        <span class="game-name">Moai-kun</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/-LBH_Pz56Hs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="ninja gaiden iii">
+        <span class="game-name">Ninja Gaiden III</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/Qj8_ZcORa4c" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="nuts milk">
+        <span class="game-name">Nuts &amp; Milk</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/DgYAn-O781Y" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="pac-man">
+        <span class="game-name">Pac-Man</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/P9-p8WfswCs?t=160" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="palamedes">
+        <span class="game-name">Palamedes</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="pinball">
+        <span class="game-name">Pinball</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"></span>
+      </div>
+      <div class="game-row" data-name="pooyan">
+        <span class="game-name">Pooyan</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/xEDo_mGiJzo" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="popeye">
+        <span class="game-name">Popeye</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/17nVCOFMvXg" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="puzznic">
+        <span class="game-name">Puzznic</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/7rUMWxOl_6k" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="quarth">
+        <span class="game-name">Quarth</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/mV6zqteg7G4" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="road fighter">
+        <span class="game-name">Road Fighter</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/HqmNQsFjEko" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="shadow of the ninja">
+        <span class="game-name">Shadow of the Ninja</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/PFG557K6dRs" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="shatterhand">
+        <span class="game-name">Shatterhand</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/bldxBjkt5j8" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="snow brothers">
+        <span class="game-name">Snow Brothers</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/q1os6R8tAP0" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="solomon's key">
+        <span class="game-name">Solomon's Key</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/cthcLiLwJKA" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="spy hunter">
+        <span class="game-name">Spy Hunter</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/OqQwZGFI4No" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="super bat puncher">
+        <span class="game-name">Super Bat Puncher</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/3vD0uarGNMw" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="super mario bros">
+        <span class="game-name"><a href="super-mario-bros.html" style="color:var(--accent); text-decoration:underline; text-decoration-color:rgba(255,79,31,.4); text-underline-offset:3px;">Super Mario Bros.</a></span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/gDefzu45jc4?t=50" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="super mario bros 3">
+        <span class="game-name">Super Mario Bros. 3</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/pmHCWlN-Hoo" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="super spike v'ball">
+        <span class="game-name">Super Spike V'Ball</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/P_rwQUsSmoM" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="tetris famicom">
+        <span class="game-name">Tetris (Famicom)</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/BsXn4cXIHho" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="tetris nintendo">
+        <span class="game-name">Tetris (Nintendo)</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/_6pLnzW8K58" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="tetris tengen">
+        <span class="game-name">Tetris (Tengen)</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/_6pLnzW8K58" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="tiny toon adventures">
+        <span class="game-name">Tiny Toon Adventures</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/XS5l0DK2HUU" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="twinbee">
+        <span class="game-name">TwinBee</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/m7FAbVA8_jQ" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="urban champion">
+        <span class="game-name">Urban Champion</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/A1Tfk4T6aRE" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="wild gunman">
+        <span class="game-name">Wild Gunman</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/dWe-xz9SqA8?t=45" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="wrecking crew">
+        <span class="game-name">Wrecking Crew</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/nnKDzsgT0B8" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="yie ar kung fu">
+        <span class="game-name">Yie Ar Kung-Fu</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/e7KA0TE7ZOY" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="yoshi">
+        <span class="game-name">Yoshi</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/3Remu9RYRlc" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="zelda ii adventure of link">
+        <span class="game-name">Zelda II: The Adventure of Link</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/5ys9cyzERKo" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+      <div class="game-row" data-name="zooming secretary">
+        <span class="game-name">Zooming Secretary</span>
+        <span class="game-modes"><span class="mode-dot pc"></span><span class="mode-dot vr"></span><span class="mode-dot ar"></span></span>
+        <span class="game-yt"><a href="https://youtu.be/io1wz6dhZGA" target="_blank" rel="noopener">▶ Watch</a></span>
+      </div>
+
+    </div><!-- /game-list -->
+    <div class="no-results" id="no-results">No games match your search.</div>
+  </div><!-- /game-list-wrap -->
+
+  <!-- TAIL CTA -->
+  <div class="tail-cta">
+    <div class="tail-text">
+      <h2>Ready to play?</h2>
+      <p>Load your own NES ROMs into 3dSen and play 101 classics in 3D, VR, and AR.</p>
+    </div>
+    <div class="ctas">
+      <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
+        3dSen PC
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+      <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-cyan">3dSen VR</a>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div style="max-width:1280px; margin:0 auto; padding:0 24px;">
+    <p class="footer-meta">
+      © 2015 – 2025 Geod Studio. All rights reserved. ·
+      <a href="../">geodstudio.net</a>
+    </p>
+  </div>
+</footer>
+
+<!-- SEARCH JS -->
+<script>
+  (function(){
+    const input = document.getElementById('game-search');
+    const rows = document.querySelectorAll('.game-row');
+    const countLabel = document.getElementById('count-label');
+    const noResults = document.getElementById('no-results');
+    const total = rows.length;
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+      rows.forEach(row => {
+        const name = row.dataset.name || '';
+        const match = !q || name.includes(q);
+        row.classList.toggle('hidden', !match);
+        if (match) visible++;
+      });
+      countLabel.textContent = q ? `${visible} of ${total} games` : `${total} games`;
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+
+      if (typeof window.gtag === 'function' && q.length > 2) {
+        window.gtag('event', 'library_search', { query: q, results: visible });
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
