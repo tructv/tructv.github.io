@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Legend of Zelda in 3D — 3dSen | Geod Studio</title>
+<meta name="description" content="Play The Legend of Zelda in fully-explorable 3D with 3dSen. Hyrule gains depth, dungeon rooms gain walls, and small details — sword beams, boomerang shadows, animated water — finally have somewhere to go. On screen or in VR." />
+
+<link rel="canonical" href="https://geodstudio.net/games/legend-of-zelda.html" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#0B0A09" />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Geod Studio" />
+<meta property="og:title" content="The Legend of Zelda in 3D — 3dSen" />
+<meta property="og:description" content="Play The Legend of Zelda in fully-explorable 3D with 3dSen. Hyrule gains depth, dungeon rooms gain walls, and small details finally have somewhere to go." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://geodstudio.net/games/legend-of-zelda.html" />
+<meta property="og:image" content="https://geodstudio.net/images/zelda_1.jpg" />
+<meta property="og:image:alt" content="The Legend of Zelda rendered as a 3D voxel diorama in 3dSen" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Legend of Zelda in 3D — 3dSen" />
+<meta name="twitter:description" content="Play The Legend of Zelda in fully-explorable 3D with 3dSen. Hyrule gains depth, dungeon rooms gain walls, and small details finally have somewhere to go." />
+<meta name="twitter:image" content="https://geodstudio.net/images/zelda_1.jpg" />
+
+<link rel="icon" href="../images/geod.png" type="image/png" />
+<link rel="preconnect" href="https://www.youtube-nocookie.com" />
+<link rel="dns-prefetch" href="https://i.ytimg.com" />
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "The Legend of Zelda",
+  "description": "The Legend of Zelda rendered in real-time 3D voxels using 3dSen — playable on screen or in VR.",
+  "gamePlatform": ["PC", "SteamVR", "Meta Quest", "Pico 4"],
+  "applicationCategory": "Game",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Geod Studio",
+    "url": "https://geodstudio.net/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://store.steampowered.com/app/1147940/3dSen_PC/",
+    "availability": "https://schema.org/InStock"
+  },
+  "image": "https://geodstudio.net/images/zelda_1.jpg"
+}
+</script>
+
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WWG7C1BXXH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WWG7C1BXXH');
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:        #0B0A09;
+    --bg-2:      #131110;
+    --bg-3:      #1B1815;
+    --fg:        #F5EEE0;
+    --fg-muted:  #A39B8A;
+    --fg-dim:    #6F6757;
+    --line:      rgba(245,238,224,.10);
+    --line-hard: rgba(245,238,224,.22);
+    --accent:    #FF4F1F;
+    --accent-2:  #4ADEDE;
+    --accent-3:  #FFC857;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  *{ -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  html,body{ margin:0; padding:0; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg,iframe,video{ display:block; max-width:100%; }
+
+  html,body{
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01","cv11";
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  @media (max-width:640px){ html,body{ font-size:16px; } }
+
+  .display{ font-family:"Fraunces",ui-serif,Georgia,serif; font-weight:600; letter-spacing:-0.02em; line-height:0.95; font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1; }
+  .display-italic{ font-family:"Fraunces",serif; font-style:italic; font-weight:500; font-variation-settings:"opsz" 144,"SOFT" 60,"WONK" 1; }
+  .mono{ font-family:"JetBrains Mono",ui-monospace,monospace; font-feature-settings:"ss01","ss02"; }
+
+  body::before{
+    content:""; position:fixed; inset:0;
+    background-image: radial-gradient(rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:3px 3px; pointer-events:none; z-index:1;
+    mix-blend-mode:overlay; opacity:.6;
+  }
+  body::after{
+    content:""; position:fixed; inset:0;
+    background-image: linear-gradient(rgba(255,255,255,.02) 50%,transparent 50%);
+    background-size:100% 3px; pointer-events:none; z-index:1;
+    mix-blend-mode:overlay; opacity:.5;
+  }
+
+  ::selection{ background:var(--accent); color:var(--fg); }
+
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--fg-muted);
+    display:inline-flex; align-items:center; gap:10px;
+    margin:0; padding:0; font-weight:500; line-height:1.2; border:0; background:none;
+  }
+  .eyebrow::before{
+    content:""; width:8px; height:8px; background:var(--accent);
+    display:inline-block; border-radius:1px;
+    box-shadow:0 0 0 2px rgba(255,79,31,.18);
+  }
+
+  /* ===== NAV ===== */
+  header.nav-wrap{ position:fixed; top:0; left:0; right:0; z-index:40; }
+  .nav-inner{ margin:16px auto 0; max-width:1280px; padding:0 24px; }
+  @media(min-width:768px){ .nav-inner{ padding:0 40px; } }
+  nav.nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px;
+    border:1px solid var(--line-hard); border-radius:999px;
+    background:rgba(11,10,9,.7);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+  }
+  .nav-brand{ display:flex; align-items:center; gap:8px; padding-left:8px; }
+  .nav-brand img{ width:28px; height:28px; border-radius:6px; }
+  .nav-brand .nav-title{ font-family:"Fraunces",serif; font-weight:600; font-size:20px; letter-spacing:-0.02em; }
+  .nav-brand .nav-version{ font-family:"JetBrains Mono",monospace; font-size:10px; padding:3px 8px; border-radius:999px; border:1px solid var(--line-hard); color:var(--fg-muted); }
+  .nav-links{ display:none; gap:28px; font-size:13px; color:var(--fg-muted); }
+  @media(min-width:768px){ .nav-links{ display:flex; align-items:center; } }
+  .nav-links a{ transition:color .2s ease; }
+  .nav-links a:hover{ color:var(--fg); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; border-radius:999px;
+    background:var(--fg); color:#0a0a0a;
+    font-size:13px; font-weight:500;
+    transition:transform .25s ease, background .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{ background:var(--accent); color:var(--fg); transform:translateY(-2px); }
+
+  /* ===== HERO IMAGE ===== */
+  .hero-img{
+    position:relative; width:100%; overflow:hidden;
+    padding-top:120px; /* clears fixed nav */
+    background:var(--bg-2);
+  }
+  .hero-img img{
+    width:100%; height:60vh; object-fit:cover;
+    display:block;
+  }
+  @media(min-width:768px){ .hero-img img{ height:70vh; } }
+  .hero-img::after{
+    content:""; position:absolute; inset:auto 0 0 0;
+    height:50%; background:linear-gradient(transparent, var(--bg));
+    pointer-events:none;
+  }
+
+  /* ===== PAGE BODY ===== */
+  .page-wrap{
+    max-width:1280px; margin:0 auto; padding:0 24px;
+    position:relative; z-index:2;
+  }
+  @media(min-width:768px){ .page-wrap{ padding:0 40px; } }
+
+  /* ===== GAME HEADER ===== */
+  .game-header{ padding:40px 0 32px; }
+  .back-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--fg-muted); margin-bottom:24px;
+    transition:color .2s ease, transform .2s ease;
+  }
+  .back-link:hover{ color:var(--fg); transform:translateX(-2px); }
+  .back-link svg{ width:12px; height:12px; }
+
+  .game-header .platform-chips{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;
+  }
+  .chip{
+    font-family:"JetBrains Mono",monospace; font-size:10px;
+    letter-spacing:.15em; text-transform:uppercase;
+    padding:5px 10px; border-radius:999px;
+    border:1px solid var(--line-hard); color:var(--fg-muted);
+  }
+  .chip.pc{ border-color:var(--accent); color:var(--accent); }
+  .chip.vr{ border-color:var(--accent-2); color:var(--accent-2); }
+  .chip.ar{ border-color:var(--accent-3); color:var(--accent-3); }
+
+  h1.game-title{
+    font-family:"Fraunces",serif; font-weight:600;
+    letter-spacing:-0.025em; line-height:1.0;
+    font-size:clamp(40px,7vw,80px);
+    margin:0 0 8px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+  .game-subtitle{
+    font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--fg-muted);
+    margin:0 0 28px;
+  }
+
+  .game-desc-section{ margin-bottom:40px; }
+  .game-desc{
+    max-width:760px; color:var(--fg-muted); font-size:17px; line-height:1.65;
+    margin:0 0 22px;
+  }
+  .game-desc strong{ color:var(--fg); }
+
+  .ctas{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:48px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px; border-radius:999px;
+    font-size:14px; font-weight:500;
+    transition:transform .25s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-accent{ background:var(--accent); color:var(--fg); }
+  .btn-accent:hover{ background:#FF6133; transform:translateY(-2px); }
+  .btn-cyan{ background:var(--accent-2); color:#0a0a0a; }
+  .btn-cyan:hover{ transform:translateY(-2px); opacity:.9; }
+  .btn-ghost{ border:1px solid var(--line-hard); color:var(--fg); }
+  .btn-ghost:hover{ border-color:var(--fg); transform:translateY(-2px); }
+
+  /* ===== DIVIDER ===== */
+  .hr{ height:1px; border:0; background:var(--line); margin:0 0 48px; }
+
+  /* ===== SCREENSHOTS GRID ===== */
+  .section-label{
+    font-family:"JetBrains Mono",monospace; font-size:11px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--fg-muted);
+    margin:0 0 20px; display:block;
+  }
+  .screenshots{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:56px;
+  }
+  @media(min-width:768px){
+    .screenshots{ grid-template-columns:repeat(4,1fr); gap:16px; }
+  }
+  .screenshot{
+    border-radius:12px; overflow:hidden;
+    border:1px solid var(--line);
+    aspect-ratio:16/9; background:var(--bg-2);
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .screenshot:hover{ border-color:var(--line-hard); transform:translateY(-2px); }
+  .screenshot img{ width:100%; height:100%; object-fit:cover; }
+
+  /* ===== TABBED VIDEO PLAYER ===== */
+  .video-tabs-row{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px; margin-bottom:14px;
+  }
+  .pill-row{ display:inline-flex; padding:4px; border-radius:999px; background:var(--bg-2); border:1px solid var(--line); }
+  .pill{
+    padding:8px 16px; border-radius:999px;
+    font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.1em;
+    cursor:pointer; color:var(--fg-muted); background:none; border:0;
+    transition:background .2s ease, color .2s ease;
+  }
+  .pill.active{ background:var(--accent); color:var(--fg); }
+  .pill.vr-pill.active{ background:var(--accent-2); color:#0a0a0a; }
+  .pill.ar-pill.active{ background:var(--accent-3); color:#0a0a0a; }
+
+  .mode-inline-desc{
+    font-size:13px; color:var(--fg-muted);
+    font-family:"JetBrains Mono",monospace;
+    letter-spacing:.05em;
+    max-width:400px;
+  }
+
+  .mode-video-main{
+    position:relative; border-radius:16px; overflow:hidden;
+    border:1px solid var(--line-hard);
+    aspect-ratio:16/9; background:var(--bg-2);
+    box-shadow:0 0 0 1px var(--line-hard), 0 30px 100px -30px rgba(255,79,31,.3);
+    margin-bottom:48px;
+  }
+
+  /* Trailer facade */
+  .trailer-facade{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    display:block; padding:0;
+    background:#000; border:0; cursor:pointer;
+  }
+  .trailer-facade .poster{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; opacity:.9;
+    transition:opacity .25s ease;
+  }
+  .trailer-facade:hover .poster{ opacity:1; }
+  .trailer-facade .play-btn{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    pointer-events:none;
+  }
+  .trailer-facade .play-circle{
+    display:flex; align-items:center; justify-content:center;
+    width:56px; height:56px; border-radius:50%;
+    transition:transform .2s ease;
+  }
+  .trailer-facade:hover .play-circle{ transform:scale(1.1); }
+  .play-circle.pc-circle{ background:rgba(255,79,31,.92); box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 5px rgba(255,79,31,.18); }
+  .play-circle.vr-circle{ background:rgba(74,222,222,.92); box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 5px rgba(74,222,222,.18); }
+  .play-circle.ar-circle{ background:rgba(255,200,87,.92); box-shadow:0 8px 28px rgba(0,0,0,.5),0 0 0 5px rgba(255,200,87,.18); }
+  .play-circle svg{ width:22px; height:22px; }
+  .trailer-facade .yt-tag{
+    position:absolute; left:10px; bottom:10px;
+    font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.1em;
+    color:#fff; background:rgba(11,10,9,.6);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    padding:4px 8px; border-radius:5px;
+  }
+  .trailer-facade:focus{ outline:none; }
+  .trailer-facade:focus-visible{ outline:2px solid var(--fg); outline-offset:4px; }
+
+  /* ===== TAIL CTA ===== */
+  .tail-cta{
+    padding:36px; border:1px solid var(--line-hard); border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,79,31,.05),var(--bg-2));
+    margin-bottom:64px;
+    display:flex; flex-direction:column; gap:20px;
+  }
+  @media(min-width:768px){
+    .tail-cta{ flex-direction:row; align-items:center; gap:32px; }
+    .tail-cta .tail-text{ flex:1; }
+  }
+  .tail-cta h2{
+    font-family:"Fraunces",serif; font-weight:600;
+    font-size:clamp(22px,3vw,30px); letter-spacing:-0.02em; line-height:1.1;
+    margin:0 0 8px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+  .tail-cta p{ margin:0; color:var(--fg-muted); font-size:14px; }
+
+  /* ===== FOOTER ===== */
+  footer.site-footer{
+    padding:40px 24px 28px; border-top:1px solid var(--line);
+    background:var(--bg-2); text-align:center; position:relative; z-index:2;
+  }
+  .footer-meta{ font-size:12px; color:var(--fg-dim); margin:0; }
+  .footer-meta a{ color:var(--fg-muted); }
+  .footer-meta a:hover{ color:var(--fg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav-wrap">
+  <div class="nav-inner">
+    <nav class="nav">
+      <a href="../" class="nav-brand">
+        <img src="../images/geod.png" alt="" loading="eager" />
+        <span class="nav-title">3dSen</span>
+        <span class="nav-version">v1.0</span>
+      </a>
+      <div class="nav-links">
+        <a href="../#difference">The Diff</a>
+        <a href="../#products">Products</a>
+        <a href="../#features">Features</a>
+        <a href="../#games">Games</a>
+        <a href="../#press">Press</a>
+        <a href="../#community">Community</a>
+        <a href="../blog/3dsen-10-year-story.html">Story</a>
+      </div>
+      <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="nav-cta">
+        Steam
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO IMAGE -->
+<div class="hero-img">
+  <img src="../images/zelda_1.jpg" alt="The Legend of Zelda rendered as a 3D voxel diorama in 3dSen" loading="eager" />
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-wrap">
+
+  <div class="game-header">
+    <a href="./" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg>
+      All games
+    </a>
+
+    <div class="platform-chips">
+      <span class="chip pc">PC</span>
+      <span class="chip vr">VR</span>
+    </div>
+
+    <h1 class="game-title">The Legend<br/>of Zelda</h1>
+    <p class="game-subtitle">Nintendo · NES · 1986 · In 3dSen</p>
+  </div>
+
+  <hr class="hr" />
+
+  <!-- VIDEO MODES — tabbed single player -->
+  <span class="section-label">Watch it played</span>
+
+  <div class="video-tabs-row">
+    <div class="pill-row">
+      <button class="pill active game-tab" data-trailer="FnW8lfEZgAo" data-mode="pc">PC Mode</button>
+      <button class="pill game-tab vr-pill" data-trailer="Pap8Agv3Fxs" data-mode="vr">VR Mode</button>
+    </div>
+    <span id="mode-desc-label" class="mode-inline-desc">Hyrule from any angle — pull back to read the overworld as a map, or push in close to watch Link move through it.</span>
+  </div>
+
+  <div class="mode-video-main">
+    <button type="button" class="trailer-facade" id="game-facade" data-trailer="FnW8lfEZgAo" aria-label="Play The Legend of Zelda in 3dSen — PC mode">
+      <img class="poster" id="game-poster" loading="lazy"
+           src="https://i.ytimg.com/vi/FnW8lfEZgAo/maxresdefault.jpg"
+           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/FnW8lfEZgAo/hqdefault.jpg';"
+           alt="The Legend of Zelda in 3dSen PC mode" />
+      <span class="play-btn" aria-hidden="true">
+        <span class="play-circle pc-circle" id="play-circle">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7L8 5z"/></svg>
+        </span>
+      </span>
+      <span class="yt-tag">YOUTUBE</span>
+    </button>
+  </div>
+
+  <hr class="hr" />
+
+  <!-- TEXT — second -->
+  <div class="game-desc-section">
+    <p class="game-desc">
+      On a 1986 TV, Hyrule was a grid of top-down screens. In 3dSen, each one becomes a 3D voxel diorama you can rotate at will — bird's-eye to read a region's layout, near-side-on to watch Link approach a cave mouth, anywhere in between. Bushes, trees, rocks and dungeon walls all gain real volume.
+    </p>
+    <p class="game-desc">
+      One reviewer who tested several games on the emulator called Zelda his favourite of the bunch and said this one game alone makes 3dSen worth the purchase. Another, returning to the game after thirty years, said 3dSen let him capture the original nostalgia while still making the game feel new.
+    </p>
+    <p class="game-desc">
+      The small details show up first. The sword beam rotates as it flies across the room. The boomerang trails a shadow on the ground that moves with it. Water tiles animate, and where a low bridge crosses a river the flow appears to pass beneath it. Levers push forward out of dungeon walls rather than sitting flush. Doorway shadows shift across the floor as Link walks through.
+    </p>
+    <p class="game-desc">
+      The profile handles a clever case automatically. Some indoor scenes in the original Zelda are side-scrolling — staircase transitions, certain hidden rooms — even though everything outside them is top-down. When Link enters one of those scenes, 3dSen rotates the camera to a side-on view; when he leaves, it returns to top-down. One profile script, two camera modes, switching on what the game is drawing in any given frame.
+    </p>
+    <p class="game-desc">
+      In VR, three things stand out. The HUD lifts off the playfield — hearts, rupee count and item slots float above Hyrule as a separate layer, rather than the flat strip at the top of the screen. The animated water at room scale reads less like rippling pixels and more like fabric in motion. And when Link draws his sword in front of you, it looks close enough to reach for. Gameplay underneath is untouched — same items, same combat, same hidden rooms. Only the angle from which you see Hyrule has changed.
+    </p>
+
+    <div class="ctas">
+      <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
+        Get 3dSen PC
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+      <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-cyan">Get 3dSen VR</a>
+      <a href="../blog/3dsen-10-year-story.html" class="btn btn-ghost">How it works</a>
+    </div>
+  </div>
+
+  <hr class="hr" />
+
+  <!-- SCREENSHOTS — third -->
+  <span class="section-label">Screenshots</span>
+  <div class="screenshots">
+    <div class="screenshot">
+      <img src="../images/zelda_1.jpg" alt="The Legend of Zelda in 3dSen — Hyrule overworld" loading="lazy" />
+    </div>
+    <div class="screenshot">
+      <img src="../images/zelda_2.jpg" alt="The Legend of Zelda in 3dSen — dungeon interior" loading="lazy" />
+    </div>
+    <div class="screenshot">
+      <img src="../images/zelda_3.jpg" alt="The Legend of Zelda in 3dSen — Link with sword" loading="lazy" />
+    </div>
+    <div class="screenshot">
+      <img src="../images/zelda_4.jpg" alt="The Legend of Zelda in 3dSen — free camera angle" loading="lazy" />
+    </div>
+  </div>
+
+  <!-- TAIL CTA -->
+  <div class="tail-cta">
+    <div class="tail-text">
+      <h2>Ready to play it?</h2>
+      <p>Load your own Legend of Zelda ROM into 3dSen and explore Hyrule from any angle — on screen or in VR.</p>
+    </div>
+    <div class="ctas" style="margin:0;">
+      <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
+        3dSen PC
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </a>
+      <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="btn btn-cyan">3dSen VR</a>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div style="max-width:1280px; margin:0 auto; padding:0 24px;">
+    <p class="footer-meta">
+      © 2015 – 2025 Geod Studio. All rights reserved. ·
+      <a href="../">geodstudio.net</a> ·
+      <a href="../#games">All supported games</a>
+    </p>
+  </div>
+</footer>
+
+<!-- TRAILER FACADE JS -->
+<script>
+  (function(){
+    const modeData = {
+      'FnW8lfEZgAo': {
+        mode: 'pc',
+        label: 'Hyrule from any angle — pull back to read the overworld as a map, or push in close to watch Link move through it.',
+        circleClass: 'pc-circle',
+        fillColor: '#fff',
+        aria: 'Play The Legend of Zelda in 3dSen — PC mode'
+      },
+      'Pap8Agv3Fxs': {
+        mode: 'vr',
+        label: 'Room-scale VR — Hyrule as a diorama you can walk around and look into.',
+        circleClass: 'vr-circle',
+        fillColor: '#0a0a0a',
+        aria: 'Play The Legend of Zelda in 3dSen — VR mode',
+        startTime: 1905
+      }
+    };
+
+    const facade   = document.getElementById('game-facade');
+    const poster   = document.getElementById('game-poster');
+    const circle   = document.getElementById('play-circle');
+    const descLabel = document.getElementById('mode-desc-label');
+    let activeId   = 'FnW8lfEZgAo';
+    let played     = false;
+
+    const buildEmbedUrl = (id) => {
+      const start = modeData[id]?.startTime;
+      const startParam = start ? `&start=${start}` : '';
+      return `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1${startParam}`;
+    };
+
+    // Pill switching — updates poster, play-button color, description
+    document.querySelectorAll('.game-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.trailer;
+        if (!id || id === activeId) return;
+        activeId = id;
+        const data = modeData[id];
+
+        // Update active pill
+        document.querySelectorAll('.game-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // If already playing — swap iframe src with autoplay
+        if (played) {
+          const iframe = facade.parentElement.querySelector('iframe');
+          if (iframe) {
+            iframe.src = buildEmbedUrl(id);
+          }
+        } else {
+          // Still facade — swap poster image and play-circle color
+          if (facade && poster) {
+            facade.dataset.trailer = id;
+            facade.setAttribute('aria-label', data.aria);
+            poster.src = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+            poster.onerror = function(){ this.onerror=null; this.src=`https://i.ytimg.com/vi/${id}/hqdefault.jpg`; };
+            circle.className = `play-circle ${data.circleClass}`;
+            circle.querySelector('svg path').setAttribute('fill', data.fillColor);
+          }
+        }
+
+        // Update description label
+        if (descLabel) descLabel.textContent = data.label;
+
+        // GA
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'game_mode_switch', {
+            game: 'legend-of-zelda', mode: data.mode
+          });
+        }
+      });
+    });
+
+    // Play button — replace facade with real iframe
+    if (facade) {
+      facade.addEventListener('click', () => {
+        const id = activeId;
+        played = true;
+        const iframe = document.createElement('iframe');
+        iframe.src = buildEmbedUrl(id);
+        iframe.title = modeData[id]?.aria || '3dSen video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        facade.replaceWith(iframe);
+
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'game_video_play', {
+            game: 'legend-of-zelda',
+            mode: modeData[id]?.mode || id
+          });
+        }
+      });
+    }
+
+    // Outbound link tracking
+    document.addEventListener('click', ev => {
+      const a = ev.target.closest('a[href]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href || !href.startsWith('http')) return;
+      if (typeof window.gtag !== 'function') return;
+      let dest = 'other';
+      if (href.includes('steampowered.com')) dest = 'steam';
+      else if (href.includes('itch.io')) dest = 'itch';
+      window.gtag('event', 'game_page_outbound', {
+        game: 'legend-of-zelda',
+        link_destination: dest,
+        link_url: href
+      });
+    }, { capture: true });
+  })();
+</script>
+
+</body>
+</html>
