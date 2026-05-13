@@ -424,22 +424,22 @@
 
   <div class="video-tabs-row">
     <div class="pill-row">
-      <button class="pill active game-tab" data-trailer="DI-CDqrFTRw" data-mode="pc">PC Mode</button>
+      <button class="pill active game-tab ar-pill" data-trailer="fLRYHIKCttE" data-mode="ar">AR Mode</button>
       <button class="pill game-tab vr-pill" data-trailer="UY8coo1fUh8" data-mode="vr">VR Mode</button>
-      <button class="pill game-tab ar-pill" data-trailer="fLRYHIKCttE" data-mode="ar">AR Mode</button>
+      <button class="pill game-tab" data-trailer="DI-CDqrFTRw" data-mode="pc">PC Mode</button>
     </div>
-    <span id="mode-desc-label" class="mode-inline-desc">The classic side-scroll with a free camera you control.</span>
+    <span id="mode-desc-label" class="mode-inline-desc">Via Virtual Desktop Passthrough — Mario on your desk, in your room.</span>
   </div>
 
   <div class="mode-video-main">
-    <button type="button" class="trailer-facade" id="game-facade" data-trailer="DI-CDqrFTRw" aria-label="Play Super Mario Bros. in 3dSen — PC mode">
+    <button type="button" class="trailer-facade" id="game-facade" data-trailer="fLRYHIKCttE" aria-label="Play Super Mario Bros. in 3dSen — AR mode">
       <img class="poster" id="game-poster" loading="lazy"
-           src="https://i.ytimg.com/vi/DI-CDqrFTRw/maxresdefault.jpg"
-           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/DI-CDqrFTRw/hqdefault.jpg';"
+           src="https://i.ytimg.com/vi/fLRYHIKCttE/maxresdefault.jpg"
+           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/fLRYHIKCttE/hqdefault.jpg';"
            alt="Super Mario Bros. 3dSen PC mode" />
       <span class="play-btn" aria-hidden="true">
-        <span class="play-circle pc-circle" id="play-circle">
-          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7L8 5z"/></svg>
+        <span class="play-circle ar-circle" id="play-circle">
+          <svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M8 5v14l11-7L8 5z"/></svg>
         </span>
       </span>
       <span class="yt-tag">YOUTUBE</span>
@@ -551,7 +551,7 @@
     const poster   = document.getElementById('game-poster');
     const circle   = document.getElementById('play-circle');
     const descLabel = document.getElementById('mode-desc-label');
-    let activeId   = 'DI-CDqrFTRw';
+    let activeId   = 'fLRYHIKCttE';
     let played     = false;
 
     // Pill switching — updates poster, play-button color, description

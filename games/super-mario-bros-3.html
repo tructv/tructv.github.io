@@ -423,21 +423,21 @@
 
   <div class="video-tabs-row">
     <div class="pill-row">
-      <button class="pill active game-tab" data-trailer="MonxgMLuJnE" data-mode="pc">PC Mode</button>
-      <button class="pill game-tab vr-pill" data-trailer="orybOM3jlk8" data-mode="vr">VR Mode</button>
+      <button class="pill active game-tab vr-pill" data-trailer="orybOM3jlk8" data-mode="vr">VR Mode</button>
+      <button class="pill game-tab" data-trailer="MonxgMLuJnE" data-mode="pc">PC Mode</button>
     </div>
-    <span id="mode-desc-label" class="mode-inline-desc">A side-scroll you can finally orbit. Pull back for a cinematic view of an entire level.</span>
+    <span id="mode-desc-label" class="mode-inline-desc">Room-scale VR — airships, cloud levels and fortresses with real spatial presence.</span>
   </div>
 
   <div class="mode-video-main">
-    <button type="button" class="trailer-facade" id="game-facade" data-trailer="MonxgMLuJnE" aria-label="Play Super Mario Bros. 3 in 3dSen — PC mode">
+    <button type="button" class="trailer-facade" id="game-facade" data-trailer="orybOM3jlk8" aria-label="Play Super Mario Bros. 3 in 3dSen — VR mode">
       <img class="poster" id="game-poster" loading="lazy"
-           src="https://i.ytimg.com/vi/MonxgMLuJnE/maxresdefault.jpg"
-           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/MonxgMLuJnE/hqdefault.jpg';"
+           src="https://i.ytimg.com/vi/orybOM3jlk8/maxresdefault.jpg"
+           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/orybOM3jlk8/hqdefault.jpg';"
            alt="Super Mario Bros. 3 in 3dSen PC mode" />
       <span class="play-btn" aria-hidden="true">
-        <span class="play-circle pc-circle" id="play-circle">
-          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7L8 5z"/></svg>
+        <span class="play-circle vr-circle" id="play-circle">
+          <svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M8 5v14l11-7L8 5z"/></svg>
         </span>
       </span>
       <span class="yt-tag">YOUTUBE</span>
@@ -545,7 +545,7 @@
     const poster   = document.getElementById('game-poster');
     const circle   = document.getElementById('play-circle');
     const descLabel = document.getElementById('mode-desc-label');
-    let activeId   = 'MonxgMLuJnE';
+    let activeId   = 'orybOM3jlk8';
     let played     = false;
 
     // Pill switching — updates poster, play-button color, description

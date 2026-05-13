@@ -424,21 +424,21 @@
 
   <div class="video-tabs-row">
     <div class="pill-row">
-      <button class="pill active game-tab" data-trailer="FLxizmG7t48" data-mode="pc">PC Mode</button>
-      <button class="pill game-tab vr-pill" data-trailer="ERzxofXlwUE" data-mode="vr">VR Mode</button>
+      <button class="pill active game-tab vr-pill" data-trailer="ERzxofXlwUE" data-mode="vr">VR Mode</button>
+      <button class="pill game-tab" data-trailer="FLxizmG7t48" data-mode="pc">PC Mode</button>
     </div>
-    <span id="mode-desc-label" class="mode-inline-desc">Free camera on a 2D side-scroller — orbit, push in close, or watch a whole stage from the side.</span>
+    <span id="mode-desc-label" class="mode-inline-desc">Room-scale VR — the stage stretched out in front of you at human scale.</span>
   </div>
 
   <div class="mode-video-main">
-    <button type="button" class="trailer-facade" id="game-facade" data-trailer="FLxizmG7t48" aria-label="Play Mega Man 2 in 3dSen — PC mode">
+    <button type="button" class="trailer-facade" id="game-facade" data-trailer="ERzxofXlwUE" aria-label="Play Mega Man 2 in 3dSen — VR mode">
       <img class="poster" id="game-poster" loading="lazy"
-           src="https://i.ytimg.com/vi/FLxizmG7t48/maxresdefault.jpg"
-           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/FLxizmG7t48/hqdefault.jpg';"
+           src="https://i.ytimg.com/vi/ERzxofXlwUE/maxresdefault.jpg"
+           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/ERzxofXlwUE/hqdefault.jpg';"
            alt="Mega Man 2 in 3dSen PC mode" />
       <span class="play-btn" aria-hidden="true">
-        <span class="play-circle pc-circle" id="play-circle">
-          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7L8 5z"/></svg>
+        <span class="play-circle vr-circle" id="play-circle">
+          <svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M8 5v14l11-7L8 5z"/></svg>
         </span>
       </span>
       <span class="yt-tag">YOUTUBE</span>
@@ -555,7 +555,7 @@
     const poster   = document.getElementById('game-poster');
     const circle   = document.getElementById('play-circle');
     const descLabel = document.getElementById('mode-desc-label');
-    let activeId   = 'FLxizmG7t48';
+    let activeId   = 'ERzxofXlwUE';
     let played     = false;
 
     // Pill switching — updates poster, play-button color, description

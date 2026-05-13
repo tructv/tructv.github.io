@@ -423,21 +423,21 @@
 
   <div class="video-tabs-row">
     <div class="pill-row">
-      <button class="pill active game-tab" data-trailer="3Jq0WN0Z-j4" data-mode="pc">PC Mode</button>
-      <button class="pill game-tab vr-pill" data-trailer="AJqijVRo6Qs" data-mode="vr">VR + Motion</button>
+      <button class="pill active game-tab vr-pill" data-trailer="AJqijVRo6Qs" data-mode="vr">VR + Motion</button>
+      <button class="pill game-tab" data-trailer="3Jq0WN0Z-j4" data-mode="pc">PC Mode</button>
     </div>
-    <span id="mode-desc-label" class="mode-inline-desc">The ring fully modeled in 3D — Mario the ref stays inside it with you, fighters meet in the middle to land punches.</span>
+    <span id="mode-desc-label" class="mode-inline-desc">Full motion control — punch high or low, lean to dodge, squat to duck, both hands out for star punches.</span>
   </div>
 
   <div class="mode-video-main">
-    <button type="button" class="trailer-facade" id="game-facade" data-trailer="3Jq0WN0Z-j4" aria-label="Play Mike Tyson's Punch-Out!! in 3dSen — PC mode">
+    <button type="button" class="trailer-facade" id="game-facade" data-trailer="AJqijVRo6Qs" aria-label="Play Mike Tyson">
       <img class="poster" id="game-poster" loading="lazy"
-           src="https://i.ytimg.com/vi/3Jq0WN0Z-j4/maxresdefault.jpg"
-           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/3Jq0WN0Z-j4/hqdefault.jpg';"
+           src="https://i.ytimg.com/vi/AJqijVRo6Qs/maxresdefault.jpg"
+           onerror="this.onerror=null; this.src='https://i.ytimg.com/vi/AJqijVRo6Qs/hqdefault.jpg';"
            alt="Mike Tyson's Punch-Out!! in 3dSen PC mode" />
       <span class="play-btn" aria-hidden="true">
-        <span class="play-circle pc-circle" id="play-circle">
-          <svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7L8 5z"/></svg>
+        <span class="play-circle vr-circle" id="play-circle">
+          <svg viewBox="0 0 24 24" fill="#0a0a0a"><path d="M8 5v14l11-7L8 5z"/></svg>
         </span>
       </span>
       <span class="yt-tag">YOUTUBE</span>
@@ -545,7 +545,7 @@
     const poster   = document.getElementById('game-poster');
     const circle   = document.getElementById('play-circle');
     const descLabel = document.getElementById('mode-desc-label');
-    let activeId   = '3Jq0WN0Z-j4';
+    let activeId   = 'AJqijVRo6Qs';
     let played     = false;
 
     // Pill switching — updates poster, play-button color, description
