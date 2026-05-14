@@ -176,7 +176,7 @@
   .py-24{ padding-top:2rem; padding-bottom:2rem; }
   .py-28{ padding-top:2.25rem; padding-bottom:2.25rem; }
   .pl-2{ padding-left:.5rem; } .pl-8{ padding-left:2rem; }
-  .pt-16{ padding-top:4rem; } .pt-32{ padding-top:8rem; }
+  .pt-16{ padding-top:4rem; } .pt-32{ padding-top:8rem; } .pt-36{ padding-top:9rem; }
   .pb-10{ padding-bottom:2.5rem; } .pb-20{ padding-bottom:5rem; }
   .py-1\.5{ padding-top:.375rem; padding-bottom:.375rem; }
 
@@ -565,6 +565,9 @@
 
   /* Pixel/voxel cube SVG container */
   .deco-cube { position:absolute; pointer-events:none; opacity:.55; mix-blend-mode: lighten; }
+  @media (max-width: 767px){
+    .deco-cube { display: none; }
+  }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar{ width: 10px; height: 10px; }
@@ -845,7 +848,7 @@
 </header>
 
 <!-- ======================= HERO ======================= -->
-<section id="top" class="relative pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden">
+<section id="top" class="relative pt-36 md:pt-32 pb-16 md:pb-20 overflow-hidden">
   <!-- Decorative voxel grid -->
   <div class="absolute inset-0 voxel-grid opacity-[.07]"></div>
   <div class="absolute inset-0 glow-amber"></div>
