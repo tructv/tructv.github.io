@@ -227,10 +227,14 @@
   .game-card .card-title{
     font-family:"Fraunces",serif; font-weight:600;
     font-size:20px; letter-spacing:-0.01em; line-height:1.1;
-    margin:0 0 8px;
+    margin:0 0 12px;
     font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
   }
-  .game-card .card-chips{ display:flex; gap:6px; margin-bottom:14px; }
+  .game-card .card-meta{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; margin-top:auto;
+  }
+  .game-card .card-chips{ display:flex; gap:6px; flex-wrap:wrap; }
   .card-chip{
     font-family:"JetBrains Mono",monospace; font-size:9px;
     letter-spacing:.12em; padding:3px 8px; border-radius:999px; border:1px solid;
@@ -239,14 +243,17 @@
   .card-chip.vr{ border-color:var(--accent-2); color:var(--accent-2); }
   .card-chip.ar{ border-color:var(--accent-3); color:var(--accent-3); }
   .game-card .card-link{
-    display:inline-flex; align-items:center; gap:6px;
-    font-size:13px; font-weight:500; color:var(--fg);
-    background:var(--accent); padding:9px 16px; border-radius:999px;
-    margin-top:auto; width:fit-content;
-    transition:background .2s;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:32px; height:32px; flex-shrink:0;
+    border-radius:50%; border:1px solid var(--line-hard);
+    color:var(--fg);
+    transition:background .2s, border-color .2s, transform .2s;
   }
-  .game-card .card-link:hover{ background:#FF6133; }
-  .game-card .card-link svg{ width:12px; height:12px; }
+  .game-card:hover .card-link{
+    background:var(--accent); border-color:var(--accent);
+    transform:translateX(2px);
+  }
+  .game-card .card-link svg{ width:14px; height:14px; }
 
   /* ===== FULL GAME LIST ===== */
   .game-list-wrap{
@@ -387,15 +394,16 @@
       </div>
       <div class="card-body">
         <div class="card-title">Super Mario Bros.</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
-          <span class="card-chip ar">AR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+            <span class="card-chip ar">AR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -405,14 +413,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">Super Mario Bros. 3</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -422,14 +431,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">The Legend of Zelda</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -439,15 +449,16 @@
       </div>
       <div class="card-body">
         <div class="card-title">Mega Man 2</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
-          <span class="card-chip ar">AR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+            <span class="card-chip ar">AR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -457,14 +468,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">Castlevania</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -474,14 +486,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">Mike Tyson's Punch-Out!!</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR + MOTION</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR + MOTION</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -491,15 +504,16 @@
       </div>
       <div class="card-body">
         <div class="card-title">Excitebike</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
-          <span class="card-chip ar">AR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+            <span class="card-chip ar">AR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -509,14 +523,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">Road Fighter</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
@@ -526,14 +541,15 @@
       </div>
       <div class="card-body">
         <div class="card-title">Duck Hunt</div>
-        <div class="card-chips">
-          <span class="card-chip pc">PC</span>
-          <span class="card-chip vr">VR + LIGHT-GUN</span>
+        <div class="card-meta">
+          <div class="card-chips">
+            <span class="card-chip pc">PC</span>
+            <span class="card-chip vr">VR + LIGHT-GUN</span>
+          </div>
+          <span class="card-link" aria-label="View game">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-        <span class="card-link">
-          View game
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
-        </span>
       </div>
     </a>
 
