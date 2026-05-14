@@ -156,6 +156,78 @@
     transition:transform .25s ease, background .2s ease, color .2s ease;
   }
   .nav-cta:hover{ background:var(--accent); color:var(--fg); transform:translateY(-2px); }
+  /* ===== Mobile hamburger menu ===== */
+  .hamburger{
+    display: inline-flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line-hard);
+    background: rgba(255,255,255,.02);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease;
+    margin-left: 6px;
+  }
+  .hamburger:hover{ background: rgba(255,255,255,.06); border-color: var(--fg); }
+  .hamburger span{
+    display: block; width: 16px; height: 1.5px;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: transform .25s ease, opacity .2s ease;
+    transform-origin: center;
+  }
+  .hamburger.is-open span:nth-child(1){ transform: translateY(5.5px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2){ opacity: 0; transform: scaleX(0); }
+  .hamburger.is-open span:nth-child(3){ transform: translateY(-5.5px) rotate(-45deg); }
+  @media(min-width:768px){ .hamburger{ display: none; } }
+  [hidden]{ display: none !important; }
+  .mobile-menu{
+    position: absolute;
+    top: 100%; right: 16px; left: 16px;
+    margin-top: 8px;
+    background: rgba(11,10,9,.92);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--line-hard);
+    border-radius: 22px;
+    padding: 12px;
+    display: flex; flex-direction: column;
+    gap: 2px;
+    transform-origin: top right;
+    animation: mm-in .25s cubic-bezier(.2,.7,.2,1);
+    z-index: 50;
+  }
+  @media(min-width:768px){ .mobile-menu{ display: none !important; } }
+  @keyframes mm-in{
+    from{ opacity:0; transform: translateY(-8px) scale(.98); }
+    to  { opacity:1; transform: none; }
+  }
+  .mm-link{
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    transition: background .2s ease;
+    color: var(--fg);
+  }
+  .mm-link:hover, .mm-link:active{ background: rgba(255,79,31,.08); }
+  .mm-arrow{
+    font-family:"JetBrains Mono", monospace;
+    color: var(--accent);
+    font-size: 14px;
+    width: 14px; display: inline-block;
+    transition: transform .2s ease;
+  }
+  .mm-link:hover .mm-arrow{ transform: translateX(3px); }
+  .mm-label{
+    font-family:"Fraunces",serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+
 
   /* ===== HERO IMAGE ===== */
   .hero-img{
@@ -389,8 +461,37 @@
         Steam
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
       </a>
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </div>
+    <div id="mobile-menu" class="mobile-menu" hidden>
+      <a href="../#difference" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">The Difference</span>
+      </a>
+      <a href="../#products" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">Products</span>
+      </a>
+      <a href="../#features" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">Features</span>
+      </a>
+      <a href="../games/" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">Games</span>
+      </a>
+      <a href="../#press" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">Press</span>
+      </a>
+      <a href="../blog/3dsen-10-year-story.html" class="mm-link">
+        <span class="mm-arrow" aria-hidden="true">&rarr;</span>
+        <span class="mm-label">Story</span>
+      </a>
+    </div>
 </header>
 
 <!-- HERO IMAGE -->
@@ -648,5 +749,35 @@
   })();
 </script>
 
+
+<script>
+  (function(){
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+    const close = () => {
+      menu.hidden = true;
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    };
+    const open = () => {
+      menu.hidden = false;
+      toggle.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    };
+    toggle.addEventListener('click', () => {
+      menu.hidden ? open() : close();
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !menu.hidden) close();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && !menu.hidden) close();
+    });
+  })();
+</script>
 </body>
 </html>
