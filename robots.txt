@@ -1,0 +1,8 @@
+# robots.txt for geodstudio.net
+# 3dSen — Play NES Games in 3D, VR & AR
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://geodstudio.net/sitemap.xml
