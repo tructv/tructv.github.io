@@ -449,6 +449,11 @@
 
   /* Buttons */
   .btn{ display:inline-flex; align-items:center; gap:10px; padding: 14px 22px; border-radius: 999px; font-weight: 500; transition: transform .25s ease, background .2s ease, color .2s ease, border-color .2s ease; will-change: transform; }
+  /* Nav pill — tighter and won't wrap text */
+  .btn.nav-cta-pill{ gap:6px; white-space:nowrap; }
+  @media (max-width: 767px){
+    .btn.nav-cta-pill{ padding: 9px 14px !important; }
+  }
   .btn-primary{ background: var(--fg); color: #0a0a0a; }
   .btn-primary:hover{ background: var(--accent); color: var(--fg); transform: translateY(-2px); }
   .btn-ghost{ border: 1px solid var(--line-hard); color: var(--fg); }
@@ -800,10 +805,10 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="btn btn-primary !py-[9px] !px-4 text-[13px]">
+        <a href="https://store.steampowered.com/curator/35762166" target="_blank" rel="noopener" class="btn btn-primary !py-[9px] !px-4 text-[13px] whitespace-nowrap nav-cta-pill">
           <span class="hide-on-xs">Buy on Steam</span>
           <span class="show-on-xs">Steam</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+          <svg class="hide-on-xs" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
         </a>
 
         <!-- Mobile hamburger (md:hidden) -->
