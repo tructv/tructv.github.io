@@ -315,6 +315,7 @@
   /* ===== Responsive (md: 768px+) ===== */
   @media (min-width:768px){
     .md\:flex{ display:flex; }
+    .md\:inline-block{ display:inline-block; }
     .md\:grid{ display:grid; }
     .md\:hidden{ display:none !important; }
     .md\:flex-row{ flex-direction:row; }
@@ -791,7 +792,7 @@
       <a href="#top" class="flex items-center gap-2 pl-2">
         <img src="images/geod.png" alt="" class="w-7 h-7 rounded-md" />
         <span class="display text-[20px] tracking-tight">3dSen</span>
-        <span class="mono text-[10px] px-2 py-[3px] rounded-full" style="border:1px solid var(--line-hard); color:var(--fg-muted);">v1.0</span>
+        <span class="mono text-[10px] px-2 py-[3px] rounded-full hidden md:inline-block" style="border:1px solid var(--line-hard); color:var(--fg-muted);">v1.0</span>
       </a>
 
       <div class="hidden md:flex items-center gap-7 text-[13px]" style="color:var(--fg-muted);">
