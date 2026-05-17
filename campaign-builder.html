@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campaign URL Builder — Geod Studio (internal)</title>
+<meta name="robots" content="noindex,nofollow" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=DM+Sans:opsz,wght@9..40,400..600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0B0A09;
+    --bg-2: #131110;
+    --bg-3: #1B1815;
+    --fg: #F5EEE0;
+    --fg-muted: #A39B8A;
+    --fg-dim: #6F6757;
+    --line: rgba(245,238,224,.10);
+    --line-hard: rgba(245,238,224,.22);
+    --accent: #FF4F1F;
+    --accent-2: #4ADEDE;
+    --accent-3: #FFC857;
+    --ok: #4ADE80;
+    --warn: #FF4F1F;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .display { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.02em; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+  }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent);
+    display: inline-block;
+    border-radius: 1px;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin: 0 0 8px;
+  }
+  .subtitle {
+    color: var(--fg-muted);
+    font-size: 15px;
+    max-width: 60ch;
+  }
+
+  /* Form */
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0 0 28px;
+  }
+  .field {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 600px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  label .req { color: var(--accent); }
+  label .help {
+    font-size: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--fg-dim);
+    font-family: "DM Sans", sans-serif;
+    margin-left: auto;
+  }
+
+  input[type="text"], select {
+    width: 100%;
+    background: var(--bg-2);
+    border: 1px solid var(--line-hard);
+    border-radius: 8px;
+    color: var(--fg);
+    padding: 12px 14px;
+    font: inherit;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    transition: border-color .15s, background .15s;
+  }
+  input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--bg-3);
+  }
+  input::placeholder { color: var(--fg-dim); }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23A39B8A' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+  }
+
+  /* Datalist suggestion hints */
+  .hint {
+    font-size: 11px;
+    color: var(--fg-dim);
+    margin-top: 2px;
+  }
+  .hint .valid { color: var(--ok); }
+  .hint .invalid { color: var(--warn); }
+
+  /* Output */
+  .output {
+    margin-top: 36px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-hard);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .output-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 10px;
+  }
+  .url-box {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--fg);
+    word-break: break-all;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 14px;
+    user-select: all;
+  }
+  .url-box.empty { color: var(--fg-dim); }
+  .url-box .qm { color: var(--accent); }
+  .url-box .amp { color: var(--accent-2); }
+  .url-box .eq { color: var(--accent-3); }
+
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line-hard);
+    background: transparent;
+    color: var(--fg);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    transition: background .15s, border-color .15s, transform .15s;
+  }
+  .btn:hover { border-color: var(--fg); transform: translateY(-1px); }
+  .btn-primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--fg); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+  .btn-primary.copied { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+
+  /* History */
+  .history {
+    margin-top: 48px;
+  }
+  .history h2 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
+  }
+  .history-empty {
+    color: var(--fg-dim);
+    font-size: 14px;
+    padding: 16px 0;
+  }
+  .history-list { display: flex; flex-direction: column; gap: 8px; }
+  .history-item {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .history-item:hover { border-color: var(--line-hard); }
+  .history-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--fg-muted);
+  }
+  .history-label .src { color: var(--accent); }
+  .history-label .camp { color: var(--fg); }
+  .history-url {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--fg-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 3px;
+  }
+  .history-actions { display: flex; gap: 6px; }
+  .icon-btn {
+    background: transparent;
+    border: 1px solid var(--line-hard);
+    color: var(--fg-muted);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .15s, border-color .15s;
+  }
+  .icon-btn:hover { color: var(--fg); border-color: var(--fg); }
+  .icon-btn svg { width: 12px; height: 12px; }
+
+  /* Conventions reference */
+  .conventions {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .conventions h2 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .conventions table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .conventions th, .conventions td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .conventions th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 500;
+  }
+  .conventions td.key { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 12px; }
+  .conventions td.examples { font-family: "JetBrains Mono", monospace; color: var(--fg-muted); font-size: 12px; }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <span class="eyebrow">Internal Tool · Not Indexed</span>
+    <h1 class="display">Campaign URL builder</h1>
+    <p class="subtitle">
+      Build properly-tagged UTM URLs for TikTok, YouTube, Reddit and other ad placements.
+      Naming follows the convention: <strong>lowercase, underscores, no spaces.</strong>
+      Steam will pick up these parameters and surface them in your Steamworks UTM Analytics dashboard.
+    </p>
+  </header>
+
+  <fieldset>
+    <div class="field">
+      <label for="dest">
+        Destination URL
+        <span class="req">*</span>
+        <span class="help">Where you want clicks to land</span>
+      </label>
+      <select id="dest">
+        <option value="https://geodstudio.net/">geodstudio.net/ — homepage</option>
+        <option value="https://geodstudio.net/games/">geodstudio.net/games/ — library</option>
+        <option value="https://geodstudio.net/games/super-mario-bros.html">geodstudio.net/games/super-mario-bros.html</option>
+        <option value="https://geodstudio.net/games/super-mario-bros-3.html">geodstudio.net/games/super-mario-bros-3.html</option>
+        <option value="https://geodstudio.net/games/legend-of-zelda.html">geodstudio.net/games/legend-of-zelda.html</option>
+        <option value="https://geodstudio.net/games/mega-man-2.html">geodstudio.net/games/mega-man-2.html</option>
+        <option value="https://geodstudio.net/games/castlevania.html">geodstudio.net/games/castlevania.html</option>
+        <option value="https://geodstudio.net/games/punch-out.html">geodstudio.net/games/punch-out.html</option>
+        <option value="https://geodstudio.net/games/excitebike.html">geodstudio.net/games/excitebike.html</option>
+        <option value="https://geodstudio.net/games/road-fighter.html">geodstudio.net/games/road-fighter.html</option>
+        <option value="https://geodstudio.net/games/duck-hunt.html">geodstudio.net/games/duck-hunt.html</option>
+        <option value="https://geodstudio.net/blog/3dsen-10-year-story.html">geodstudio.net/blog/3dsen-10-year-story.html</option>
+        <option value="https://store.steampowered.com/app/1147940/3dSen_PC/">store.steampowered.com — 3dSen PC (direct)</option>
+        <option value="https://store.steampowered.com/app/954280/3dSen_VR/">store.steampowered.com — 3dSen VR (direct)</option>
+      </select>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="src">
+          utm_source
+          <span class="req">*</span>
+          <span class="help">platform</span>
+        </label>
+        <input type="text" id="src" list="src-options" placeholder="tiktok" autocomplete="off" />
+        <datalist id="src-options">
+          <option value="tiktok">
+          <option value="youtube">
+          <option value="reddit">
+          <option value="twitter">
+          <option value="facebook">
+          <option value="instagram">
+          <option value="discord">
+          <option value="newsletter">
+          <option value="streamer">
+          <option value="website">
+        </datalist>
+      </div>
+
+      <div class="field">
+        <label for="medium">
+          utm_medium
+          <span class="req">*</span>
+          <span class="help">type of placement</span>
+        </label>
+        <input type="text" id="medium" list="medium-options" placeholder="paid_social" autocomplete="off" />
+        <datalist id="medium-options">
+          <option value="paid_social">
+          <option value="organic_social">
+          <option value="paid_search">
+          <option value="display">
+          <option value="email">
+          <option value="referral">
+          <option value="influencer">
+          <option value="press">
+        </datalist>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="campaign">
+        utm_campaign
+        <span class="req">*</span>
+        <span class="help">campaign identifier</span>
+      </label>
+      <input type="text" id="campaign" list="campaign-options" placeholder="launch_q2_2026" autocomplete="off" />
+      <datalist id="campaign-options">
+        <option value="launch_q2_2026">
+        <option value="evergreen_demo">
+        <option value="vr_motion_q2_2026">
+        <option value="summer_sale_2026">
+        <option value="winter_sale_2026">
+      </datalist>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="content">
+          utm_content
+          <span class="help">creative variant</span>
+        </label>
+        <input type="text" id="content" placeholder="mario_pipes_15s" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="term">
+          utm_term
+          <span class="help">audience / keyword</span>
+        </label>
+        <input type="text" id="term" placeholder="retro_gaming" autocomplete="off" />
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="output">
+    <div class="output-label">Generated URL</div>
+    <div id="url-box" class="url-box empty">Fill in the fields above to generate a URL.</div>
+    <div id="hint" class="hint"></div>
+    <div class="actions">
+      <button id="copy" class="btn btn-primary" disabled>Copy URL</button>
+      <button id="open" class="btn" disabled>Open in new tab</button>
+      <button id="save" class="btn" disabled>Save to history</button>
+      <button id="clear" class="btn">Clear fields</button>
+    </div>
+  </div>
+
+  <section class="history">
+    <h2>Recent campaigns</h2>
+    <div id="history-list" class="history-list">
+      <div class="history-empty">Saved URLs will appear here. History is stored locally in this browser only.</div>
+    </div>
+  </section>
+
+  <section class="conventions">
+    <h2>Naming conventions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Use for</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="key">utm_source</td>
+          <td>The platform sending the click</td>
+          <td class="examples">tiktok, youtube, reddit, twitter, facebook, instagram, discord, newsletter, streamer</td>
+        </tr>
+        <tr>
+          <td class="key">utm_medium</td>
+          <td>The type of placement on that platform</td>
+          <td class="examples">paid_social, organic_social, paid_search, display, email, referral, influencer, press</td>
+        </tr>
+        <tr>
+          <td class="key">utm_campaign</td>
+          <td>A specific marketing campaign or push</td>
+          <td class="examples">launch_q2_2026, vr_motion_q2_2026, summer_sale_2026, evergreen_demo</td>
+        </tr>
+        <tr>
+          <td class="key">utm_content</td>
+          <td>The specific creative or variant</td>
+          <td class="examples">mario_pipes_15s, zelda_diorama_9s, punchout_tyson_30s</td>
+        </tr>
+        <tr>
+          <td class="key">utm_term</td>
+          <td>The targeted audience or keyword</td>
+          <td class="examples">retro_gaming, nes_nostalgia, vr_users, indie_dev</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="hint" style="margin-top:14px;">
+      Rules: lowercase only, use underscores instead of spaces or hyphens, no special characters.
+      Stick to the convention — Steam treats <span class="invalid">TikTok</span>,
+      <span class="invalid">tiktok</span>, and <span class="invalid">tik_tok</span> as three different sources.
+    </p>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var dest = document.getElementById('dest');
+  var src = document.getElementById('src');
+  var medium = document.getElementById('medium');
+  var campaign = document.getElementById('campaign');
+  var content = document.getElementById('content');
+  var term = document.getElementById('term');
+  var urlBox = document.getElementById('url-box');
+  var hint = document.getElementById('hint');
+  var copyBtn = document.getElementById('copy');
+  var openBtn = document.getElementById('open');
+  var saveBtn = document.getElementById('save');
+  var clearBtn = document.getElementById('clear');
+  var historyList = document.getElementById('history-list');
+
+  var HISTORY_KEY = 'geod_campaign_history';
+  var VALID_RE = /^[a-z0-9_]+$/;
+
+  // ----- Validation -----------------------------------------------------
+  function isValid(v) {
+    return v === '' || VALID_RE.test(v);
+  }
+  function normalize(v) {
+    if (!v) return '';
+    return v.toLowerCase().trim().replace(/[\s\-]+/g, '_').replace(/[^a-z0-9_]/g, '');
+  }
+
+  // Live-normalize on blur
+  [src, medium, campaign, content, term].forEach(function(el) {
+    el.addEventListener('blur', function() {
+      var before = el.value;
+      var after = normalize(before);
+      if (before !== after) el.value = after;
+      update();
+    });
+    el.addEventListener('input', update);
+  });
+  dest.addEventListener('change', update);
+
+  // ----- URL build -----------------------------------------------------
+  function buildURL() {
+    var base = dest.value;
+    if (!base) return '';
+
+    var params = [];
+    var s = normalize(src.value);
+    var m = normalize(medium.value);
+    var c = normalize(campaign.value);
+    var ct = normalize(content.value);
+    var t = normalize(term.value);
+
+    if (s) params.push('utm_source=' + encodeURIComponent(s));
+    if (m) params.push('utm_medium=' + encodeURIComponent(m));
+    if (c) params.push('utm_campaign=' + encodeURIComponent(c));
+    if (ct) params.push('utm_content=' + encodeURIComponent(ct));
+    if (t) params.push('utm_term=' + encodeURIComponent(t));
+
+    if (params.length === 0) return base;
+    var sep = base.indexOf('?') >= 0 ? '&' : '?';
+    return base + sep + params.join('&');
+  }
+
+  function colorize(url) {
+    return url
+      .replace(/(\?)/g, '<span class="qm">$1</span>')
+      .replace(/(&)/g, '<span class="amp">$1</span>')
+      .replace(/(=)/g, '<span class="eq">$1</span>');
+  }
+
+  // ----- Live update -----------------------------------------------------
+  function update() {
+    var s = src.value, m = medium.value, c = campaign.value;
+    var hasMinimum = s && m && c;
+    var url = hasMinimum ? buildURL() : '';
+
+    if (url) {
+      urlBox.classList.remove('empty');
+      urlBox.innerHTML = colorize(url);
+      copyBtn.disabled = false;
+      openBtn.disabled = false;
+      saveBtn.disabled = false;
+    } else {
+      urlBox.classList.add('empty');
+      urlBox.textContent = 'Fill in source, medium and campaign to generate a URL.';
+      copyBtn.disabled = true;
+      openBtn.disabled = true;
+      saveBtn.disabled = true;
+    }
+
+    // Validation hints
+    var invalid = [];
+    [
+      {el: src, label: 'utm_source'},
+      {el: medium, label: 'utm_medium'},
+      {el: campaign, label: 'utm_campaign'},
+      {el: content, label: 'utm_content'},
+      {el: term, label: 'utm_term'},
+    ].forEach(function(item) {
+      if (item.el.value && !isValid(item.el.value)) {
+        invalid.push(item.label);
+      }
+    });
+
+    if (invalid.length > 0) {
+      hint.innerHTML = '<span class="invalid">' + invalid.join(', ') + '</span> — use lowercase, numbers and underscores only';
+    } else if (url) {
+      hint.innerHTML = '<span class="valid">✓</span> All values match the convention.';
+    } else {
+      hint.textContent = '';
+    }
+  }
+
+  // ----- Copy --------------------------------------------------------
+  copyBtn.addEventListener('click', function() {
+    var url = buildURL();
+    if (!url) return;
+    navigator.clipboard.writeText(url).then(function() {
+      copyBtn.textContent = 'Copied ✓';
+      copyBtn.classList.add('copied');
+      setTimeout(function() {
+        copyBtn.textContent = 'Copy URL';
+        copyBtn.classList.remove('copied');
+      }, 1800);
+    });
+  });
+
+  // ----- Open new tab ----------------------------------------------
+  openBtn.addEventListener('click', function() {
+    var url = buildURL();
+    if (url) window.open(url, '_blank', 'noopener');
+  });
+
+  // ----- Save to history --------------------------------------------
+  function loadHistory() {
+    try {
+      var raw = localStorage.getItem(HISTORY_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function writeHistory(h) {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(h)); } catch (e) {}
+  }
+
+  saveBtn.addEventListener('click', function() {
+    var url = buildURL();
+    if (!url) return;
+    var entry = {
+      url: url,
+      src: normalize(src.value),
+      campaign: normalize(campaign.value),
+      ts: Date.now()
+    };
+    var h = loadHistory();
+    h.unshift(entry);
+    if (h.length > 20) h = h.slice(0, 20);
+    writeHistory(h);
+    renderHistory();
+  });
+
+  function renderHistory() {
+    var h = loadHistory();
+    if (h.length === 0) {
+      historyList.innerHTML = '<div class="history-empty">Saved URLs will appear here. History is stored locally in this browser only.</div>';
+      return;
+    }
+    historyList.innerHTML = h.map(function(e, i) {
+      return '<div class="history-item">' +
+        '<div>' +
+          '<div class="history-label"><span class="src">' + e.src + '</span> · <span class="camp">' + e.campaign + '</span></div>' +
+          '<div class="history-url">' + e.url + '</div>' +
+        '</div>' +
+        '<div class="history-actions">' +
+          '<button class="icon-btn" data-copy="' + i + '" title="Copy URL"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>' +
+          '<button class="icon-btn" data-delete="' + i + '" title="Delete"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6"/></svg></button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  historyList.addEventListener('click', function(e) {
+    var copyIdx = e.target.closest('[data-copy]');
+    var delIdx = e.target.closest('[data-delete]');
+    if (copyIdx) {
+      var i = parseInt(copyIdx.getAttribute('data-copy'), 10);
+      var h = loadHistory();
+      if (h[i]) navigator.clipboard.writeText(h[i].url);
+    }
+    if (delIdx) {
+      var j = parseInt(delIdx.getAttribute('data-delete'), 10);
+      var h2 = loadHistory();
+      h2.splice(j, 1);
+      writeHistory(h2);
+      renderHistory();
+    }
+  });
+
+  // ----- Clear -------------------------------------------------------
+  clearBtn.addEventListener('click', function() {
+    src.value = medium.value = campaign.value = content.value = term.value = '';
+    dest.selectedIndex = 0;
+    update();
+  });
+
+  // Init
+  renderHistory();
+  update();
+})();
+</script>
+</body>
+</html>
