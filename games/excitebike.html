@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Excitebike in 3D — 3dSen | Geod Studio</title>
-<meta name="description" content="Play Excitebike in fully-explorable 3D with 3dSen. The pseudo-3D track becomes a real one, the ramps gain height, and the bikes fly in genuine arcs — on screen, in VR, or in AR." />
+<meta name="description" content="Play Excitebike in 3D with 3dSen. Ride a track with real width, raised ramps and airborne bikes, on screen, in VR or in AR." />
 
 <link rel="canonical" href="https://geodstudio.net/games/excitebike.html" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -13,7 +13,7 @@
 <!-- Open Graph -->
 <meta property="og:site_name" content="Geod Studio" />
 <meta property="og:title" content="Excitebike in 3D — 3dSen" />
-<meta property="og:description" content="Play Excitebike in fully-explorable 3D with 3dSen. The pseudo-3D track becomes a real one, ramps gain height, and bikes fly in genuine arcs." />
+<meta property="og:description" content="Play Excitebike in 3D with 3dSen on a track with real width, raised ramps and airborne bikes." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://geodstudio.net/games/excitebike.html" />
 <meta property="og:image" content="https://geodstudio.net/images/excitebike_1.jpg" />
@@ -554,19 +554,19 @@
   <!-- TEXT — second -->
   <div class="game-desc-section">
     <p class="game-desc">
-      Excitebike was always trying to be 3D. The 1984 original used a pseudo-3D presentation to fake depth — bikes drawn at fixed sizes regardless of distance, ramps painted as sloped trapezoids, jumps simulated by moving the rider up and down a flat screen. The illusion worked, but the track was never really there. In 3dSen, the track is finally there. The lanes have real width, the ramps have real height, and when you launch off one your bike actually flies along an arc through the air above the course.
+      Excitebike uses a pseudo-3D view: bikes stay the same size, ramps are painted as trapezoids, and jumps move the rider up and down the screen. In 3dSen, the lanes have width, the ramps have height, and each bike follows an arc through the air above the course.
     </p>
     <p class="game-desc">
-      This was one of the harder profiles to build, for a specific reason. Most 3dSen profiles can read the position of every on-screen object from the NES's memory — x, y, what tile it is, what frame of animation it's on. Excitebike doesn't expose vertical position when a bike is mid-jump. The RAM has the rider's track-relative y coordinate, but the airborne height, the actual third dimension, was never stored as a value the original game needed to know about. Building a real 3D Excitebike meant inferring that height from the rest of the game state, frame by frame.
+      This was one of the harder profiles to build. Most profiles can read each object's position, tile and animation frame from NES memory. Excitebike stores the rider's position on the track, but not the bike's height during a jump. The profile has to infer that third dimension from the rest of the game state, frame by frame.
     </p>
     <p class="game-desc">
-      One reviewer who ran through most of the 3dSen catalog said something about Excitebike he didn't say about any other game on the emulator. He called it the definitive version of how this game should be — that you couldn't do it on the original Nintendo, but with 3dSen the design lines up so well that the 3D treatment feels like the form the game always wanted. He pointed at small details: the temperature gauge has been repositioned from a flat readout at the bottom of the screen to a 3D element that sits up in the middle of the playfield, each obstacle on the track now reads as a discrete shape with thickness, the bikes around you have lane depth instead of just stacking vertically on a 2D plane.
+      A reviewer who played most of the 3dSen catalog called this the definitive way to experience Excitebike. He pointed to the temperature gauge, now positioned as a 3D element in the playfield, the added thickness of each obstacle, and the way other bikes occupy separate lanes instead of stacking on a flat plane.
     </p>
     <p class="game-desc">
-      A note on the camera: the free-camera works well from most angles, including chasing the bike from behind. The one view that doesn't work is the strict first-person from the bike's perspective, looking forward. Your hands want to steer the way you would if you were driving, left and right, but the NES controls are tilt-based, and the disconnect makes the bike unrideable from that angle. Reviewers who tried it fell off repeatedly. Worth knowing if you're tempted to try it for the novelty.
+      The free camera works from most angles, including a view behind the bike. A strict first-person view is less practical: it suggests left-right steering, while the original controls are tilt-based. Reviewers who tried that angle repeatedly fell off the bike.
     </p>
     <p class="game-desc">
-      In VR, the perspective settles into something close to a third-person rider view — the track stretching out in front of you, the next ramp coming up, the bike in the next lane visibly to your side. In AR via Virtual Desktop Passthrough, the whole course sits on your desk or coffee table at miniature scale, the bikes whipping around it like a tabletop slot-car set. The gameplay is the 1984 original, untouched. Same physics, same engine-overheating timer, same lane changes, same crashes. The reason to play it in 3dSen is that the game finally looks like it always wanted to.
+      In VR, the track extends ahead of you in a third-person rider view, with nearby bikes visibly occupying other lanes. In AR via Virtual Desktop Passthrough, the course runs across a desk or coffee table at miniature scale. The original physics, overheating timer, lane changes and crashes all remain untouched.
     </p>
 
     <div class="ctas">
@@ -602,7 +602,7 @@
   <div class="tail-cta">
     <div class="tail-text">
       <h2>Ready to play it?</h2>
-      <p>Load your own Excitebike ROM into 3dSen — the track in real 3D, on screen, in VR, or in AR.</p>
+      <p>Open your own Excitebike ROM in 3dSen and ride the track in 3D, on screen, in VR or in AR.</p>
     </div>
     <div class="ctas" style="margin:0;">
       <a href="https://store.steampowered.com/app/1147940/3dSen_PC/" target="_blank" rel="noopener" class="btn btn-accent">
