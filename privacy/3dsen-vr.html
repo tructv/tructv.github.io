@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Privacy Policy — 3dSen VR | Geod Studio</title>
+<meta name="description" content="Privacy policy for 3dSen VR by Geod Studio. 3dSen VR is a standalone NES emulator that does not collect, transmit, or share any personal data." />
+
+<link rel="canonical" href="https://geodstudio.net/privacy/3dsen-vr.html" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0B0A09" />
+
+<link rel="icon" href="../images/geod.png" type="image/png" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #0B0A09;
+    --bg-2: #131110;
+    --bg-3: #1B1815;
+    --fg: #F5EEE0;
+    --fg-muted: #A39B8A;
+    --fg-dim: #6F6757;
+    --line: rgba(245,238,224,.10);
+    --line-hard: rgba(245,238,224,.22);
+    --accent: #FF4F1F;
+    --accent-2: #4ADEDE;
+    --accent-3: #FFC857;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01","cv11";
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a.inline { color: var(--accent); border-bottom: 1px solid rgba(255,79,31,.3); }
+  a.inline:hover { border-bottom-color: var(--accent); }
+
+  .display { font-family: "Fraunces", ui-serif, Georgia, serif; font-weight: 600; letter-spacing: -0.02em; font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* Grain overlay to match the rest of the site */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events: none; z-index: 1;
+    mix-blend-mode: overlay;
+    opacity: .6;
+  }
+
+  /* ===== Nav ===== */
+  .nav-wrap {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px 0;
+    z-index: 10;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 14px;
+    border: 1px solid var(--line-hard);
+    border-radius: 999px;
+    background: rgba(11,10,9,.7);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 8px;
+    padding-left: 8px;
+  }
+  .nav-brand img { width: 28px; height: 28px; border-radius: 6px; }
+  .nav-brand .nav-title {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  .nav-brand .nav-version {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--line-hard);
+    color: var(--fg-muted);
+  }
+  @media (max-width: 767px) { .nav-brand .nav-version { display: none; } }
+
+  .nav-links { display: none; gap: 28px; font-size: 13px; color: var(--fg-muted); }
+  @media(min-width:768px){ .nav-links{ display:flex; align-items:center; } }
+  .nav-links a { transition: color .2s ease; }
+  .nav-links a:hover { color: var(--fg); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 999px;
+    background: var(--fg); color: #0a0a0a;
+    font-size: 13px; font-weight: 500;
+    transition: background .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--fg); }
+
+  /* Mobile hamburger */
+  .hamburger {
+    display: inline-flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line-hard);
+    background: rgba(255,255,255,.02);
+    flex-shrink: 0;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .hamburger:hover { background: rgba(255,255,255,.06); border-color: var(--fg); }
+  .hamburger span {
+    display: block; width: 16px; height: 1.5px;
+    background: var(--fg); border-radius: 2px;
+    transition: transform .25s ease, opacity .2s ease;
+  }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+  @media(min-width:768px) { .hamburger { display: none; } }
+
+  [hidden] { display: none !important; }
+
+  .mobile-menu {
+    position: absolute;
+    top: 100%; right: 16px; left: 16px;
+    margin-top: 8px;
+    background: rgba(11,10,9,.92);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid var(--line-hard);
+    border-radius: 22px;
+    padding: 12px;
+    display: flex; flex-direction: column;
+    gap: 2px;
+    z-index: 50;
+    animation: mm-in .25s cubic-bezier(.2,.7,.2,1);
+  }
+  @media(min-width:768px) { .mobile-menu { display: none !important; } }
+  @keyframes mm-in {
+    from { opacity: 0; transform: translateY(-8px) scale(.98); }
+    to { opacity: 1; transform: none; }
+  }
+  .mm-link {
+    display: flex; align-items: baseline; gap: 14px;
+    padding: 14px 16px; border-radius: 14px;
+    color: var(--fg);
+    transition: background .2s ease;
+  }
+  .mm-link:hover, .mm-link:active { background: rgba(255,79,31,.08); }
+  .mm-arrow {
+    font-family: "JetBrains Mono", monospace;
+    color: var(--accent);
+    font-size: 14px;
+    width: 14px; display: inline-block;
+    transition: transform .2s ease;
+  }
+  .mm-link:hover .mm-arrow { transform: translateX(3px); }
+  .mm-label {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== Page body ===== */
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent);
+    display: inline-block;
+    border-radius: 1px;
+    box-shadow: 0 0 0 2px rgba(255,79,31,.18);
+  }
+
+  h1.page-title {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 44px;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 14px;
+    font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 1;
+  }
+  @media (max-width: 600px) { h1.page-title { font-size: 36px; } }
+
+  .effective {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    margin-bottom: 48px;
+  }
+  .effective .label { color: var(--fg-muted); margin-right: 8px; }
+
+  .intro {
+    font-size: 18px;
+    color: var(--fg);
+    line-height: 1.6;
+    margin: 0 0 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .intro strong { font-weight: 600; }
+
+  section.policy-section {
+    margin-bottom: 44px;
+  }
+  section.policy-section:last-of-type { margin-bottom: 0; }
+
+  .section-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    color: var(--fg);
+  }
+
+  p {
+    margin: 0 0 14px;
+    color: var(--fg);
+  }
+  p:last-child { margin-bottom: 0; }
+
+  .policy-section ul {
+    margin: 0 0 14px;
+    padding-left: 20px;
+    color: var(--fg);
+  }
+  .policy-section li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .policy-section li::marker { color: var(--accent); }
+
+  .callout {
+    background: var(--bg-2);
+    border: 1px solid var(--line-hard);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .callout .callout-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .callout p { color: var(--fg); font-size: 16px; }
+
+  .contact-block {
+    background: var(--bg-2);
+    border: 1px solid var(--line-hard);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin-top: 12px;
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 12px;
+    padding: 10px 0;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  .contact-row:last-child { border-bottom: 0; }
+  .contact-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .contact-value { color: var(--fg); font-family: "JetBrains Mono", monospace; font-size: 14px; }
+  .contact-value a { color: var(--accent); border-bottom: 1px solid rgba(255,79,31,.3); }
+
+  /* VRC-compliance info table */
+  .vrc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 0;
+    font-size: 14px;
+  }
+  .vrc-table th, .vrc-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .vrc-table th {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 500;
+  }
+  .vrc-table td.code { font-family: "JetBrains Mono", monospace; color: var(--accent-2); font-size: 13px; white-space: nowrap; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 40px 24px;
+    margin-top: 80px;
+  }
+  footer .footer-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 13px;
+    color: var(--fg-dim);
+  }
+  footer a:hover { color: var(--fg); }
+  footer .back-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--fg-muted);
+  }
+  footer .back-link:hover { color: var(--fg); }
+  footer .back-link svg { width: 14px; height: 14px; }
+</style>
+</head>
+
+<body>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="../" class="nav-brand">
+      <img src="../images/geod.png" alt="" />
+      <span class="nav-title">3dSen</span>
+      <span class="nav-version">v1.0</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="../#difference">The Diff</a>
+      <a href="../#products">Products</a>
+      <a href="../#features">Features</a>
+      <a href="../games/">Games</a>
+      <a href="../#press">Press</a>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:6px;">
+      <a href="https://store.steampowered.com/app/954280/3dSen_VR/" target="_blank" rel="noopener" class="nav-cta">Buy on Steam</a>
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <a href="../#difference" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">The Difference</span></a>
+    <a href="../#products" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">Products</span></a>
+    <a href="../#features" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">Features</span></a>
+    <a href="../games/" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">Games</span></a>
+    <a href="../#press" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">Press</span></a>
+    <a href="../blog/3dsen-10-year-story.html" class="mm-link"><span class="mm-arrow">→</span><span class="mm-label">Story</span></a>
+  </div>
+</header>
+
+<!-- ======================= PAGE BODY ======================= -->
+<main class="page-wrap">
+
+  <span class="eyebrow">Legal · Privacy Policy</span>
+  <h1 class="page-title">3dSen VR — Privacy Policy</h1>
+  <p class="effective"><span class="label">Effective date:</span>October 28, 2026</p>
+
+  <p class="intro">
+    3dSen VR is a standalone, offline NES emulator developed by Geod Studio. <strong>The application does not collect, transmit, store on remote servers, or share any personal data about you.</strong> This policy explains what that means in practice and how you can contact us if you have questions.
+  </p>
+
+  <!-- ============ SECTION 1 ============ -->
+  <section class="policy-section">
+    <span class="section-num">01 · Overview</span>
+    <h2>Who we are, what this covers</h2>
+    <p>
+      3dSen VR (the "App") is a virtual reality application published by <strong>Geod Studio</strong>, a solo independent game studio based in Vietnam. This Privacy Policy applies to the 3dSen VR application distributed through the Meta Quest Store, Steam, and any other digital storefront where it is officially published by Geod Studio.
+    </p>
+    <p>
+      The App emulates classic Nintendo Entertainment System (NES) games provided by you, the user, from your own ROM files on your local device, and renders them as real-time 3D voxel dioramas viewable in VR. All emulation and rendering happens entirely on your device. The App does not require an internet connection to function.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 2 ============ -->
+  <section class="policy-section">
+    <span class="section-num">02 · Information we collect</span>
+    <h2>What data the App collects</h2>
+    <p>
+      <strong>The App collects no personal information.</strong> Specifically, 3dSen VR does not:
+    </p>
+    <ul>
+      <li>Ask for, collect, or store your name, email address, phone number, physical address, date of birth, or any other personally identifiable information;</li>
+      <li>Create or require a user account, login credentials, or online profile;</li>
+      <li>Track your location, device identifiers, advertising ID, or hardware fingerprint;</li>
+      <li>Collect analytics, usage telemetry, crash reports, or diagnostic information through any first-party channel;</li>
+      <li>Record audio, video, images, or microphone input;</li>
+      <li>Access your contacts, photos, files outside the ROM folder you yourself choose, or any other personal content on your device;</li>
+      <li>Transmit any data from your device to Geod Studio or to any Geod Studio–controlled server;</li>
+      <li>Display advertisements, use advertising SDKs, or integrate any marketing or attribution pixels;</li>
+      <li>Include in-app purchases, subscriptions, or other payment flows that would collect financial information.</li>
+    </ul>
+
+    <p style="margin-top:18px;">
+      The only data the App writes anywhere is <strong>stored locally on your device</strong>, under your control:
+    </p>
+    <ul>
+      <li>Your application settings and preferences (graphics options, camera settings, controller bindings);</li>
+      <li>Save states and quick-save data from games you play;</li>
+      <li>The file paths of ROMs you have loaded, so the App can remember your library.</li>
+    </ul>
+    <p>
+      This local data never leaves your device through the App. You can delete it at any time by uninstalling 3dSen VR or by clearing the App's local storage through your headset's system settings.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 3 ============ -->
+  <section class="policy-section">
+    <span class="section-num">03 · How information is used</span>
+    <h2>What we do with your data</h2>
+    <p>
+      Because the App collects no data, there is no personal data for Geod Studio to use, process, analyze, store on servers, sell, or share with any third party. We cannot access information we do not collect.
+    </p>
+    <p>
+      The local data described in Section 2 is used only by the App itself, on your device, to provide the functionality you expect: remembering your settings, loading your saved games, and restoring your previous session when you launch the App.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 4 ============ -->
+  <section class="policy-section">
+    <span class="section-num">04 · Third parties and platform data</span>
+    <h2>Data collected by the platforms you use</h2>
+    <p>
+      While 3dSen VR itself collects nothing, the platforms you use to run the App — specifically <strong>Meta (Oculus) for Meta Quest devices</strong> and <strong>Valve (Steam / SteamVR)</strong> for PC VR — may collect data about your use of the App according to their own privacy policies. This data is handled directly by those platforms, not by Geod Studio. Geod Studio does not receive any personally identifiable data from these platforms about individual users.
+    </p>
+    <p>
+      Examples of what platforms may collect independently of the App include:
+    </p>
+    <ul>
+      <li>Headset motion-tracking data processed locally by the Oculus or SteamVR runtime to position your view (not transmitted to the App or to Geod Studio);</li>
+      <li>Store-level purchase information managed by Meta or Valve;</li>
+      <li>Aggregated, anonymized session statistics that platforms may expose to developers in dashboard form (e.g. install counts, average session length). Geod Studio may view this data in aggregate but it does not identify individual users.</li>
+    </ul>
+    <p>
+      For information about what Meta and Valve collect, please refer to their privacy policies directly:
+    </p>
+    <ul>
+      <li>Meta Privacy Policy: <a class="inline" href="https://www.meta.com/legal/privacy-policy/" target="_blank" rel="noopener">meta.com/legal/privacy-policy</a></li>
+      <li>Valve / Steam Privacy Policy: <a class="inline" href="https://store.steampowered.com/privacy_agreement/" target="_blank" rel="noopener">store.steampowered.com/privacy_agreement</a></li>
+    </ul>
+    <p>
+      Geod Studio does not share data with any other third parties, because Geod Studio does not have any data to share.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 5 ============ -->
+  <section class="policy-section">
+    <span class="section-num">05 · Children's privacy</span>
+    <h2>Use by children</h2>
+    <p>
+      3dSen VR is not directed at children under the age of 13. Because the App collects no personal information from any user, it does not knowingly collect personal information from children. If you believe that a child has somehow provided personal information to Geod Studio through any Geod Studio–operated channel (for example by sending an email), please contact us so that we can delete it.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 6 ============ -->
+  <section class="policy-section">
+    <span class="section-num">06 · Your rights</span>
+    <h2>Your rights regarding your data</h2>
+    <p>
+      Because Geod Studio holds no personal data about you, there is no personal data to request, correct, export, or delete under laws such as the European General Data Protection Regulation (GDPR), the California Consumer Privacy Act (CCPA), or similar regulations.
+    </p>
+    <p>
+      If you wish to delete all local data created by the App on your device, uninstall 3dSen VR through your platform's standard uninstallation process. This removes all settings, save states, and preferences the App has written locally.
+    </p>
+    <p>
+      For data collected by Meta or Valve independently of the App, please exercise your rights directly with those platforms using the tools and contacts they provide in their own privacy policies.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 7 ============ -->
+  <section class="policy-section">
+    <span class="section-num">07 · Changes to this policy</span>
+    <h2>Updates to this policy</h2>
+    <p>
+      If the App's data practices change in the future — for example, if a future version introduces an optional online feature — this Privacy Policy will be updated accordingly, and the "Effective date" at the top of this page will be revised. We encourage you to review this policy periodically. Continued use of the App after an update means you accept the revised policy.
+    </p>
+    <p>
+      Material changes that expand data collection will be announced on the App's store pages and on <a class="inline" href="https://geodstudio.net/">geodstudio.net</a> before taking effect.
+    </p>
+  </section>
+
+  <!-- ============ SECTION 8 ============ -->
+  <section class="policy-section">
+    <span class="section-num">08 · Contact</span>
+    <h2>How to reach us</h2>
+    <p>
+      Questions, concerns, or requests regarding this Privacy Policy or 3dSen VR's data practices can be directed to Geod Studio at:
+    </p>
+    <div class="contact-block">
+      <div class="contact-row">
+        <span class="contact-label">Publisher</span>
+        <span class="contact-value">Geod Studio</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:vutruc80@gmail.com">vutruc80@gmail.com</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Website</span>
+        <span class="contact-value"><a href="https://geodstudio.net/">geodstudio.net</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Response</span>
+        <span class="contact-value" style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--fg-muted);">We aim to respond within 7 business days.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="footer-wrap">
+    <a href="../" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      Back to geodstudio.net
+    </a>
+    <div>&copy; 2015 – 2026 Geod Studio. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Mobile menu toggle -->
+<script>
+  (function(){
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+    var close = function() {
+      menu.hidden = true;
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    };
+    var open = function() {
+      menu.hidden = false;
+      toggle.classList.add('is-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+    };
+    toggle.addEventListener('click', function() {
+      menu.hidden ? open() : close();
+    });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !menu.hidden) close(); });
+    window.addEventListener('resize', function(){ if (window.innerWidth >= 768 && !menu.hidden) close(); });
+  })();
+</script>
+
+<script src="../utm.js" defer></script>
+
+</body>
+</html>
